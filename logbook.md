@@ -233,6 +233,26 @@ Run:
 
 src <https://stackoverflow.com/questions/11623862/fetch-in-git-doesnt-get-all-branches>
 
+### Setup 
+
+…or create a new repository on the command line
+
+```git
+echo "# atlas" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jaypatel-03/atlas.git
+git push -u origin main
+```
+
+…or push an existing repository from the command line
+```
+git remote add origin https://github.com/jaypatel-03/atlas.git
+git branch -M main
+git push -u origin main
+```
 
 ## SSH
 
@@ -264,4 +284,4 @@ Through WSL
     rsync -av -e "ssh -J jesu4129@bastion.physics.ox.ac.uk" French.txt jesu4129@pplxint12.physics.ox.ac.uk:./copy
 
 
-Test
+
