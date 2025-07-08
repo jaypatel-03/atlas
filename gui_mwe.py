@@ -14,4 +14,6 @@ logging.debug(f"Label created with text: {label['text']}")
 # 'pack()' is a 'geometry manager'; it tells our app to put this widget on the window
 label.pack()
 
+print("Hello world")
+
 window.mainloop()

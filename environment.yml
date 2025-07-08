@@ -1,4 +1,4 @@
-name: atlas
+name: atlas_constellation
 channels:
   - defaults
   - https://repo.anaconda.com/pkgs/main
