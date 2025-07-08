@@ -73,15 +73,43 @@ Run control is a controller class
 
 Watchdog could be used to listen to monitoring stream and send out heartbeat
 
-Listener (only consumes)
 
-Controller (sends commands)
-
-Satellite (receives commands)
 
 New class would be watchdog, which listens and has a heartbeat 
 
 Heartbeat contains state of sender and time interval for next to arrive (timeout set by sender)
+
+Run: self-contained measurement(s). Transition into RUN state and out 
+
+TODO: multicast packet
+
+TODO: ephemeral port defined in RFC 6335
+
+TODO: basic network protocols
+
+Satellite (receives commands): instrument controlling code and data receivers. React to commands from controllers, listen to other heartbeat messages, distribute log messages and telemetry data
+
+Controller (sends commands): user interface, nodes which send commands via control protocol. GUI, CLI interfaces are controllers.
+
+Listener (only consumes): log message interfaces/telemetry
+
+There are transitional states where corresponding code may be run (initializing, launching, landing, starting, stopping, reconfiguring [e.g. varying HV supply rather than landing (ramping down) and launching (ramping up to new HV)]).
+
+### Satellite
+
+Type.Name
+
+Status may change whilst remaining in same state
+
+TODO: CSCP protocol <https://constellation.pages.desy.de/framework_reference/protocols.html>,
+
+![alt text](img/plantuml-72500fffddee71d18891c765bfd7bc33fd82bccf.svg)
+
+Initialisation involves reception of configuration from controller. FIRST CONNECTION TO INSTRUMENT HARDWARE.
+
+Orbit: ready for DAQ
+
+Run: DAQ
 
 ## Acronyms
 
@@ -95,6 +123,9 @@ SCADA = Supervisory control and data acquisition
 
 YARR = Yet Another Rapid Readout <https://github.com/Yarr/Yarr>
 
+CSCP = Constellation Satellite Control Protocol
+
+CHIRP = Constellation Host Identification & Reconnaissance Protocol (IPv4 protocol)
 
 ## Testing procedure
 
@@ -122,7 +153,7 @@ Turn bias off for zero bias and TURN BACK ON afterwards (press 'Local' on Keithl
 
 Remember to leave box closed 
 
-# Logbook
+# Python
 
 Look into logging, parser:
 
@@ -261,15 +292,6 @@ Add config file to jay/.ssh/config
 cat id.pub file 
 Add key to GitLab and GitHub
 
-### Copying to remote
-
-    scp -J jesu4129@bastion.physics.ox.ac.uk .\file jesu4129@pplxint12.physics.ox.ac.uk:./copy
-
-Add function to Powershell profile (echo $profile)
-
-    function SSH-Copy {
-        scp -J jesu4129@bastion.physics.ox.ac.uk .\$args jesu4129@pplxint12.physics.ox.ac.uk:./copy
-    }
 
 ## Linux tips
     
@@ -285,3 +307,13 @@ Through WSL
 
 
 
+
+### Copying to remote
+
+    scp -J jesu4129@bastion.physics.ox.ac.uk .\file jesu4129@pplxint12.physics.ox.ac.uk:./copy
+
+Add function to Powershell profile (echo $profile)
+
+    function SSH-Copy {
+        scp -J jesu4129@bastion.physics.ox.ac.uk .\$args jesu4129@pplxint12.physics.ox.ac.uk:./copy
+    }

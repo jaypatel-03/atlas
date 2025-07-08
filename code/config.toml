@@ -1,0 +1,11 @@
+[satellites]
+# General settings which apply to all satellites
+_role = "DYNAMIC"
+
+[satellites.Sputnik]
+# Settings which apply to all satellites of type "Sputnik"
+interval = 1000
+
+[satellites.Mariner.Nine]
+# Settings which only apply to the satellite with name "Mariner.Nine"
+voltage = 5.1
