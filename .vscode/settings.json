@@ -1,0 +1,9 @@
+{
+    "python.testing.pytestArgs": [
+        "constellation"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.pythonPath": "~/miniconda3/envs/atlas/bin/python",
+    "python.analysis.extraPaths": ["/home/jayp/atlas/constellation/python"]
+}

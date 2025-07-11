@@ -6,6 +6,7 @@ _role = "DYNAMIC"
 # Settings which apply to all satellites of type "Sputnik"
 interval = 1000
 
-[satellites.Mariner.Nine]
+[satellites.Mariner]
 # Settings which only apply to the satellite with name "Mariner.Nine"
 voltage = 5.1
+current = 0.1

@@ -50,6 +50,23 @@ To install MissionControl, need system-wide installation:
 
 Created environment.yml installation file
 
+## 09/07/2025
+
+ATLAS module assembly shadowing - 4 axis gantry robot
+
+Software written in LABVIEW
+
+1) Read datum and align - creates file with position vectors 
+2) Pick up module and place
+
+Check vacuum connections
+
+Placement head - unscrew and check squidgy bits
+
+## 11/07/2025
+
+
+
 ## Constellation
 
 Here is a basic overview page https://constellation.pages.desy.de/
@@ -125,7 +142,12 @@ YARR = Yet Another Rapid Readout <https://github.com/Yarr/Yarr>
 
 CSCP = Constellation Satellite Control Protocol
 
+CDTP = Constellation Data Transfer Protocol 
+
 CHIRP = Constellation Host Identification & Reconnaissance Protocol (IPv4 protocol)
+
+CMDP = Constellation Monitoring Distribution Protocol 
+
 
 ## Testing procedure
 
@@ -153,33 +175,6 @@ Turn bias off for zero bias and TURN BACK ON afterwards (press 'Local' on Keithl
 
 Remember to leave box closed 
 
-# Python
-
-Look into logging, parser:
-
-    def parse_args(argv=None):
-    """Parse command line arguments.
-    Args:
-        argv (list): List of string arguments to parse. If None, use sys.argv. This is so the function can be called from Jupyter notebooks.
-    Returns:
-        dict: Dictionary of parameters.
-    """
-    if argv is None:
-        argv = sys.argv[1:]
-    parser = argparse.ArgumentParser(description='Clustering')
-    parser.add_argument('-i', '--input', dest='input_path', required=True, help='Input file name.')
-    parser.add_argument('-p', '--plot', dest='plot_pulses', default=False, action="store_true", help='Plot hit time histogram for pulses')
-
-    args = vars(parser.parse_args(argv))
-    return args
-
-    if __name__ == '__main__':
-    from dsutils import setup_logging
-    setup_logging(level='info')
-    kwargs = parse_args()
-    main(**kwargs)
-
-xargs?
 
 ## Conda
 
@@ -317,3 +312,33 @@ Add function to Powershell profile (echo $profile)
     function SSH-Copy {
         scp -J jesu4129@bastion.physics.ox.ac.uk .\$args jesu4129@pplxint12.physics.ox.ac.uk:./copy
     }
+
+
+### Example Satellite Class
+
+```python
+class ExampleSatellite(Satellite):
+    def __init__(self, name):
+        # Initialize base class with satellite name
+        super().__init__(name)
+
+    def do_initializing(self):
+        self.logger.info("Satellite is initializing.")
+        self.set_state_ready()  # Transition to READY state
+
+    def do_starting(self):
+        self.logger.info("Satellite is starting.")
+        self.set_state_running()  # Transition to RUNNING state
+
+    def do_running(self):
+        self.logger.info("Satellite is running.")
+        self.set_state_running()  # Remain in RUNNING (can include tasks here)
+
+    def do_stopping(self):
+        self.logger.info("Satellite is stopping.")
+        self.set_state_ready()  # Return to READY state
+
+    def do_resetting(self):
+        self.logger.info("Satellite is resetting.")
+        self.set_state_idle()  # Return to IDLE
+```
