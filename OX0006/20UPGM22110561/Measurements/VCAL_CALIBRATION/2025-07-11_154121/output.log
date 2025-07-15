@@ -1,0 +1,160 @@
+Using /home/opmd/Module_QC/configs/new_hw_config_v1.1.json for hardware config
+Using /home/opmd/Module_QC/py3_venv/lib/python3.9/site-packages/module_qc_tools/data/configs/meas_config.json for measurement config
+Will use 5.88 A for PS current (4 chips)
+YARR version: v1.5.5
+Creating temporary connectivity file and chip configs without pixel config in /tmp/tmptrt9waqp
+hv_status {'voltage': -120.0223, 'current': -9.784931e-06}
+Sending command (attempt 0): 
+./bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c /tmp/tmptrt9waqp/20UPGM22110561_L2_warm_noPixConfig.json 
+Sending command: 
+./bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c /tmp/tmptrt9waqp/20UPGM22110561_L2_warm_noPixConfig.json 
+[2025-07-11 15:41:26.897] [info] Configuring logger ...
+[15:41:26:897][  info  ][  ScanConsole  ][1003587]: [1;31m#####################################[0m
+[15:41:26:897][  info  ][  ScanConsole  ][1003587]: [1;31m##  Welcome to YARR - ScanConsole  ##[0m
+[15:41:26:897][  info  ][  ScanConsole  ][1003587]: [1;31m#####################################[0m
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: Chip type: RD53B
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: Chip count 4
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: Loading chip #0
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: Loading config file: /tmp/tmptrt9waqp/0x17349_L2_warm_noPixConfig.json
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: GlobalConfig overwrite file not found, skipping overwrite.
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: Loading chip #1
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: Loading config file: /tmp/tmptrt9waqp/0x17359_L2_warm_noPixConfig.json
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: GlobalConfig overwrite file not found, skipping overwrite.
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: Loading chip #2
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: Loading config file: /tmp/tmptrt9waqp/0x17379_L2_warm_noPixConfig.json
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: GlobalConfig overwrite file not found, skipping overwrite.
+[15:41:26:897][  info  ][  ScanHelper   ][1003587]: Loading chip #3
+[15:41:26:897][warning ][  ScanHelper   ][1003587]:  ... chip not enabled, skipping!
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: No scan configuration provided, will only configure front-ends
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: Connectivity:
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]:     /tmp/tmptrt9waqp/20UPGM22110561_L2_warm_noPixConfig.json
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: Target ToT: -1
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: Target Charge: -1
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: Output Plots: false
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: Output Directory: ./data/001861_/
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: Timestamp: 2025-07-11_15:41:26
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: Run Number: 1861
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: [1;31m#####################[0m
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: [1;31m##  Init Hardware  ##[0m
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: [1;31m#####################[0m
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: -> Opening controller config: configs/controller/specCfg-rd53b-16x1.json
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: Loading controller ...
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: Found controller of type: spec
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: Opening SPEC with id #0
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: Mapping BARs ...
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: ... Mapped BAR0 at 0x7f5625d00000 with size 1048576
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: Firmware Hash: 0x7b14549
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: Firmware Version: v1.5.0
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: Firmware Identifier: 0x2030242
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: FPGA card: Trenz TEF1001_R2
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: FE Chip Type: RD53A/B/C
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: FMC Card Type: Ohio Card (Display Port)
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: RX Speed: 1280Mbps
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: Channel Configuration: 16x1
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: LPM Status: 0
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: Soft resetting all ...
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: Flushing buffers ...
+[15:41:26:902][  info  ][    SpecCom    ][1003587]: Init success!
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 0 fixed to 18
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 1 fixed to 5
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 2 fixed to 4
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 3 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 4 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 5 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 6 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 7 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 8 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 9 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 10 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 11 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 12 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 13 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 14 fixed to 0
+[15:41:26:902][  info  ][    SpecRx     ][1003587]: Delay lane 15 fixed to 0
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: Loaded controller config:
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~ {
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     "cmdPeriod": 6.25e-09,
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     "delay": [18, 5, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     "idle": {
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~         "word": 2863311530
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     },
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     "pulse": {
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~         "interval": 500,
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~         "word": 0
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     },
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     "rxActiveLanes": 1,
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     "rxPolarity": 65535,
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     "specNum": 0,
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     "spiConfig": 541200,
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     "sync": {
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~         "interval": 16,
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~         "word": 2172551550
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     },
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~     "txPolarity": 0
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: ~~~ }
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: [1;31m#######################[0m
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: [1;31m##  Loading Configs  ##[0m
+[15:41:26:902][  info  ][  ScanConsole  ][1003587]: [1;31m#######################[0m
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: Chip type: RD53B
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: Chip count 4
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: Loading chip config #0
+[15:41:26:902][  info  ][  Bookkeeper   ][1003587]: Added FE: Tx(0), Rx(2), RegRx(2) under ID 0
+[15:41:26:902][ error  ][ Rd53bPixelCfg ][1003587]: Could not find pixel registers config, using default!
+[15:41:26:902][  info  ][  ScanHelper   ][1003587]: Loading chip config #1
+[15:41:26:903][  info  ][  Bookkeeper   ][1003587]: Added FE: Tx(0), Rx(1), RegRx(1) under ID 1
+[15:41:26:903][ error  ][ Rd53bPixelCfg ][1003587]: Could not find pixel registers config, using default!
+[15:41:26:903][  info  ][  ScanHelper   ][1003587]: Loading chip config #2
+[15:41:26:903][  info  ][  Bookkeeper   ][1003587]: Added FE: Tx(0), Rx(0), RegRx(0) under ID 2
+[15:41:26:903][ error  ][ Rd53bPixelCfg ][1003587]: Could not find pixel registers config, using default!
+[15:41:26:903][  info  ][  ScanHelper   ][1003587]: Loading chip config #3
+[15:41:26:903][warning ][  ScanHelper   ][1003587]:  ... chip not enabled, skip config!
+[15:41:27:975][  info  ][  ScanConsole  ][1003587]: [1;31m#####################[0m
+[15:41:27:975][  info  ][  ScanConsole  ][1003587]: [1;31m##  Configure FEs  ##[0m
+[15:41:27:975][  info  ][  ScanConsole  ][1003587]: [1;31m#####################[0m
+[15:41:27:975][  info  ][  ScanConsole  ][1003587]: Configuring 0x17349
+[15:41:28:266][  info  ][  ScanConsole  ][1003587]: Configuring 0x17359
+[15:41:28:561][  info  ][  ScanConsole  ][1003587]: Configuring 0x17379
+[15:41:28:856][  info  ][  ScanConsole  ][1003587]: Sent configuration to all FEs in 901 ms!
+[15:41:28:856][  info  ][     Rd53b     ][1003587]: Performing soft reset ...
+[15:41:28:858][  info  ][  ScanConsole  ][1003587]: Checking com 0x17349
+[15:41:28:958][  info  ][    SpecRx     ][1003587]: Active Rx channels: 0x4
+[15:41:28:958][  info  ][    SpecRx     ][1003587]: Active Rx lanes: 0x1
+[15:41:28:958][  info  ][    SpecRx     ][1003587]: Rx Status 0x7
+[15:41:28:958][  info  ][    SpecRx     ][1003587]: Number of lanes: 1
+[15:41:28:958][  info  ][    SpecRx     ][1003587]: Channel 2 Lane 0 synchronized!
+[15:41:29:179][  info  ][     Rd53b     ][1003587]: Chip serial number obtained from e-fuse data (raw): 0x11734915
+[15:41:29:179][  info  ][     Rd53b     ][1003587]: Chip serial number obtained from e-fuse data: 0x17349
+[15:41:29:179][  info  ][     Rd53b     ][1003587]: Matched chip serial number: 0x17349
+[15:41:29:179][  info  ][  ScanConsole  ][1003587]: ... success!
+[15:41:29:179][  info  ][  ScanConsole  ][1003587]: Checking com 0x17359
+[15:41:29:279][  info  ][    SpecRx     ][1003587]: Active Rx channels: 0x2
+[15:41:29:279][  info  ][    SpecRx     ][1003587]: Active Rx lanes: 0x1
+[15:41:29:279][  info  ][    SpecRx     ][1003587]: Rx Status 0x7
+[15:41:29:279][  info  ][    SpecRx     ][1003587]: Number of lanes: 1
+[15:41:29:279][  info  ][    SpecRx     ][1003587]: Channel 1 Lane 0 synchronized!
+[15:41:29:501][  info  ][     Rd53b     ][1003587]: Chip serial number obtained from e-fuse data (raw): 0x1173591c
+[15:41:29:501][  info  ][     Rd53b     ][1003587]: Chip serial number obtained from e-fuse data: 0x17359
+[15:41:29:501][  info  ][     Rd53b     ][1003587]: Matched chip serial number: 0x17359
+[15:41:29:501][  info  ][  ScanConsole  ][1003587]: ... success!
+[15:41:29:501][  info  ][  ScanConsole  ][1003587]: Checking com 0x17379
+[15:41:29:601][  info  ][    SpecRx     ][1003587]: Active Rx channels: 0x1
+[15:41:29:601][  info  ][    SpecRx     ][1003587]: Active Rx lanes: 0x1
+[15:41:29:601][  info  ][    SpecRx     ][1003587]: Rx Status 0x7
+[15:41:29:601][  info  ][    SpecRx     ][1003587]: Number of lanes: 1
+[15:41:29:601][  info  ][    SpecRx     ][1003587]: Channel 0 Lane 0 synchronized!
+[15:41:29:822][  info  ][     Rd53b     ][1003587]: Chip serial number obtained from e-fuse data (raw): 0x11737916
+[15:41:29:822][  info  ][     Rd53b     ][1003587]: Chip serial number obtained from e-fuse data: 0x17379
+[15:41:29:822][  info  ][     Rd53b     ][1003587]: Matched chip serial number: 0x17379
+[15:41:29:822][  info  ][  ScanConsole  ][1003587]: ... success!
+
+[yarr] configure module
+    Start InjVcalMed, LargeRange for all chips
+    Start InjVcalMed, SmallRange for all chips
+    Start InjVcalHigh, LargeRange for all chips
+    Start InjVcalHigh, SmallRange for all chips
+Writing output measurements in /home/opmd/Module_QC/module-qc-database-tools/OX0006/20UPGM22110561/Measurements/VCAL_CALIBRATION/2025-07-11_154121
+Done!
+TimeEnd: 2025-07-11_154317
+Deleting temporary files: /tmp/tmptrt9waqp

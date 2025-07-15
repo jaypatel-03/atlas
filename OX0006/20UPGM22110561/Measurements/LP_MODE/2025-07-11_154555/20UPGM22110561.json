@@ -1,0 +1,810 @@
+[
+    [
+        {
+            "serialNumber": "20UPGFC0095049",
+            "testType": "LP_MODE",
+            "runNumber": "68712497a300330a190956cf",
+            "results": {
+                "DCSdata": {
+                    "SensorVoltage": -120.0205,
+                    "SensorCurrent": -9.664485e-06,
+                    "ModuleNTC": 25.696
+                },
+                "Measurements": {
+                    "Temperature": {
+                        "X": false,
+                        "Unit": "C",
+                        "Values": [
+                            21.549
+                        ]
+                    },
+                    "SetCurrent": {
+                        "X": false,
+                        "Unit": "A",
+                        "Values": [
+                            3
+                        ]
+                    },
+                    "Current": {
+                        "X": true,
+                        "Unit": "A",
+                        "Values": [
+                            2.1
+                        ]
+                    },
+                    "FailingPixels": {
+                        "X": false,
+                        "Unit": "Counts",
+                        "Values": [
+                            153600
+                        ]
+                    },
+                    "Vmux30": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00516304
+                        ]
+                    },
+                    "Vmux33": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.371715
+                        ]
+                    },
+                    "Vmux36": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.329884
+                        ]
+                    },
+                    "Vmux37": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.371747
+                        ]
+                    },
+                    "Imux0": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.0447888
+                        ]
+                    },
+                    "Imux28": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.10391
+                        ]
+                    },
+                    "Imux29": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.0139752
+                        ]
+                    },
+                    "Imux30": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.222866
+                        ]
+                    },
+                    "Imux31": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00504655
+                        ]
+                    },
+                    "Imux63": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00502422
+                        ]
+                    }
+                },
+                "Metadata": {
+                    "FirmwareVersion": "",
+                    "FirmwareIdentifier": "",
+                    "ChannelConfig": "",
+                    "SoftwareVersion": "",
+                    "ChipConfigs": {
+                        "RD53B": {
+                            "GlobalConfig": {
+                                "AuroraActiveLanes": 1,
+                                "CdrClkSel": 0,
+                                "CmlBias0": 800,
+                                "CmlBias1": 400,
+                                "CmlBias2": 0,
+                                "SerEnTap": 1,
+                                "SerInvTap": 1,
+                                "MonitorEnable": 1,
+                                "MonitorI": 63,
+                                "MonitorV": 32,
+                                "ServiceBlockEn": 1,
+                                "ServiceBlockPeriod": 50,
+                                "DiffLcc": 200,
+                                "DiffLccEn": 1,
+                                "DiffPreComp": 0,
+                                "DiffPreampL": 0,
+                                "DiffPreampM": 0,
+                                "DiffPreampR": 0,
+                                "DiffPreampT": 0,
+                                "DiffPreampTL": 0,
+                                "DiffPreampTR": 0,
+                                "DiffVff": 0,
+                                "EnCoreCol0": 0,
+                                "EnCoreCol1": 0,
+                                "EnCoreCol2": 0,
+                                "EnCoreCol3": 0,
+                                "DataMergeOutMux0": 2,
+                                "DataMergeOutMux1": 3,
+                                "DataMergeOutMux2": 0,
+                                "DataMergeOutMux3": 1,
+                                "SerEnLane": 15,
+                                "SerSelOut0": 3,
+                                "SerSelOut1": 3,
+                                "SerSelOut2": 1,
+                                "SerSelOut3": 3,
+                                "SldoTrimA": 10,
+                                "SldoTrimD": 5
+                            },
+                            "Parameter": {
+                                "ADCcalPar": [
+                                    12.233,
+                                    0.175,
+                                    10000.0
+                                ],
+                                "InjCap": 7.734,
+                                "KSenseInA": 20853.917,
+                                "KSenseInD": 21488.02,
+                                "Name": "0x17349",
+                                "ChipId": 12,
+                                "NfDSLDO": 1.285540158920974,
+                                "NfASLDO": 1.2851811457062037,
+                                "NfACB": 1.282797297960129,
+                                "VcalPar": [
+                                    2.15,
+                                    0.188
+                                ],
+                                "IrefTrim": 9,
+                                "KSenseShuntA": 21450.0,
+                                "KSenseShuntD": 22102.0,
+                                "KShuntA": 1037.903,
+                                "KShuntD": 1032.683
+                            }
+                        }
+                    },
+                    "SoftwareType": "",
+                    "ChipID": 12,
+                    "Name": "0x17349",
+                    "Institution": "OX",
+                    "ModuleSN": "20UPGM22110561",
+                    "AverageTemperature": 21.549,
+                    "BOMCode": "12",
+                    "TimeStart": 1752245156,
+                    "TimeEnd": 1752245400
+                },
+                "comment": "",
+                "property": {
+                    "YARR_VERSION": "v1.5.5",
+                    "LP_MODE_MEASUREMENT_VERSION": "2.5.0"
+                }
+            },
+            "subtestType": ""
+        }
+    ],
+    [
+        {
+            "serialNumber": "20UPGFC0095065",
+            "testType": "LP_MODE",
+            "runNumber": "68712497a300330a190956d0",
+            "results": {
+                "DCSdata": {
+                    "SensorVoltage": -120.0205,
+                    "SensorCurrent": -9.664485e-06,
+                    "ModuleNTC": 25.696
+                },
+                "Measurements": {
+                    "Temperature": {
+                        "X": false,
+                        "Unit": "C",
+                        "Values": [
+                            21.549
+                        ]
+                    },
+                    "SetCurrent": {
+                        "X": false,
+                        "Unit": "A",
+                        "Values": [
+                            3
+                        ]
+                    },
+                    "Current": {
+                        "X": true,
+                        "Unit": "A",
+                        "Values": [
+                            2.1
+                        ]
+                    },
+                    "FailingPixels": {
+                        "X": false,
+                        "Unit": "Counts",
+                        "Values": [
+                            153600
+                        ]
+                    },
+                    "Vmux30": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00508572
+                        ]
+                    },
+                    "Vmux33": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.371448
+                        ]
+                    },
+                    "Vmux36": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.330016
+                        ]
+                    },
+                    "Vmux37": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.371682
+                        ]
+                    },
+                    "Imux0": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.0447888
+                        ]
+                    },
+                    "Imux28": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.10391
+                        ]
+                    },
+                    "Imux29": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.0139752
+                        ]
+                    },
+                    "Imux30": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.222866
+                        ]
+                    },
+                    "Imux31": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00504655
+                        ]
+                    },
+                    "Imux63": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00502422
+                        ]
+                    }
+                },
+                "Metadata": {
+                    "FirmwareVersion": "",
+                    "FirmwareIdentifier": "",
+                    "ChannelConfig": "",
+                    "SoftwareVersion": "",
+                    "ChipConfigs": {
+                        "RD53B": {
+                            "GlobalConfig": {
+                                "AuroraActiveLanes": 1,
+                                "CdrClkSel": 0,
+                                "CmlBias0": 800,
+                                "CmlBias1": 400,
+                                "CmlBias2": 0,
+                                "SerEnTap": 1,
+                                "SerInvTap": 1,
+                                "MonitorEnable": 1,
+                                "MonitorI": 63,
+                                "MonitorV": 32,
+                                "ServiceBlockEn": 1,
+                                "ServiceBlockPeriod": 50,
+                                "DiffLcc": 200,
+                                "DiffLccEn": 1,
+                                "DiffPreComp": 0,
+                                "DiffPreampL": 0,
+                                "DiffPreampM": 0,
+                                "DiffPreampR": 0,
+                                "DiffPreampT": 0,
+                                "DiffPreampTL": 0,
+                                "DiffPreampTR": 0,
+                                "DiffVff": 0,
+                                "EnCoreCol0": 0,
+                                "EnCoreCol1": 0,
+                                "EnCoreCol2": 0,
+                                "EnCoreCol3": 0,
+                                "DataMergeOutMux0": 0,
+                                "DataMergeOutMux1": 1,
+                                "DataMergeOutMux2": 2,
+                                "DataMergeOutMux3": 3,
+                                "SerEnLane": 15,
+                                "SerSelOut0": 1,
+                                "SerSelOut1": 3,
+                                "SerSelOut2": 3,
+                                "SerSelOut3": 3,
+                                "SldoTrimA": 8,
+                                "SldoTrimD": 11
+                            },
+                            "Parameter": {
+                                "ADCcalPar": [
+                                    11.219,
+                                    0.184,
+                                    10000.0
+                                ],
+                                "InjCap": 7.699999999999999,
+                                "KSenseInA": 20898.998,
+                                "KSenseInD": 21312.408,
+                                "Name": "0x17359",
+                                "ChipId": 13,
+                                "NfDSLDO": 1.282953167784698,
+                                "NfASLDO": 1.2825511996230947,
+                                "NfACB": 1.2932751359344308,
+                                "VcalPar": [
+                                    2.553,
+                                    0.196
+                                ],
+                                "IrefTrim": 11,
+                                "KSenseShuntA": 21496.0,
+                                "KSenseShuntD": 21921.0,
+                                "KShuntA": 1047.84,
+                                "KShuntD": 1024.633
+                            }
+                        }
+                    },
+                    "SoftwareType": "",
+                    "ChipID": 13,
+                    "Name": "0x17359",
+                    "Institution": "OX",
+                    "ModuleSN": "20UPGM22110561",
+                    "AverageTemperature": 21.549,
+                    "BOMCode": "12",
+                    "TimeStart": 1752245156,
+                    "TimeEnd": 1752245400
+                },
+                "comment": "",
+                "property": {
+                    "YARR_VERSION": "v1.5.5",
+                    "LP_MODE_MEASUREMENT_VERSION": "2.5.0"
+                }
+            },
+            "subtestType": ""
+        }
+    ],
+    [
+        {
+            "serialNumber": "20UPGFC0095097",
+            "testType": "LP_MODE",
+            "runNumber": "68712497a300330a190956d1",
+            "results": {
+                "DCSdata": {
+                    "SensorVoltage": -120.0205,
+                    "SensorCurrent": -9.664485e-06,
+                    "ModuleNTC": 25.696
+                },
+                "Measurements": {
+                    "Temperature": {
+                        "X": false,
+                        "Unit": "C",
+                        "Values": [
+                            21.549
+                        ]
+                    },
+                    "SetCurrent": {
+                        "X": false,
+                        "Unit": "A",
+                        "Values": [
+                            3
+                        ]
+                    },
+                    "Current": {
+                        "X": true,
+                        "Unit": "A",
+                        "Values": [
+                            2.1
+                        ]
+                    },
+                    "FailingPixels": {
+                        "X": false,
+                        "Unit": "Counts",
+                        "Values": [
+                            153600
+                        ]
+                    },
+                    "Vmux30": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00528037
+                        ]
+                    },
+                    "Vmux33": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.371829
+                        ]
+                    },
+                    "Vmux36": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.331664
+                        ]
+                    },
+                    "Vmux37": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.37224
+                        ]
+                    },
+                    "Imux0": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.0447888
+                        ]
+                    },
+                    "Imux28": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.10391
+                        ]
+                    },
+                    "Imux29": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.0139752
+                        ]
+                    },
+                    "Imux30": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.222866
+                        ]
+                    },
+                    "Imux31": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00504655
+                        ]
+                    },
+                    "Imux63": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00502422
+                        ]
+                    }
+                },
+                "Metadata": {
+                    "FirmwareVersion": "",
+                    "FirmwareIdentifier": "",
+                    "ChannelConfig": "",
+                    "SoftwareVersion": "",
+                    "ChipConfigs": {
+                        "RD53B": {
+                            "GlobalConfig": {
+                                "AuroraActiveLanes": 1,
+                                "CdrClkSel": 0,
+                                "CmlBias0": 800,
+                                "CmlBias1": 400,
+                                "CmlBias2": 0,
+                                "SerEnTap": 1,
+                                "SerInvTap": 1,
+                                "MonitorEnable": 1,
+                                "MonitorI": 63,
+                                "MonitorV": 32,
+                                "ServiceBlockEn": 1,
+                                "ServiceBlockPeriod": 50,
+                                "DiffLcc": 200,
+                                "DiffLccEn": 1,
+                                "DiffPreComp": 0,
+                                "DiffPreampL": 0,
+                                "DiffPreampM": 0,
+                                "DiffPreampR": 0,
+                                "DiffPreampT": 0,
+                                "DiffPreampTL": 0,
+                                "DiffPreampTR": 0,
+                                "DiffVff": 0,
+                                "EnCoreCol0": 0,
+                                "EnCoreCol1": 0,
+                                "EnCoreCol2": 0,
+                                "EnCoreCol3": 0,
+                                "DataMergeOutMux0": 1,
+                                "DataMergeOutMux1": 2,
+                                "DataMergeOutMux2": 3,
+                                "DataMergeOutMux3": 0,
+                                "SerEnLane": 15,
+                                "SerSelOut0": 3,
+                                "SerSelOut1": 3,
+                                "SerSelOut2": 3,
+                                "SerSelOut3": 1,
+                                "SldoTrimA": 4,
+                                "SldoTrimD": 4
+                            },
+                            "Parameter": {
+                                "ADCcalPar": [
+                                    6.797,
+                                    0.196,
+                                    10000.0
+                                ],
+                                "InjCap": 7.801,
+                                "KSenseInA": 21187.311,
+                                "KSenseInD": 21571.966,
+                                "Name": "0x17379",
+                                "ChipId": 14,
+                                "NfDSLDO": 1.2850649515528556,
+                                "NfASLDO": 1.283988298015394,
+                                "NfACB": 1.2824092061604508,
+                                "VcalPar": [
+                                    2.309,
+                                    0.208
+                                ],
+                                "IrefTrim": 15,
+                                "KSenseShuntA": 21793.0,
+                                "KSenseShuntD": 22188.0,
+                                "KShuntA": 1033.01,
+                                "KShuntD": 1038.742
+                            }
+                        }
+                    },
+                    "SoftwareType": "",
+                    "ChipID": 14,
+                    "Name": "0x17379",
+                    "Institution": "OX",
+                    "ModuleSN": "20UPGM22110561",
+                    "AverageTemperature": 21.549,
+                    "BOMCode": "12",
+                    "TimeStart": 1752245156,
+                    "TimeEnd": 1752245400
+                },
+                "comment": "",
+                "property": {
+                    "YARR_VERSION": "v1.5.5",
+                    "LP_MODE_MEASUREMENT_VERSION": "2.5.0"
+                }
+            },
+            "subtestType": ""
+        }
+    ],
+    [
+        {
+            "serialNumber": "20UPGFC0095081",
+            "testType": "LP_MODE",
+            "runNumber": "68712497a300330a190956d2",
+            "results": {
+                "DCSdata": {
+                    "SensorVoltage": -120.0205,
+                    "SensorCurrent": -9.664485e-06,
+                    "ModuleNTC": 25.696
+                },
+                "Measurements": {
+                    "Temperature": {
+                        "X": false,
+                        "Unit": "C",
+                        "Values": [
+                            21.549
+                        ]
+                    },
+                    "SetCurrent": {
+                        "X": false,
+                        "Unit": "A",
+                        "Values": [
+                            3
+                        ]
+                    },
+                    "Current": {
+                        "X": true,
+                        "Unit": "A",
+                        "Values": [
+                            2.1
+                        ]
+                    },
+                    "FailingPixels": {
+                        "X": false,
+                        "Unit": "Counts",
+                        "Values": [
+                            153600
+                        ]
+                    },
+                    "Vmux30": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00547144
+                        ]
+                    },
+                    "Vmux33": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.371522
+                        ]
+                    },
+                    "Vmux36": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.329532
+                        ]
+                    },
+                    "Vmux37": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.373313
+                        ]
+                    },
+                    "Imux0": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.0447888
+                        ]
+                    },
+                    "Imux28": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.10391
+                        ]
+                    },
+                    "Imux29": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.0139752
+                        ]
+                    },
+                    "Imux30": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.222866
+                        ]
+                    },
+                    "Imux31": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00504655
+                        ]
+                    },
+                    "Imux63": {
+                        "X": false,
+                        "Unit": "V",
+                        "Values": [
+                            0.00502422
+                        ]
+                    }
+                },
+                "Metadata": {
+                    "FirmwareVersion": "",
+                    "FirmwareIdentifier": "",
+                    "ChannelConfig": "",
+                    "SoftwareVersion": "",
+                    "ChipConfigs": {
+                        "RD53B": {
+                            "GlobalConfig": {
+                                "AuroraActiveLanes": 1,
+                                "CdrClkSel": 0,
+                                "CmlBias0": 800,
+                                "CmlBias1": 400,
+                                "CmlBias2": 0,
+                                "SerEnTap": 1,
+                                "SerInvTap": 1,
+                                "MonitorEnable": 1,
+                                "MonitorI": 63,
+                                "MonitorV": 32,
+                                "ServiceBlockEn": 1,
+                                "ServiceBlockPeriod": 50,
+                                "DiffLcc": 200,
+                                "DiffLccEn": 1,
+                                "DiffPreComp": 0,
+                                "DiffPreampL": 0,
+                                "DiffPreampM": 0,
+                                "DiffPreampR": 0,
+                                "DiffPreampT": 0,
+                                "DiffPreampTL": 0,
+                                "DiffPreampTR": 0,
+                                "DiffVff": 0,
+                                "EnCoreCol0": 0,
+                                "EnCoreCol1": 0,
+                                "EnCoreCol2": 0,
+                                "EnCoreCol3": 0,
+                                "DataMergeOutMux0": 0,
+                                "DataMergeOutMux1": 1,
+                                "DataMergeOutMux2": 2,
+                                "DataMergeOutMux3": 3,
+                                "SerEnLane": 15,
+                                "SerSelOut0": 1,
+                                "SerSelOut1": 3,
+                                "SerSelOut2": 3,
+                                "SerSelOut3": 3,
+                                "SldoTrimA": 6,
+                                "SldoTrimD": 6
+                            },
+                            "Parameter": {
+                                "ADCcalPar": [
+                                    14.676,
+                                    0.197,
+                                    10000.0
+                                ],
+                                "InjCap": 7.821,
+                                "KSenseInA": 20876.102,
+                                "KSenseInD": 21507.675,
+                                "Name": "0x17369",
+                                "ChipId": 15,
+                                "NfDSLDO": 1.2848038150356675,
+                                "NfASLDO": 1.2840861998841153,
+                                "NfACB": 1.2825074465507011,
+                                "VcalPar": [
+                                    4.298,
+                                    0.211
+                                ],
+                                "IrefTrim": 12,
+                                "KSenseShuntA": 21473.0,
+                                "KSenseShuntD": 22122.0,
+                                "KShuntA": 1040.313,
+                                "KShuntD": 1033.332
+                            }
+                        }
+                    },
+                    "SoftwareType": "",
+                    "ChipID": 15,
+                    "Name": "0x17369",
+                    "Institution": "OX",
+                    "ModuleSN": "20UPGM22110561",
+                    "AverageTemperature": 21.549,
+                    "BOMCode": "12",
+                    "TimeStart": 1752245156,
+                    "TimeEnd": 1752245400
+                },
+                "comment": "",
+                "property": {
+                    "YARR_VERSION": "v1.5.5",
+                    "LP_MODE_MEASUREMENT_VERSION": "2.5.0"
+                }
+            },
+            "subtestType": ""
+        }
+    ]
+]

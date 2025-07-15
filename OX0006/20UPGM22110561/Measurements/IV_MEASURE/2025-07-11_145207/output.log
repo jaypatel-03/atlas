@@ -1,0 +1,10 @@
+Using /home/opmd/Module_QC/configs/new_hw_config_v1.1.json for hardware config
+Using /home/opmd/Module_QC/py3_venv/lib/python3.9/site-packages/module_qc_tools/data/configs/meas_config.json for measurement config
+Will use 5.88 A for PS current (4 chips)
+No humidity measurement found in the hardware config!
+Ramping HV to 0V before starting measurement...
+Switching off LV before starting measurement...
+Ramping HV back to initial state at -120.0V...
+Writing output measurements in /home/opmd/Module_QC/module-qc-database-tools/OX0006/20UPGM22110561/Measurements/IV_MEASURE/2025-07-11_145207
+Done!
+TimeEnd: 2025-07-11_145927
