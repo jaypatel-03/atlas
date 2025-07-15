@@ -5,11 +5,11 @@ TODO:
 - Radiation training 
 - CERN + ATLAS login 
 - OPMD wiki login 
-- LocalDB + Flask login 
-- Do you upload the minimum health tests, tuning and pixel fails all together?
-- Get copy of outputs for each test
+- LocalDB + Flask login
+- Do you upload the minimum health tests, tuning and pixel fails all together? Yes
 - More useful to have first part of each SN autofilled?
 - Add automatic validation? <https://www.pythonguis.com/tutorials/input-validation-tkinter/#input-validation-strategies-in-gui-apps>
+- Don't overwrite existing config
 
 ## Overview + Notes
 
