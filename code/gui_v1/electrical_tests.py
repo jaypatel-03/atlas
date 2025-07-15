@@ -10,6 +10,7 @@ test = "iv_measure"
 cmd = yarr_template.format(loc_id=loc_id, mod_sn=mod_sn, temp=temp, test="TEST1")
 print(cmd)
 
+["corecolumnscan", "std_digitalscan", "std_analogscan", "std_thresholdscan_hr", "std_totscan -t 6000" , "std_tune_globalthreshold -t 1700", "std_totscan -t 6000", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_retune_globalthreshold -t 1700", "std_retune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000", "std_tune_globalthreshold -t 1700", "std_tune_globalpreamp -t 6000 7", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000","std_discbumpscan", "std_mergedbumpscan -t 1500", "std_thresholdscan_zerobias", "std_noisescan", "selftrigger_source -p", "selftrigger_source"]
 
 
 
@@ -17,5 +18,20 @@ yarr_scans = ["corecolumnscan", "std_digitalscan", "std_analogscan", "std_thresh
 
 
 
-pixel_fail = ["std_discbumpscan", "std_mergedbumpscan -t 1500", "std_thresholdscan_zerobias", "std_noisescan", "selftrigger_source -p", "selftrigger_source"]
 
+
+
+
+   def _run_tuning_test(self, test : str, mod_data : ModuleTestData):
+        yarr_template = "bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh"
+        
+        tuning_v1 = 
+
+        tuning_v2 = ["std_tune_globalthreshold -t 1700", "std_tune_globalpreamp -t 6000 7", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000"]
+        
+        if test == "std_thresholdscan_zerobias":
+            print("Ramp down Keithley HV")
+        elif test == "std_noisescan":
+            print("HV:")
+            # test if hv is biased 
+            # ramp back to -120 if not

@@ -6,10 +6,13 @@ TODO:
 - CERN + ATLAS login 
 - OPMD wiki login 
 - LocalDB + Flask login
-- Do you upload the minimum health tests, tuning and pixel fails all together? Yes
-- More useful to have first part of each SN autofilled?
-- Add automatic validation? <https://www.pythonguis.com/tutorials/input-validation-tkinter/#input-validation-strategies-in-gui-apps>
+
+TODO:
+- Add contextmanager?
 - Don't overwrite existing config
+- Configure path to Module_QC
+- Configure icicle ports
+- Do you want different screens for different tests? 
 
 ## Overview + Notes
 
@@ -19,7 +22,6 @@ Copy over swinterlock code - ask about ssh into machine.
 
 <https://www.digitalocean.com/community/tutorials/tkinter-working-with-classes>
 
-Include eyeDiagram plot
 
 Add upload reminder after each scan?
 How to add progress bar/loading screen
