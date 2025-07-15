@@ -33,15 +33,7 @@ class LoadModuleInfo(tk.Tk):
         file.add_command(label ='Open...', command = None)
         file.add_command(label ='Save', command = None)
         file.add_separator()
-
-        # Adding Help Menu
-        help_ = tk.Menu(menubar, tearoff = 0)
-        menubar.add_cascade(label ='Help', menu = help_)
-        help_.add_command(label ='Tk Help', command = None)
-        help_.add_command(label ='Demo', command = None)
-        help_.add_separator()
-        help_.add_command(label ='About Tk', command = None)
-        
+       
         window = tk.Frame(self)
         window.pack(side="top", fill="both", expand=True)
         
@@ -55,16 +47,16 @@ class LoadModuleInfo(tk.Tk):
         frame.grid(row=0, column=0, sticky="nswe")
         self.show_frame(InputScreen)  # Shows the input screen
 
-        frame = PrelimTests(window,self)
+        frame = PrelimTests(window,self, mod_data)
         self.frames[PrelimTests] = frame
         frame.grid(row=0, column=1, sticky="nswe")
         self.show_frame(PrelimTests)  # Shows the input screen 
-        '''
-        frame = MinHealthTests(window,self)
+        
+        frame = MinHealthTests(window,self, mod_data)
         self.frames[MinHealthTests] = frame
         frame.grid(row=0, column=2, sticky="nswe")
         self.show_frame(MinHealthTests)  # Shows the input screen 
-        '''
+        
     def show_frame(self,cont):
         frame = self.frames[cont]
         frame.tkraise()
@@ -130,15 +122,12 @@ class Test(tk.Frame):
 class PrelimTests(Test):
     test_name = "Preliminary Tests"
     
-    def __init__(self,parent,controller):
-        # tk.Frame.__init__(self, parent)
+    def __init__(self,parent,controller, mod_data):
         super().__init__(parent, controller, mod_data)
-        # tk.Label(self,text="Preliminary Tests").grid(row=0, columnspan=2)
-        # tests = ['eyeDiagram', 'IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION', 'corecolumnscan']
-        # self.make_buttons(tests, mod_data)
         tk.Button(self, text="Display eye diagram", command=lambda : self.plot_eye_diagram(parent)).grid(row=1, column=2)
 
     def get_test_list(self, mod_data : ModuleTestData):
+        # TODO: add temperature check
         return ['eyeDiagram', 'IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION', 'corecolumnscan']
     
     def plot_eye_diagram(self, master, file : str = r"/home/jayp/atlas/code/gui_v1/logs/eyeDiagram.log" ): 
@@ -178,34 +167,22 @@ class PrelimTests(Test):
         # TODO: add option to disable chip
 
 class MinHealthTests(Test):
-    # def __init__(self,parent,controller):
-        # tk.Frame.__init__(self, parent)
-        # tk.Label(self,text="Minimum Health Tests").grid(row=0, columnspan=2)
-        # self.test_
-        
-        # self.make_buttons(tests, mod_data)
         
     def get_test_list(self, mod_data):
         return ["corecolumnscan", "std_digitalscan", "std_analogscan", "std_thresholdscan_hr", "std_totscan -t 6000"]
 
 class Tuning(Test):
-    def __init__(self,parent,controller):
-        tk.Frame.__init__(self, parent)
-        tk.Label(self,text="Tuning").grid(row=0, columnspan=2)
+    # def __init__(self,parent,controller):
+
+    def get_test_list(self, mod_data):
         _, _, _, version = self.check_mod_data_loaded(mod_data)
-        if version == "v2":
-            tests = ["std_tune_globalthreshold -t 1700", "std_tune_globalpreamp -t 6000 7", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000"]
-        else:
-            tests = ["std_tune_globalthreshold -t 1700", "std_totscan -t 6000", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_retune_globalthreshold -t 1700", "std_retune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000"]
-        
-        self.make_buttons(tests, mod_data)
-    
+        return ["std_tune_globalthreshold -t 1700", "std_tune_globalpreamp -t 6000 7", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000"] if version == "v2" else ["std_tune_globalthreshold -t 1700", "std_totscan -t 6000", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_retune_globalthreshold -t 1700", "std_retune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000"]
+
 class PixelFailTests(Test):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        
-        tests = ["std_discbumpscan", "std_mergedbumpscan -t 1500", "std_thresholdscan_zerobias", "std_noisescan", "selftrigger_source -p", "selftrigger_source"]
-        self.make_buttons
+
+    def get_test_list(self, mod_data):
+        # TODO: add temperature check
+        return ["std_discbumpscan", "std_mergedbumpscan -t 1500", "std_thresholdscan_zerobias", "std_noisescan", "selftrigger_source -p", "selftrigger_source"]
             
 class InputScreen(tk.Frame):
     
