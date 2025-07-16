@@ -10,6 +10,12 @@ TODO:
 TODO:
 - Configure icicle ports
 - Implement new test function 
+- Add success markers + chip control for eyeDiagram
+- Overwrite config = move to OX0006_backup and create new. Overwrite old backup with new backup
+- Add test vs production flag in config 
+- Add config files for everything hardcoded
+- Document in README assumptions like directory 
+
 
 ## Overview + Notes
 
@@ -86,42 +92,3 @@ Exposure: C/kg, Rontgen
 Absorbed dose: Gray (100 rad), rad
 
 Dose equivalent: Sievert
-
-
-Default value:
-```python
-tk.Label(self, text="Module Serial Number \n (e.g. 20UPGM22110039) ").grid(row=0)
-e_mod_sn = tk.Entry(self, bg='white', fg='grey')
-e_mod_sn.grid(row=0, column=1)
-
-e_mod_sn.insert(0, "GM2320017")
-e_mod_sn.bind("<FocusIn>", self.__handle_focus_in, add="+")         # Delete default text on click
-
-
-def __handle_focus_in(self,event=None):
-    # event.widget.delete(0, tk.END)
-    event.widget.config(fg='black')
-    
-    
-```
-
-        '''
-        self.home_path : str = "~/Module_QC"
-        self.port_hv_psu : str = "ASRL/dev/ttyUSB0::INSTR"
-        self.port_chiller : str
-        self.port_peltier : str = "ASRL/dev/ttyHMP4040b::INSTR" # not sure about this one
-        self.port_lv_psu : str = "ASRL/dev/ttyHMP4040b::INSTR" 
-        '''
-        '''
-        lv_psu : HMP4040 
-        hv_psu : Keithley2410 
-        chiller 
-        
-        '''
-
-                    stage_temp_map = {
-                "init": "init",
-                "post": "post",
-                "final_warm": "fwarm",
-                "final_cold": "fcold"
-            }

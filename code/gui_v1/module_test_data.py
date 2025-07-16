@@ -7,12 +7,22 @@ class ModuleTestData:
         "final_warm" : "warm",
         "final_cold" : "cold",
     }
+    
     def __init__(self, stage: str = "init") -> None:
         self.loc_id : str = ""
         self.mod_sn : str = ""
         self.version : str = ""
         self.home_path : str = ""
-        # Backing fields; will be overwritten by the property setter call below
+        
+        '''
+        self.home_path : str = "~/Module_QC"
+        self.port_hv_psu : str = "ASRL/dev/ttyUSB0::INSTR"
+        self.port_chiller : str = ""
+        self.port_peltier : str = "ASRL/dev/ttyHMP4040b::INSTR" # not sure about this one
+        self.port_lv_psu : str = "ASRL/dev/ttyHMP4040b::INSTR" 
+        '''
+        
+        # To be overwritten by setter 
         self._stage: str | None = None
         self.temp: str | None = None
 

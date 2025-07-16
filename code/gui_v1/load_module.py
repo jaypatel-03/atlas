@@ -9,16 +9,13 @@ import re # RegEx support
 from datetime import datetime
 
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import (
-    FigureCanvasTkAgg, NavigationToolbar2Tk)
-# Implement the default Matplotlib key bindings.
-from matplotlib.backend_bases import key_press_handler
-from matplotlib.figure import Figure
-
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import os
 
+import json
+
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 class TestSuite(tk.Tk):
     def __init__(self, mod_data : ModuleTestData, *args, **kwargs):
@@ -46,7 +43,7 @@ class TestSuite(tk.Tk):
         for F in [PrelimTests, MinHealthTests, Tuning, PixelFailTests]:
             frame = F(window, self, mod_data)
             self.frames[F] = frame
-            frame.grid(row=c, column=0, sticky="nswe")
+            frame.grid(row=0, column=c, sticky="nswe")
             c+=1
             self.show_frame(F)
         
@@ -82,7 +79,8 @@ class PrelimTests(TestBlock):
     
     def __init__(self,parent,controller, mod_data):
         super().__init__(parent, controller, mod_data)
-        tk.Button(self, text="Display eye diagram", command=lambda : self.plot_eye_diagram(parent)).grid(row=1, column=2)
+        tk.Button(self, text="View", command=lambda : self.plot_eye_diagram(parent)).grid(row=1, column=2)
+        tk.Button(self, text="View", command=lambda : self.chip_delays(parent,mod_data)).grid(row=1, column=2)
 
     def get_test_list(self, mod_data : ModuleTestData):
         # TODO: add temperature check
@@ -115,6 +113,7 @@ class PrelimTests(TestBlock):
         # TODO: incorporate into plot_eye_diagram?
         top = tk.Toplevel(master)
         top.geometry("300x500")
+        top.transient(master)
         top.title("eyeDiagram")
         
         fig = plt.Figure(figsize=(5,5), dpi=100)
@@ -127,6 +126,17 @@ class PrelimTests(TestBlock):
         canvas.draw()
         canvas.get_tk_widget().pack()
         # TODO: add option to disable chip
+    
+    def chip_delays(self, master, mod_data : ModuleTestData):
+        loc_id, mod_sn, temp, _, home_path = self.check_mod_data_loaded(mod_data)
+        file = f"{home_path}/module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
+        print(file)
+        with open(file, "r") as jsonfile:
+            data = json.load(jsonfile)
+            logger.info("Read successful")
+        print(f"{data!r}")
+            
+            
 
 class MinHealthTests(TestBlock):
     test_name = "Mininum Health Tests"   
@@ -233,21 +243,19 @@ class InputScreen(tk.Frame):
         msg : str
         flag = True
         if re.search(r"^OX[0-9]{4}$", local_id) is None:
-            msg = f"Invalid local ID {local_id}, should be of the form OX####" # ^___$ are anchors to force exact matches
-            logging.info(msg) 
-            messagebox.askretrycancel("askretrycancel", msg)
-            return
+            # ^___$ are anchors to force exact matches
+            logging.info(f"Invalid local ID {local_id}, should be of the form OX####.") 
+            flag = messagebox.askyesno("askyesno", f"Invalid local ID {local_id}, should be of the form OX####. \n Continue anyway?")
         elif re.search(r"^20UPGM2[0-9]{7}$", mod_sn) is None:
             logging.info(f"Invalid module serial number {mod_sn}, should be of the form 20UPGM########")
-            messagebox.askretrycancel("askretrycancel", f"Invalid module serial number {mod_sn}, should be of the form 20UPGM########.")
-            return 
+            flag = messagebox.askyesno("askyesno", f"Invalid module serial number {mod_sn}, should be of the form 20UPGM########. \n Continue anyway?")
         elif (re.search(r"^20UPGM2321[0-9]{4}$", mod_sn) is not None or re.search(r"^20UPGM2421[0-9]{4}$", mod_sn) is not None ) and version == "v1.1":
             logging.info("Module serial number suggests this may be a v2 module.")
-            flag = messagebox.askyesno("yesno","Module serial number suggests this may be a v2 module. Continue anyway?")
+            flag = messagebox.askyesno("yesno","Module serial number suggests this may be a v2 module. \n Continue anyway?")
             
         elif re.search(r"^20UPGM2211[0-9]{4}$", mod_sn) is not None and version == "v2":
             logging.info("Module serial number suggests this may be a v1.1 module.")
-            flag = messagebox.askyesno("askyesno","Module serial number suggests this may be a v1.1 module.Continue anyway?")
+            flag = messagebox.askyesno("askyesno","Module serial number suggests this may be a v1.1 module. \n Continue anyway?")
                
         else:
             flag = True
