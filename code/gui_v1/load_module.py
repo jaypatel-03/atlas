@@ -1,9 +1,10 @@
 import subprocess
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, ttk
 import logging
-import re # RegEx support
 from module_test_data import ModuleTestData
+from test_block import TestBlock
+import re # RegEx support
 # from module_loading_screen import InputScreen
 from datetime import datetime
 
@@ -19,11 +20,11 @@ import os
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
-class LoadModuleInfo(tk.Tk):
+class TestSuite(tk.Tk):
     def __init__(self, mod_data : ModuleTestData, *args, **kwargs):
        
         tk.Tk.__init__(self, *args,**kwargs)
-        self.title("ATLAS Module Testing")
+        self.title("ATLAS Module Testing - Test Suite")
         # Creating Menubar
         menubar = tk.Menu(self)
 
@@ -40,87 +41,43 @@ class LoadModuleInfo(tk.Tk):
         window.pack(side="top", fill="both", expand=True)
         
         
-        # w.title("Module Info")
         self.frames = {}
-        # TODO: loop over
-        frame = InputScreen(window,self)
-        self.frames[InputScreen] = frame
-        frame.grid(row=0, column=0, sticky="nswe")
-        self.show_frame(InputScreen)  # Shows the input screen
-
-        frame = PrelimTests(window,self, mod_data)
-        self.frames[PrelimTests] = frame
-        frame.grid(row=0, column=1, sticky="nswe")
-        self.show_frame(PrelimTests)  # Shows the input screen 
-        
-        frame = MinHealthTests(window,self, mod_data)
-        self.frames[MinHealthTests] = frame
-        frame.grid(row=0, column=2, sticky="nswe")
-        self.show_frame(MinHealthTests)  # Shows the input screen 
+        c=0
+        for F in [PrelimTests, MinHealthTests, Tuning, PixelFailTests]:
+            frame = F(window, self, mod_data)
+            self.frames[F] = frame
+            frame.grid(row=c, column=0, sticky="nswe")
+            c+=1
+            self.show_frame(F)
         
     def show_frame(self,cont):
         frame = self.frames[cont]
         frame.tkraise()
 
-class Test(tk.Frame):
-    test_name = "Base Test"
-    
-    def __init__(self, parent, controller, mod_data):
-        super().__init__(parent) #this calls tk.Frame.__init__(self, parent)
-        
-        tk.Label(self, text=self.test_name).grid(row=0, columnspan=2)
-        self.test_list = self.get_test_list(mod_data)
-        self.make_buttons(self.test_list, mod_data)  # TODO: Assumes mod_data is available
-        
-    def get_test_list():
-        # to be overrided
-        return [] 
-    
-    def check_mod_data_loaded(self, mod_data : ModuleTestData) -> tuple[str, str, str, str] | None:
-        '''Tests whether all the module testing properties have been loaded
-        
-        Args:
-            mod_data : Module test data
-        Returns:
-            mod_data.loc_id, mod_data.mod_sn,mod_data.temp, mod_data.version | None, None, None, None 
-        
-        '''
-        try:
-            return mod_data.loc_id, mod_data.mod_sn,mod_data.temp, mod_data.version
-        except AttributeError:
-            messagebox.showerror("showerror", "Module info has not been loaded correctly, try load again.")
-            return None, None, None, None
 
-    def run_test(self, button : tk.Button, test : str, mod_data : ModuleTestData):
-        loc_id, mod_sn,temp, version = self.check_mod_data_loaded(mod_data)            
-        
-        if loc_id is not None:
-            
-            if test in ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION']:
-                template = "measurement-{test} -c ../configs/new_hw_config_{version}.json -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
-            elif test == "eyeDiagram":
-                template = "bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json > /home/jayp/atlas/code/gui_v1/logs/eyeDiagram.log" # TODO: change output directory
-            else:
-                template = "bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh"
-                
-            logging.info(f"Running {test}")
-            cmd = template.format(loc_id=loc_id, mod_sn=mod_sn, temp=temp, test=test, version=version)
-            
-            subprocess.run(['echo', cmd])
-            button.configure(bg="green")
+class LoadModuleInfo(tk.Tk):
+    def __init__(self, mod_data : ModuleTestData, *args, **kwargs):
+       
+        tk.Tk.__init__(self, *args,**kwargs)
+        self.title("ATLAS Module Testing - Module Loader")
 
-    def make_buttons(self, tests : list, mod_data : ModuleTestData):
-        # TODO can return r+1 and list of buttons
-        test_buttons = []
-        r = 0
-        for test in tests:
-            tk.Label(self, text=f"{r + 1}. {test.split(' ')[0]}").grid(row=r + 1)
-            quick_btn = tk.Button(self, text=f"Run {test}", command=lambda r=r: self.run_test(test_buttons[r],tests[r], mod_data))
-            test_buttons.append(quick_btn)
-            quick_btn.grid(row=r + 1, column=1)
-            r += 1
+       
+        window = tk.Frame(self)
+        window.pack(side="top", fill="both", expand=True)
         
-class PrelimTests(Test):
+        
+        self.frames = {}
+        frame = InputScreen(window,self)
+        self.frames[InputScreen] = frame
+        frame.grid(row=0, column=0, sticky="nswe")
+        self.show_frame(InputScreen)  # Shows the input screen
+        
+    def show_frame(self,cont):
+        frame = self.frames[cont]
+        frame.tkraise()
+
+     
+class PrelimTests(TestBlock):
     test_name = "Preliminary Tests"
     
     def __init__(self,parent,controller, mod_data):
@@ -129,6 +86,10 @@ class PrelimTests(Test):
 
     def get_test_list(self, mod_data : ModuleTestData):
         # TODO: add temperature check
+        if mod_data.stage == "post":
+            return ['eyeDiagram', 'IV-MEASURE', 'corecolumnscan']
+        elif mod_data.stage == "final_cold":
+            return ['eyeDiagram', 'IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'DATA-TRANSMISSION', 'corecolumnscan']
         return ['eyeDiagram', 'IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION', 'corecolumnscan']
     
     def plot_eye_diagram(self, master, file : str = r"/home/jayp/atlas/code/gui_v1/logs/eyeDiagram.log" ): 
@@ -167,30 +128,30 @@ class PrelimTests(Test):
         canvas.get_tk_widget().pack()
         # TODO: add option to disable chip
 
-class MinHealthTests(Test):
-        
+class MinHealthTests(TestBlock):
+    test_name = "Mininum Health Tests"   
     def get_test_list(self, mod_data):
-        return ["corecolumnscan", "std_digitalscan", "std_analogscan", "std_thresholdscan_hr", "std_totscan -t 6000"]
+        return ["std_digitalscan", "std_analogscan", "std_thresholdscan_hr", "std_totscan -t 6000"]
 
-class Tuning(Test):
-    # def __init__(self,parent,controller):
-
+class Tuning(TestBlock):
+    test_name = "Tuning"
     def get_test_list(self, mod_data):
-        _, _, _, version = self.check_mod_data_loaded(mod_data)
+        _, _, _, version, _ = self.check_mod_data_loaded(mod_data)
         return ["std_tune_globalthreshold -t 1700", "std_tune_globalpreamp -t 6000 7", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000"] if version == "v2" else ["std_tune_globalthreshold -t 1700", "std_totscan -t 6000", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_retune_globalthreshold -t 1700", "std_retune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000"]
 
-class PixelFailTests(Test):
-
+class PixelFailTests(TestBlock):
+    test_name = "Pixel Fail"
     def get_test_list(self, mod_data):
-        # TODO: add temperature check
-        return ["std_discbumpscan", "std_mergedbumpscan -t 1500", "std_thresholdscan_zerobias", "std_noisescan", "selftrigger_source -p", "selftrigger_source"]
+        if mod_data.stage == "final_cold":
+            return ["std_discbumpscan", "std_mergedbumpscan -t 1500", "std_thresholdscan_zerobias", "std_noisescan", "selftrigger_source -p", "selftrigger_source"]
+        return ["std_discbumpscan", "std_mergedbumpscan -t 1500", "std_thresholdscan_zerobias", "std_noisescan"]
             
 class InputScreen(tk.Frame):
     
     def __init__(self,parent,controller):
         tk.Frame.__init__(self,parent) # inherits from main class
         
-        
+        # Input module serial numbers and Oxford ID
         tk.Label(self, text="Module Serial Number \n (e.g. 20UPGM22110039) ").grid(row=0)
         e_mod_sn = tk.Entry(self, bg='white', fg='black')
         e_mod_sn.insert(0,"20UPGM22110038")
@@ -204,7 +165,7 @@ class InputScreen(tk.Frame):
 
         # TODO: insert link (on hover?) to how to look up/assign local serial number
         
-        # Radio qc_test_buttons to select version
+        # Radio buttons to select version
         versions = ["v1.1", "v2"]
         lbl_version = tk.Label(self, text=f"Version:")
         lbl_version.grid(row=2, rowspan=2, column=0)
@@ -212,43 +173,62 @@ class InputScreen(tk.Frame):
         self.version = tk.StringVar(self, f"{versions[0]}")
         r = 0
         for v in versions:
-            tk.Radiobutton(self, text=v, variable=self.version, value=v).grid(row=2 + r, column=1) 
+            tk.Radiobutton(self, text=v, variable=self.version, value=v, command = lambda : self.set_mod_data("version",self.version.get(), mod_data)).grid(row=2 + r, column=1) 
             r += 1
         
-        # Radio qc_test_buttons to select warm or cold test     
-        temps = ["Warm test", "Cold test"]
-        lbl_temp = tk.Label(self, text=f"Temperature:")
-        lbl_temp.grid(row=5, rowspan=2, column=0)
+        # Radio buttons to select warm or cold test     
+        stages = {"Initial (warm)" : "init", "Post-Parylene (warm)" : "post", "Final (warm)" : "final_warm", "Final (cold)" : "final_cold"}
+        lbl_stage = tk.Label(self, text=f"Testing Stage \n (selects relevant tests):")
+        lbl_stage.grid(row=5, column=0, rowspan=5)
         
-        self.temp = tk.StringVar(self, f"{temps[0][0:4].lower()}")
+        self.stage = tk.StringVar(self, f"{stages['Initial (warm)']}")
         r = 0
-        for t in temps:
-            tk.Radiobutton(self, text=t, variable=self.temp, value=t[0:4].lower(), command = lambda : self.select_test_temp(mod_data)).grid(row=5 + r, column=1) 
+        for t in stages.keys():
+            tk.Radiobutton(self, text=t, variable=self.stage, value=stages[t], command = lambda : self.set_mod_data("stage",self.stage.get(),mod_data)).grid(row=5 + r, column=1) 
             r += 1
+        
+        # Boolean flag from checkbox as to whether to overwrite existing config files 
+        check_overwrite_config_flag = tk.BooleanVar()
+        check_config = tk.Checkbutton(self, text="Overwrite configs?", variable=check_overwrite_config_flag, onvalue=True, offvalue=False).grid(row=r+6,column=1)
+        
+        tk.Label(self, text="Module_QC directory \n (typically ~/Module_QC)").grid(row=0, column=2)
+        e_home_path = tk.Entry(self)
+        # e_home_path.insert(0,"~/Module_QC") TODO: change back
+        e_home_path.insert(0,"/home/jayp/atlas")
+        e_home_path.grid(row=0, column=3)
+        
 
         # Validate serial numbers and generate config files
-        tk.Button(self, text="Load", width = 25, command = lambda : self.validate_module_info(mod_data, e_mod_sn.get().strip(),e_local_id.get().strip(),self.version.get())).grid(row=15)
+        tk.Button(self, text="Load & generate configs", width = 25, command = lambda : self.validate_module_info(controller, mod_data, e_mod_sn.get().strip(),e_local_id.get().strip(),self.version.get(), check_overwrite_config_flag.get(), e_home_path.get().strip())).grid(row=15)
         
-        # tk.Button(self, text="Yield", width = 25, command = lambda : print(vars(mod_data))).grid(row=15, column=2)
+        
+        tk.Button(self, text="Yield", width = 25, command = lambda : print(vars(mod_data))).grid(row=15, column=2)
 
     
-    def select_test_temp(self,mod_data : ModuleTestData) -> None:
-        '''Selects whether it is a warm or cold test and saves the info to the ModuleTestData object.
-        '''
-        logging.debug(f"{self.temp.get()=}")
-        mod_data.temp = self.temp.get()
+    def set_mod_data(self, attr : str, value : str, mod_data : ModuleTestData):
+        logging.info(f"Set {attr} to {value}")
+        if not hasattr(mod_data, attr):
+            raise AttributeError(f"{mod_data!r} has no attribute {attr!r}")
+        setattr(mod_data, attr, value)
+    
         
-    def validate_module_info(self,mod_data : ModuleTestData, mod_sn : str, local_id : str, version : str) -> None:
+    def validate_module_info(self,master, mod_data : ModuleTestData, mod_sn : str, local_id : str, version : str, overwrite_config : bool, home_path : str) -> None:
         '''Validates module info entered and downloads config files from database if successful
         
         Args:
             mod_sn : String containing the global module serial number
             local_sn : String containing the local (Oxford) module identifier
         Returns:
-            int : Success (0) or failure (1) code. 
+            None : if attempting to unintentionally rewrite config files 
         '''
         logging.info("Load button pressed")
-        logging.debug(f"{version=}")
+        
+        if home_path == "":
+            home_path = mod_data.home_path
+        elif home_path.endswith('/'):
+            home_path = home_path[0:-2]
+        
+        self.set_mod_data("home_path", home_path, mod_data)
         
         msg : str
         flag = True
@@ -256,11 +236,11 @@ class InputScreen(tk.Frame):
             msg = f"Invalid local ID {local_id}, should be of the form OX####" # ^___$ are anchors to force exact matches
             logging.info(msg) 
             messagebox.askretrycancel("askretrycancel", msg)
-            
+            return
         elif re.search(r"^20UPGM2[0-9]{7}$", mod_sn) is None:
             logging.info(f"Invalid module serial number {mod_sn}, should be of the form 20UPGM########")
             messagebox.askretrycancel("askretrycancel", f"Invalid module serial number {mod_sn}, should be of the form 20UPGM########.")
-            
+            return 
         elif (re.search(r"^20UPGM2321[0-9]{4}$", mod_sn) is not None or re.search(r"^20UPGM2421[0-9]{4}$", mod_sn) is not None ) and version == "v1.1":
             logging.info("Module serial number suggests this may be a v2 module.")
             flag = messagebox.askyesno("yesno","Module serial number suggests this may be a v2 module. Continue anyway?")
@@ -268,35 +248,35 @@ class InputScreen(tk.Frame):
         elif re.search(r"^20UPGM2211[0-9]{4}$", mod_sn) is not None and version == "v2":
             logging.info("Module serial number suggests this may be a v1.1 module.")
             flag = messagebox.askyesno("askyesno","Module serial number suggests this may be a v1.1 module.Continue anyway?")
+               
         else:
             flag = True
             
         if flag:
             logging.info("Module info looks reasonable.")
-            tk.Label(self, text=f"Module {local_id} loaded at {datetime.now().strftime('%H:%M:%S')}", fg='green').grid(row=16, column=0)
-            # TODO: add existence/overwrite check for config files   
-            subprocess.run(["echo" ,"cd", "Module_QC/module-qc-database-tools"])
-            subprocess.run(["echo", "mqdbt", "generate-yarr-config", "-sn", mod_sn, "-o", local_id])
-            subprocess.run(["echo", "cd", "../Yarr"])
-            
             mod_data.loc_id = local_id
             mod_data.mod_sn = mod_sn
             mod_data.version = version
+            tk.Label(self, text=f"Module {local_id} loaded at {datetime.now().strftime('%H:%M:%S')}", fg='green').grid(row=16, column=0)
+            
+            # Test whether the config files exist and will be unwittingly overwritten
+            if not overwrite_config and os.path.isdir(f"{home_path}/module-qc-database-tools/{local_id}"):
+                messagebox.showerror("showerror", "Config files already exist, decide whether to overwrite or not.")
+                return 
+            subprocess.run(["echo" ,"cd", f"{mod_data.home_path}/module-qc-database-tools"])
+            subprocess.run(["echo", "mqdbt", "generate-yarr-config", "-sn", mod_sn, "-o", local_id])
+            subprocess.run(["echo", "cd", mod_data.home_path])
+            master.destroy()    
 
-def initialise_btns(func):
-    print(repr(func))
-    def wrapper(self, *args):
-        tk.Frame.__init__(self, parent)
-        tests = func(self, *args)
-        
+
+def new_module(mod_data : ModuleTestData):
+    win = LoadModuleInfo(mod_data)
+    win.mainloop()
+    win = TestSuite(mod_data)
+    win.mainloop()
     
-
-    tk.Label(self,text=name).grid(row=0, columnspan=2)
-    tests = func()
-    self.make_buttons(tests, mod_data)
-    return 
-
 if __name__ == "__main__":
     mod_data = ModuleTestData()
-    l = LoadModuleInfo(mod_data)
-    l.mainloop()
+    new_module(mod_data)
+    # l = TestSuite(mod_data)
+    # l.mainloop()

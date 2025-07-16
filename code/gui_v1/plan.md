@@ -8,11 +8,8 @@ TODO:
 - LocalDB + Flask login
 
 TODO:
-- Add contextmanager?
-- Don't overwrite existing config
-- Configure path to Module_QC
 - Configure icicle ports
-- Do you want different screens for different tests? 
+- Implement new test function 
 
 ## Overview + Notes
 
@@ -107,3 +104,24 @@ def __handle_focus_in(self,event=None):
     
     
 ```
+
+        '''
+        self.home_path : str = "~/Module_QC"
+        self.port_hv_psu : str = "ASRL/dev/ttyUSB0::INSTR"
+        self.port_chiller : str
+        self.port_peltier : str = "ASRL/dev/ttyHMP4040b::INSTR" # not sure about this one
+        self.port_lv_psu : str = "ASRL/dev/ttyHMP4040b::INSTR" 
+        '''
+        '''
+        lv_psu : HMP4040 
+        hv_psu : Keithley2410 
+        chiller 
+        
+        '''
+
+                    stage_temp_map = {
+                "init": "init",
+                "post": "post",
+                "final_warm": "fwarm",
+                "final_cold": "fcold"
+            }

@@ -166,3 +166,36 @@ Parsing CLI arguments:
     kwargs = parse_args()
     main(**kwargs)
 ```
+
+F-string:
+
+!s interpolates the string representation from the .__str__() method ( can be defined in class)
+!r interpolates the string representation from the .__repr__() method
+
+```python 
+# person.py
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return f"I'm {self.name}, and I'm {self.age} years old."
+
+    def __repr__(self):
+        return f"{type(self).__name__}(name='{self.name}', age={self.age})"
+
+>>> jane = Person("Jane Doe", 25)
+
+>>> f"{jane!s}"
+"I'm Jane Doe, and I'm 25 years old."
+
+>>> f"{jane!r}"
+"Person(name='Jane Doe', age=25)"
+```
+
+```python
+eval('logging.info(f' '"{' f'self.{property}' r'.get()=}' '")') # evaluates functions
+exec(f"mod_data.{property}=self.{property}.get()") # evaluates statements/assignments
+```
