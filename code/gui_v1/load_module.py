@@ -23,23 +23,24 @@ class LoadModuleInfo(tk.Tk):
     def __init__(self, mod_data : ModuleTestData, *args, **kwargs):
        
         tk.Tk.__init__(self, *args,**kwargs)
+        self.title("ATLAS Module Testing")
         # Creating Menubar
         menubar = tk.Menu(self)
 
         # Adding File Menu and commands
         file = tk.Menu(menubar, tearoff = 0)
         menubar.add_cascade(label ='File', menu = file)
-        file.add_command(label ='New File', command = None)
-        file.add_command(label ='Open...', command = None)
+        file.add_command(label ='New Test', command = None)
         file.add_command(label ='Save', command = None)
         file.add_separator()
+       
+        self.config(menu=menubar)
        
         window = tk.Frame(self)
         window.pack(side="top", fill="both", expand=True)
         
         
         # w.title("Module Info")
-        # TODO: find how to change window title
         self.frames = {}
         # TODO: loop over
         frame = InputScreen(window,self)
