@@ -61,12 +61,14 @@ class PrelimTests(TestInterface):
         # TODO: add option to disable chip
     
     def chip_delays(self, master, mod_data : ModuleTestData):
-        loc_id, mod_sn, temp, _, home_path = self.check_mod_data_loaded(mod_data)
+        loc_id, mod_sn, temp, _ = self.check_mod_data_loaded(mod_data)
+        
+        home_path = mod_data.home_path
         file = f"{home_path}/module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
         print(file)
         with open(file, "r") as jsonfile:
             data = json.load(jsonfile)
-            logger.info("Read successful")
+            logging.info("Read successful")
         print(f"{data!r}")    
 
 class MinHealthTests(TestInterface):

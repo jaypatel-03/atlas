@@ -14,6 +14,7 @@ TODO:
 - Overwrite config = move to OX0006_backup and create new. Overwrite old backup with new backup
 - Document in README assumptions like directory 
 - Write unittests
+- Delete old eyeDiagram
 
 
 ## Overview + Notes
