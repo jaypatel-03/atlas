@@ -9,14 +9,15 @@ for a in range(4):
 data['chips'][0]['enable'] = 0
 
 
-with open(file, "w") as jsonfile:
-    myJSON = json.dump(data, jsonfile)
-    jsonfile.close()
+
     
  '''   
 file = "/home/jayp/atlas/code/gui_v1/config.json"
  
 config_data = {
-     'default_home_path' : "",
-     
+     'default_home_path' : "/home/jayp/atlas",
 } 
+
+with open(file, "w") as jsonfile:
+    myJSON = json.dump(config_data, jsonfile)
+    jsonfile.close()

@@ -45,42 +45,50 @@ class TestInterface(tk.Frame):
         
         '''
         try:
-            return mod_data.loc_id, mod_data.mod_sn,mod_data.temp, mod_data.version, mod_data.home_path
+            return mod_data.loc_id, mod_data.mod_sn,mod_data.temp, mod_data.version
         except AttributeError:
             messagebox.showerror("showerror", "Module info has not been loaded correctly, try load again.")
             return None, None, None, None
 
     def run_test(self, master, button : tk.Button, test : str, mod_data : ModuleTestData):
-        loc_id, mod_sn, temp, version, home_path = self.check_mod_data_loaded(mod_data)            
+        loc_id, mod_sn, temp, version = self.check_mod_data_loaded(mod_data)            
+        
+        home_path = mod_data.home_path
+        dry_run = mod_data.dry_run 
+        
         
         if loc_id is not None:
             # TODO: remove echos 
             # TODO: remove sleeps
             if test in ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION']:
-                template = "echo cd {home_path}/module-qc-tools ; echo measurement-{test} -c ../configs/new_hw_config_{version}.json -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json ; sleep 2"
+                template = "{echo}cd {home_path}/module-qc-tools ; {echo}measurement-{test} -c ../configs/new_hw_config_{version}.json -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
             elif test == "eyeDiagram":
-                template = "echo cd {home_path}/Yarr ; echo bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json ; sleep 2" # TODO: change output directory
+                template = "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json" # TODO: change output directory
                 # TODO: add pipe out to > /home/jayp/atlas/code/gui_v1/logs/eyeDiagram.log 
             else:
-                template = "echo cd {home_path}/Yarr ; echo bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh ; sleep 2"
-                
+                template = "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh"
+            
+            echo = ""
+            if dry_run:
+                template += " ; sleep 2"
+                echo = "echo "
+                    
             logging.info(f"Running {test}")
-            cmd = template.format(home_path=home_path, loc_id=loc_id, mod_sn=mod_sn, temp=temp, test=test, version=version)
+            cmd = template.format(echo=echo, home_path=home_path, loc_id=loc_id, mod_sn=mod_sn, temp=temp, test=test, version=version)
             
             if test.__contains__("zerobias"):
                 print("HV source to 0V")
-                self.open_popup(master, test, cmd) # TODO: change command back to just cmd
+                self.open_popup(master, test, cmd) 
                 print("HV source to -120V")
             else:
-                self.open_popup(master, test, cmd) # TODO: change command back to just cmd
+                self.open_popup(master, test, cmd) 
             button.configure(bg="green")
 
     def make_buttons(self, master, tests : list, mod_data : ModuleTestData):
-        # TODO can return r+1 and list of buttons
         test_buttons = []
         r = 0
         for test in tests:
-            tk.Label(self, text=f"{r + 1}.").grid(row=r + 1) #TODO: alternative add  {test.split(' ')[0]} to label, BUTTON_NAMES?
+            tk.Label(self, text=f"{r + 1}.").grid(row=r + 1)
             test_name = ' '.join(test.split(' ')[0].split('_')[1:]) if test.__contains__("_") else test
             quick_btn = tk.Button(self, text=f"{test_name}", command=lambda r=r: self.run_test(master,test_buttons[r],tests[r], mod_data))
             test_buttons.append(quick_btn)

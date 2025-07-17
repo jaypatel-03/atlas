@@ -12,9 +12,8 @@ TODO:
 - Implement new test function 
 - Add success markers + chip control for eyeDiagram
 - Overwrite config = move to OX0006_backup and create new. Overwrite old backup with new backup
-- Add test vs production flag in config 
-- Add config files for everything hardcoded
 - Document in README assumptions like directory 
+- Write unittests
 
 
 ## Overview + Notes
@@ -27,8 +26,6 @@ Copy over swinterlock code - ask about ssh into machine.
 
 
 Add upload reminder after each scan?
-How to add progress bar/loading screen
-Add analysis backend?
 
 1) Open and initialise
 2) Connect to Keithley and R&S supplies through appropriate ports

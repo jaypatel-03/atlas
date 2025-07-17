@@ -10,8 +10,6 @@ from test_suite import PrelimTests, MinHealthTests, Tuning, PixelFailTests
 
 import os
 
-import json
-
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
@@ -49,7 +47,6 @@ class TestSuite(tk.Tk):
         frame = self.frames[cont]
         frame.tkraise()
 
-
 class LoadModuleInfo(tk.Tk):
     def __init__(self, mod_data : ModuleTestData, *args, **kwargs):
        
@@ -62,7 +59,7 @@ class LoadModuleInfo(tk.Tk):
         
         
         self.frames = {}
-        frame = InputScreen(window,self)
+        frame = InputScreen(window,self, mod_data)
         self.frames[InputScreen] = frame
         frame.grid(row=0, column=0, sticky="nswe")
         self.show_frame(InputScreen)  # Shows the input screen
@@ -73,7 +70,7 @@ class LoadModuleInfo(tk.Tk):
            
 class InputScreen(tk.Frame):
     
-    def __init__(self,parent,controller):
+    def __init__(self,parent,controller, mod_data):
         tk.Frame.__init__(self,parent) # inherits from main class
         
         # Input module serial numbers and Oxford ID
@@ -119,7 +116,7 @@ class InputScreen(tk.Frame):
         tk.Label(self, text="Module_QC directory \n (typically ~/Module_QC)").grid(row=0, column=2)
         e_home_path = tk.Entry(self)
         # e_home_path.insert(0,"~/Module_QC") TODO: change back
-        e_home_path.insert(0,"/home/jayp/atlas")
+        e_home_path.insert(0,mod_data.home_path)
         e_home_path.grid(row=0, column=3)
         
 
@@ -192,14 +189,29 @@ class InputScreen(tk.Frame):
             master.destroy()    
 
 
-def new_module(mod_data : ModuleTestData):
+def new_module(**kwargs):
+    mod_data = ModuleTestData(cfg=kwargs['cfg'], dry_run=bool(int(kwargs['dry_run'])))
     win = LoadModuleInfo(mod_data)
     win.mainloop()
     win = TestSuite(mod_data)
     win.mainloop()
     
+def parse_args(argv=None):
+    """Parse command line arguments.
+    Args:
+        argv (list): List of string arguments to parse.
+    Returns:
+        dict: Dictionary of parameters.
+    """
+    parser = argparse.ArgumentParser(prog='ATLAS Module Electrical Testing', description='GUI to run electrical tests on ATLAS v1.1 and v2 modules')
+    parser.add_argument('-c', '--config', dest='cfg', required=False, help='Path to config.json', default="./config.json")
+    parser.add_argument('-d', "--dry-run", dest='dry_run', required=False, default=0)
+    args = vars(parser.parse_args(argv))
+    return args
+
 if __name__ == "__main__":
-    mod_data = ModuleTestData()
-    new_module(mod_data)
+    kwargs = parse_args()
+    new_module(**kwargs)
+
     # l = TestSuite(mod_data)
     # l.mainloop()

@@ -23,7 +23,7 @@ class PrelimTests(TestInterface):
             return ['eyeDiagram', 'IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'DATA-TRANSMISSION', 'corecolumnscan']
         return ['eyeDiagram', 'IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION', 'corecolumnscan']
     
-    def plot_eye_diagram(self, master, file : str = r"/home/jayp/atlas/code/gui_v1/logs/eyeDiagram.log" ): 
+    def plot_eye_diagram(self, master, file : str = r"./logs/eyeDiagram.log" ): 
         #TODO modify with pwd?
         data = []
         try:
@@ -77,7 +77,7 @@ class MinHealthTests(TestInterface):
 class Tuning(TestInterface):
     test_name = "Tuning"
     def get_test_list(self, mod_data):
-        _, _, _, version, _ = self.check_mod_data_loaded(mod_data)
+        _, _, _, version = self.check_mod_data_loaded(mod_data)
         return ["std_tune_globalthreshold -t 1700", "std_tune_globalpreamp -t 6000 7", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000"] if version == "v2" else ["std_tune_globalthreshold -t 1700", "std_totscan -t 6000", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_retune_globalthreshold -t 1700", "std_retune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000"]
 
 class PixelFailTests(TestInterface):
