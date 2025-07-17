@@ -1,0 +1,867 @@
+[14:10:43:101][  info  ][  eyeDiagram   ]: Init spec
+[14:10:43:102][  info  ][    SpecCom    ]: Opening SPEC with id #0
+[14:10:43:102][  info  ][    SpecCom    ]: Mapping BARs ...
+[14:10:43:102][  info  ][    SpecCom    ]: ... Mapped BAR0 at 0x7fd436900000 with size 1048576
+[14:10:43:102][  info  ][    SpecCom    ]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[14:10:43:102][  info  ][    SpecCom    ]: Firmware Hash: 0x7b14549
+[14:10:43:102][  info  ][    SpecCom    ]: Firmware Version: v1.5.0
+[14:10:43:102][  info  ][    SpecCom    ]: Firmware Identifier: 0x2030242
+[14:10:43:102][  info  ][    SpecCom    ]: FPGA card: Trenz TEF1001_R2
+[14:10:43:102][  info  ][    SpecCom    ]: FE Chip Type: RD53A/B/C
+[14:10:43:102][  info  ][    SpecCom    ]: FMC Card Type: Ohio Card (Display Port)
+[14:10:43:102][  info  ][    SpecCom    ]: RX Speed: 1280Mbps
+[14:10:43:102][  info  ][    SpecCom    ]: Channel Configuration: 16x1
+[14:10:43:102][  info  ][    SpecCom    ]: LPM Status: 0
+[14:10:43:102][  info  ][    SpecCom    ]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[14:10:43:102][  info  ][    SpecCom    ]: Soft resetting all ...
+[14:10:43:102][  info  ][    SpecCom    ]: Flushing buffers ...
+[14:10:43:102][  info  ][    SpecCom    ]: Init success!
+[14:10:43:102][  info  ][  eyeDiagram   ]: Scanning link quality against delay on Spec Card 0
+[14:10:43:102][  info  ][  ScanHelper   ]: Loading controller ...
+[14:10:43:102][  info  ][  ScanHelper   ]: Found controller of type: spec
+[14:10:43:102][  info  ][    SpecCom    ]: Opening SPEC with id #0
+[14:10:43:102][  info  ][    SpecCom    ]: Mapping BARs ...
+[14:10:43:102][  info  ][    SpecCom    ]: ... Mapped BAR0 at 0x7fd436500000 with size 1048576
+[14:10:43:102][  info  ][    SpecCom    ]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[14:10:43:102][  info  ][    SpecCom    ]: Firmware Hash: 0x7b14549
+[14:10:43:102][  info  ][    SpecCom    ]: Firmware Version: v1.5.0
+[14:10:43:102][  info  ][    SpecCom    ]: Firmware Identifier: 0x2030242
+[14:10:43:102][  info  ][    SpecCom    ]: FPGA card: Trenz TEF1001_R2
+[14:10:43:102][  info  ][    SpecCom    ]: FE Chip Type: RD53A/B/C
+[14:10:43:102][  info  ][    SpecCom    ]: FMC Card Type: Ohio Card (Display Port)
+[14:10:43:102][  info  ][    SpecCom    ]: RX Speed: 1280Mbps
+[14:10:43:102][  info  ][    SpecCom    ]: Channel Configuration: 16x1
+[14:10:43:102][  info  ][    SpecCom    ]: LPM Status: 0
+[14:10:43:102][  info  ][    SpecCom    ]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[14:10:43:102][  info  ][    SpecCom    ]: Soft resetting all ...
+[14:10:43:102][  info  ][    SpecCom    ]: Flushing buffers ...
+[14:10:43:102][  info  ][    SpecCom    ]: Init success!
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 0 fixed to 13
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 1 fixed to 4
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 2 fixed to 6
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 3 fixed to 15
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 4 fixed to 0
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 5 fixed to 0
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 6 fixed to 0
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 7 fixed to 0
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 8 fixed to 0
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 9 fixed to 0
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 10 fixed to 0
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 11 fixed to 0
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 12 fixed to 0
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 13 fixed to 0
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 14 fixed to 0
+[14:10:43:102][  info  ][    SpecRx     ]: Delay lane 15 fixed to 0
+[14:10:43:102][  info  ][  ScanHelper   ]: Loaded controller config:
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~ {
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     "cmdPeriod": 6.25e-09,
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     "delay": [13, 4, 6, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     "idle": {
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~         "word": 2863311530
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     },
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     "pulse": {
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~         "interval": 500,
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~         "word": 0
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     },
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     "rxActiveLanes": 1,
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     "rxPolarity": 65535,
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     "specNum": 0,
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     "spiConfig": 541200,
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     "sync": {
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~         "interval": 16,
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~         "word": 2172551550
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     },
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~     "txPolarity": 0
+[14:10:43:102][  info  ][  ScanHelper   ]: ~~~ }
+[14:10:43:102][  info  ][  ScanHelper   ]: Chip type: RD53B
+[14:10:43:102][  info  ][  ScanHelper   ]: Chip count 4
+[14:10:43:102][  info  ][  ScanHelper   ]: Loading chip #0
+[14:10:43:102][  info  ][  ScanHelper   ]: Loading config file: ../module-qc-database-tools/OX0013/20UPGM22211360/L2_warm/0x1728c_L2_warm.json
+[14:10:43:102][  info  ][  ScanHelper   ]: GlobalConfig overwrite file not found, skipping overwrite.
+[14:10:43:102][  info  ][  ScanHelper   ]: Loading chip #1
+[14:10:43:102][  info  ][  ScanHelper   ]: Loading config file: ../module-qc-database-tools/OX0013/20UPGM22211360/L2_warm/0x172bc_L2_warm.json
+[14:10:43:102][  info  ][  ScanHelper   ]: GlobalConfig overwrite file not found, skipping overwrite.
+[14:10:43:102][  info  ][  ScanHelper   ]: Loading chip #2
+[14:10:43:102][  info  ][  ScanHelper   ]: Loading config file: ../module-qc-database-tools/OX0013/20UPGM22211360/L2_warm/0x1725d_L2_warm.json
+[14:10:43:102][  info  ][  ScanHelper   ]: GlobalConfig overwrite file not found, skipping overwrite.
+[14:10:43:102][  info  ][  ScanHelper   ]: Loading chip #3
+[14:10:43:102][  info  ][  ScanHelper   ]: Loading config file: ../module-qc-database-tools/OX0013/20UPGM22211360/L2_warm/0x1724d_L2_warm.json
+[14:10:43:102][  info  ][  ScanHelper   ]: GlobalConfig overwrite file not found, skipping overwrite.
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AiRegionRow" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBSend" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBWait0" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBWait1" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCCSend" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCCWait" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraEnPrbs" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraInitWait" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead0" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead1" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead2" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead3" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead4" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead5" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead6" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead7" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "BcidCnt" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "BitFlipErrCnt" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "BitFlipWngCnt" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "CapMeasEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "CapMeasEnPar" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCp" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCpBuff" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCpFd" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrOverwriteLimit" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrPhaseDetSel" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrVco" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrVcoBuff" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "ChSyncLockThr" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "CmdErrCnt" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnBcid" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnBinaryRo" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnEos" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnHitRemoval" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnIsoHitRemoval" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnL1id" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnRaw" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMaxHits" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMaxTot" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEnBond" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEnClkGate" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux0" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux1" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux2" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux3" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInPol" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeSelClk" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DataReadDelay" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffComp" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffFbCapEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1L" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1M" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1R" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh2" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseConfig" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseReadData0" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseReadData1" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseWriteData0" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseWriteData1" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "EnChipId" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal0" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal1" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal2" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal3" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "ErrWngMask" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "EvenMask" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "FineDelayClk" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "FineDelayData" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GcrDefaultConfig" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GcrDefaultConfigB" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GlobalPulseConf" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GlobalPulseWidth" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosDs" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosRoute" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsBias" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad0" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad1" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad2" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad3" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "GpValReg" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt0" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt1" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt2" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt3" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask0" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask1" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask2" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask3" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "InjAnaMode" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "InjDigEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "InjFineDelay" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalHigh" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalMed" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalRange" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "Latency" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinComp" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinCompTa" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinFc" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacL" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacM" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacR" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinKrumCurr" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinLdac" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampL" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampM" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampR" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampT" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampTL" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampTR" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LinRefKrum" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "LockLossCnt" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "MonAdcTrim" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbDem" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbSelBias" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaDem" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaSelBias" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigDem" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigSelBias" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "MonitoringDataAdc" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "NtcDac" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "NumOfEventsInStream" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "OddMask" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PixAutoRow" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PixBroadcast" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PixConfMode" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PixDefaultConfig" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PixDefaultConfigB" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PixPortal" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PixRegionCol" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PixRegionRow" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn0" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn1" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn2" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn3" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RdWrFifoErrCnt" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "ReadTrigCnt" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "ReadTrigLatency" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAClear" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAOut" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscARoute" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBClear" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnBl" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnBr" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnCapA" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnFf" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnLvt" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBOut" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBRoute" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol0" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol1" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol2" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol3" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDelay" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDigThr" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDigThrEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigEn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigMulti" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigPattern" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "SkippedTrigCnt" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "SldoEnUndershuntA" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "SldoEnUndershuntD" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEn6b4b" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEn80" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEnPtoa" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEnPtot" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "TotPtotLatency" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "TrigCnt" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "TruncTimeoutConf" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "TwoLevelTrig" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefIn" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefRsensBot" using default!
+[14:10:43:103][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefRsensTop" using default!
+[14:10:43:103][ error  ][ Rd53bPixelCfg ]: Could not find pixel registers config, using default!
+[14:10:43:412][  info  ][  eyeDiagram   ]: Read "CdrClkSel" 0 and "ServiceBlockPeriod" 50 from virtual register read
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AiRegionRow" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBSend" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBWait0" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBWait1" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCCSend" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCCWait" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraEnPrbs" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraInitWait" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead0" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead1" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead2" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead3" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead4" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead5" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead6" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead7" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "BcidCnt" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "BitFlipErrCnt" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "BitFlipWngCnt" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "CapMeasEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "CapMeasEnPar" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCp" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCpBuff" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCpFd" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrOverwriteLimit" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrPhaseDetSel" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrVco" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrVcoBuff" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "ChSyncLockThr" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "CmdErrCnt" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnBcid" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnBinaryRo" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnEos" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnHitRemoval" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnIsoHitRemoval" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnL1id" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnRaw" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMaxHits" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMaxTot" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEnBond" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEnClkGate" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux0" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux1" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux2" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux3" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInPol" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeSelClk" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DataReadDelay" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffComp" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffFbCapEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1L" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1M" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1R" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh2" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseConfig" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseReadData0" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseReadData1" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseWriteData0" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseWriteData1" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "EnChipId" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal0" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal1" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal2" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal3" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "ErrWngMask" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "EvenMask" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "FineDelayClk" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "FineDelayData" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GcrDefaultConfig" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GcrDefaultConfigB" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GlobalPulseConf" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GlobalPulseWidth" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosDs" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosRoute" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsBias" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad0" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad1" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad2" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad3" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "GpValReg" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt0" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt1" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt2" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt3" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask0" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask1" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask2" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask3" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "InjAnaMode" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "InjDigEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "InjFineDelay" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalHigh" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalMed" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalRange" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "Latency" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinComp" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinCompTa" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinFc" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacL" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacM" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacR" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinKrumCurr" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinLdac" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampL" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampM" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampR" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampT" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampTL" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampTR" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LinRefKrum" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "LockLossCnt" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "MonAdcTrim" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbDem" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbSelBias" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaDem" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaSelBias" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigDem" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigSelBias" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "MonitoringDataAdc" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "NtcDac" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "NumOfEventsInStream" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "OddMask" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PixAutoRow" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PixBroadcast" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PixConfMode" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PixDefaultConfig" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PixDefaultConfigB" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PixPortal" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PixRegionCol" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PixRegionRow" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn0" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn1" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn2" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn3" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RdWrFifoErrCnt" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "ReadTrigCnt" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "ReadTrigLatency" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAClear" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAOut" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscARoute" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBClear" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnBl" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnBr" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnCapA" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnFf" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnLvt" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBOut" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBRoute" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol0" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol1" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol2" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol3" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDelay" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDigThr" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDigThrEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigEn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigMulti" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigPattern" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "SkippedTrigCnt" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "SldoEnUndershuntA" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "SldoEnUndershuntD" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEn6b4b" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEn80" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEnPtoa" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEnPtot" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "TotPtotLatency" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "TrigCnt" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "TruncTimeoutConf" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "TwoLevelTrig" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefIn" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefRsensBot" using default!
+[14:10:43:413][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefRsensTop" using default!
+[14:10:43:413][ error  ][ Rd53bPixelCfg ]: Could not find pixel registers config, using default!
+[14:10:43:712][  info  ][  eyeDiagram   ]: Read "CdrClkSel" 0 and "ServiceBlockPeriod" 50 from virtual register read
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AiRegionRow" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBSend" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBWait0" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBWait1" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCCSend" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCCWait" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraEnPrbs" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraInitWait" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead0" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead1" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead2" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead3" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead4" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead5" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead6" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead7" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "BcidCnt" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "BitFlipErrCnt" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "BitFlipWngCnt" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "CapMeasEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "CapMeasEnPar" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCp" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCpBuff" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCpFd" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrOverwriteLimit" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrPhaseDetSel" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrVco" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrVcoBuff" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "ChSyncLockThr" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "CmdErrCnt" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnBcid" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnBinaryRo" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnEos" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnHitRemoval" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnIsoHitRemoval" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnL1id" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnRaw" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMaxHits" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMaxTot" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEnBond" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEnClkGate" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux0" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux1" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux2" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux3" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInPol" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeSelClk" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DataReadDelay" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffComp" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffFbCapEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1L" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1M" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1R" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh2" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseConfig" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseReadData0" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseReadData1" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseWriteData0" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseWriteData1" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "EnChipId" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal0" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal1" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal2" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal3" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "ErrWngMask" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "EvenMask" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "FineDelayClk" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "FineDelayData" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GcrDefaultConfig" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GcrDefaultConfigB" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GlobalPulseConf" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GlobalPulseWidth" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosDs" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosRoute" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsBias" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad0" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad1" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad2" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad3" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "GpValReg" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt0" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt1" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt2" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt3" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask0" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask1" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask2" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask3" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "InjAnaMode" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "InjDigEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "InjFineDelay" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalHigh" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalMed" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalRange" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "Latency" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinComp" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinCompTa" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinFc" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacL" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacM" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacR" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinKrumCurr" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinLdac" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampL" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampM" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampR" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampT" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampTL" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampTR" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LinRefKrum" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "LockLossCnt" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "MonAdcTrim" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbDem" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbSelBias" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaDem" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaSelBias" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigDem" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigSelBias" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "MonitoringDataAdc" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "NtcDac" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "NumOfEventsInStream" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "OddMask" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PixAutoRow" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PixBroadcast" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PixConfMode" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PixDefaultConfig" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PixDefaultConfigB" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PixPortal" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PixRegionCol" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PixRegionRow" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn0" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn1" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn2" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn3" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RdWrFifoErrCnt" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "ReadTrigCnt" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "ReadTrigLatency" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAClear" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAOut" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscARoute" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBClear" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnBl" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnBr" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnCapA" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnFf" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnLvt" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBOut" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBRoute" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol0" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol1" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol2" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol3" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDelay" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDigThr" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDigThrEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigEn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigMulti" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigPattern" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "SkippedTrigCnt" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "SldoEnUndershuntA" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "SldoEnUndershuntD" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEn6b4b" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEn80" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEnPtoa" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEnPtot" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "TotPtotLatency" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "TrigCnt" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "TruncTimeoutConf" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "TwoLevelTrig" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefIn" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefRsensBot" using default!
+[14:10:43:713][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefRsensTop" using default!
+[14:10:43:713][ error  ][ Rd53bPixelCfg ]: Could not find pixel registers config, using default!
+[14:10:44:015][  info  ][  eyeDiagram   ]: Read "CdrClkSel" 0 and "ServiceBlockPeriod" 50 from virtual register read
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AiRegionRow" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBSend" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBWait0" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCBWait1" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCCSend" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraCCWait" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraEnPrbs" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AuroraInitWait" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead0" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead1" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead2" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead3" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead4" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead5" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead6" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "AutoRead7" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "BcidCnt" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "BitFlipErrCnt" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "BitFlipWngCnt" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "CapMeasEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "CapMeasEnPar" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCp" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCpBuff" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrCpFd" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrOverwriteLimit" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrPhaseDetSel" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrVco" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "CdrVcoBuff" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "ChSyncLockThr" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "CmdErrCnt" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnBcid" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnBinaryRo" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnEos" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnHitRemoval" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnIsoHitRemoval" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnL1id" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataEnRaw" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMaxHits" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMaxTot" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEnBond" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeEnClkGate" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux0" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux1" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux2" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInMux3" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeInPol" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataMergeSelClk" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DataReadDelay" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffComp" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffFbCapEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1L" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1M" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh1R" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "DiffTh2" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseConfig" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseReadData0" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseReadData1" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseWriteData0" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "EfuseWriteData1" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "EnChipId" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal0" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal1" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal2" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "EnCoreColCal3" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "ErrWngMask" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "EvenMask" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "FineDelayClk" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "FineDelayData" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GcrDefaultConfig" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GcrDefaultConfigB" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GlobalPulseConf" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GlobalPulseWidth" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosDs" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GpCmosRoute" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsBias" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad0" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad1" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad2" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GpLvdsPad3" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "GpValReg" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt0" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt1" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt2" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrCnt3" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask0" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask1" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask2" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "HitOrMask3" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "InjAnaMode" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "InjDigEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "InjFineDelay" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalHigh" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalMed" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "InjVcalRange" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "Latency" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinComp" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinCompTa" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinFc" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacL" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacM" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinGdacR" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinKrumCurr" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinLdac" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampL" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampM" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampR" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampT" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampTL" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinPreampTR" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LinRefKrum" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "LockLossCnt" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "MonAdcTrim" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbDem" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensAcbSelBias" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaDem" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoAnaSelBias" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigDem" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "MonSensSldoDigSelBias" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "MonitoringDataAdc" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "NtcDac" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "NumOfEventsInStream" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "OddMask" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PixAutoRow" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PixBroadcast" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PixConfMode" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PixDefaultConfig" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PixDefaultConfigB" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PixPortal" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PixRegionCol" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PixRegionRow" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn0" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn1" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn2" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "PtotCoreColEn3" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RdWrFifoErrCnt" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "ReadTrigCnt" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "ReadTrigLatency" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAClear" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscAOut" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscARoute" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBClear" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnBl" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnBr" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnCapA" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnFf" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBEnLvt" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBOut" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RingOscBRoute" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol0" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol1" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol2" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "RstCoreCol3" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDelay" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDigThr" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigDigThrEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigEn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigMulti" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "SelfTrigPattern" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "SkippedTrigCnt" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "SldoEnUndershuntA" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "SldoEnUndershuntD" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEn6b4b" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEn80" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEnPtoa" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "TotEnPtot" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "TotPtotLatency" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "TrigCnt" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "TruncTimeoutConf" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "TwoLevelTrig" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefIn" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefRsensBot" using default!
+[14:10:44:015][ error  ][Rd53bGlobalCfg ]: Could not find register "VrefRsensTop" using default!
+[14:10:44:015][ error  ][ Rd53bPixelCfg ]: Could not find pixel registers config, using default!
+[14:10:44:316][  info  ][  eyeDiagram   ]: Read "CdrClkSel" 0 and "ServiceBlockPeriod" 50 from virtual register read
+    0 | [32m1.00[0m | [32m1.00[0m | 0.00 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+    1 | 0.49 | [32m1.00[0m | 0.00 | 0.57 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+    2 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+    3 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+    4 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+    5 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+    6 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+    7 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+    8 | 0.00 | 0.56 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+    9 | 0.00 | 0.00 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   10 | [32m1.00[0m | 0.00 | 0.70 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   11 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   12 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   13 | [32m1.00[0m | 0.00 | 0.00 | 0.56 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   14 | [32m1.00[0m | 0.00 | 0.00 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   15 | [32m1.00[0m | 0.00 | 0.00 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   16 | [32m1.00[0m | [32m1.00[0m | 0.00 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   17 | 0.59 | [32m1.00[0m | 0.00 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   18 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.51 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   19 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   20 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   21 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   22 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   23 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   24 | 0.00 | [32m1.00[0m | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   25 | 0.00 | 0.00 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   26 | [32m1.00[0m | 0.00 | 0.64 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   27 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   28 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   29 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   30 | [32m1.00[0m | 0.00 | 0.00 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+   31 | [32m1.00[0m | 0.00 | 0.00 | [32m1.00[0m | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 
+[14:10:46:281][  info  ][  eyeDiagram   ]: Done scanning!  
+
+[14:10:46:281][  info  ][  eyeDiagram   ]: Determining delay settings:
+[14:10:46:281][  info  ][  eyeDiagram   ]: Delay setting for lane 0 with eye width 7: 13
+[14:10:46:281][  info  ][  eyeDiagram   ]: Delay setting for lane 1 with eye width 9: 20
+[14:10:46:281][  info  ][  eyeDiagram   ]: Delay setting for lane 2 with eye width 8: 6
+[14:10:46:281][  info  ][  eyeDiagram   ]: Delay setting for lane 3 with eye width 4: 16
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 4
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 5
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 6
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 7
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 8
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 9
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 10
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 11
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 12
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 13
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 14
+[14:10:46:281][  info  ][  eyeDiagram   ]: No good delay setting for lane 15
+[14:10:46:281][  info  ][  eyeDiagram   ]: Writing to controller config configs/controller/specCfg-rd53b-16x1.json
+[14:10:46:281][  info  ][  eyeDiagram   ]: All done! 
+
