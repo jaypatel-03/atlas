@@ -35,7 +35,7 @@ class TestInterface(tk.Frame):
         # to be overrided
         return [] 
     
-    def check_mod_data_loaded(self, mod_data : ModuleTestData) -> tuple[str, str, str, str] | None:
+    def check_mod_data_loaded(self, mod_data : ModuleTestData):
         '''Tests whether all the module testing properties have been loaded
         
         Args:
@@ -76,7 +76,7 @@ class TestInterface(tk.Frame):
             logging.info(f"Running {test}")
             cmd = template.format(echo=echo, home_path=home_path, loc_id=loc_id, mod_sn=mod_sn, temp=temp, test=test, version=version)
             
-            if test.__contains__("zerobias"):
+            if "zerobias" in test:
                 print("HV source to 0V")
                 self.open_popup(master, test, cmd) 
                 print("HV source to -120V")
@@ -89,7 +89,7 @@ class TestInterface(tk.Frame):
         r = 0
         for test in tests:
             tk.Label(self, text=f"{r + 1}.").grid(row=r + 1)
-            test_name = ' '.join(test.split(' ')[0].split('_')[1:]) if test.__contains__("_") else test
+            test_name = ' '.join(test.split(' ')[0].split('_')[1:]) if "_" in test else test
             quick_btn = tk.Button(self, text=f"{test_name}", command=lambda r=r: self.run_test(master,test_buttons[r],tests[r], mod_data))
             test_buttons.append(quick_btn)
             quick_btn.grid(row=r + 1, column=1)

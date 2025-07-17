@@ -13,7 +13,7 @@ class PrelimTests(TestInterface):
     def __init__(self,parent,controller, mod_data):
         super().__init__(parent, controller, mod_data)
         tk.Button(self, text="View", command=lambda : self.plot_eye_diagram(parent)).grid(row=1, column=2)
-        tk.Button(self, text="View", command=lambda : self.chip_delays(parent,mod_data)).grid(row=1, column=2)
+        # tk.Button(self, text="View", command=lambda : self.chip_delays(parent,mod_data)).grid(row=1, column=2)
 
     def get_test_list(self, mod_data : ModuleTestData):
         # TODO: add temperature check
@@ -29,7 +29,7 @@ class PrelimTests(TestInterface):
         try:
             with open(file) as f:
                 lines = f.readline()
-                while not lines.__contains__("0 | "):
+                while "0 | " not in lines:
                     lines = f.readline()
                 for i in range(32):
                     line = lines.replace('\n', '')
@@ -45,7 +45,7 @@ class PrelimTests(TestInterface):
     def open_eyediagram_popup(self, master, data : list):
         # TODO: incorporate into plot_eye_diagram?
         top = tk.Toplevel(master)
-        top.geometry("300x500")
+        top.geometry("300x750")
         top.transient(master)
         top.title("eyeDiagram")
         
@@ -65,6 +65,7 @@ class PrelimTests(TestInterface):
         
         home_path = mod_data.home_path
         file = f"{home_path}/module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
+        file = "/home/jayp/atlas/code/gui_v1/logs/eyeDiagram.log"
         print(file)
         with open(file, "r") as jsonfile:
             data = json.load(jsonfile)
