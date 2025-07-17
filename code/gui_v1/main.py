@@ -10,8 +10,7 @@ from test_suite import PrelimTests, MinHealthTests, Tuning, PixelFailTests
 
 import os
 
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
+
 
 class TestSuite(tk.Tk):
     def __init__(self, mod_data : ModuleTestData, *args, **kwargs):
@@ -206,7 +205,10 @@ def parse_args(argv=None):
     parser = argparse.ArgumentParser(prog='ATLAS Module Electrical Testing', description='GUI to run electrical tests on ATLAS v1.1 and v2 modules')
     parser.add_argument('-c', '--config', dest='cfg', required=False, help='Path to config.json', default="./config.json")
     parser.add_argument('-d', "--dry-run", dest='dry_run', required=False, default=0)
+    parser.add_argument('-v', "--verbosity", dest='verb', required=False, )
     args = vars(parser.parse_args(argv))
+    logger = logging.getLogger(__name__)
+    logging.basicConfig(level=logging.DEBUG)
     return args
 
 if __name__ == "__main__":

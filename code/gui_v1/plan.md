@@ -15,7 +15,9 @@ TODO:
 - Document in README assumptions like directory 
 - Write unittests
 - Delete old eyeDiagram
-
+- Verbosity flag (Move logging)
+- Return to GUI dir after cd 
+- Add color information 
 
 ## Overview + Notes
 

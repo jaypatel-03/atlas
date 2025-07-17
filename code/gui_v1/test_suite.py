@@ -26,13 +26,18 @@ class PrelimTests(TestInterface):
     def plot_eye_diagram(self, master, file : str = r"./logs/eyeDiagram.log" ): 
         #TODO modify with pwd?
         data = []
+        # ANSI escape sequence (\x1b[) + Select Graphic Rendition subset for colours (32 = green, 0 = black). Adds colour to eyeDiagram output
+        green = r'\x1b[32m'
+        black = r'\x1b[0m'
         try:
             with open(file) as f:
                 lines = f.readline()
                 while "0 | " not in lines:
                     lines = f.readline()
                 for i in range(32):
-                    line = lines.replace('\n', '')
+                    line = lines.encode('unicode_escape').decode() # remove weird encoding and convert to bash string
+                    line = line.replace(green, '').replace(black, '')
+                    line = line.replace('\n', '')
                     parts = [x.strip() for x in line.split('|')]
                     row = [float(val) for val in parts[1:-1]]
                     data.append(row)

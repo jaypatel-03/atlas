@@ -12,3 +12,13 @@
 
 ## Flags
 
+eyeDiagram:
+
+$$ \log( \rec{(|count  - expected count|/expected_count)})/13.0 $$
+
+LinkQuality = 
+
+To add:
+- venv instructions
+- download tkinter for different distributions 
+- minimum python version (3.9)
