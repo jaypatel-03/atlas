@@ -6,7 +6,7 @@ from module_test_data import ModuleTestData
 import datetime
 import threading 
 
-class TestBlock(tk.Frame):
+class TestInterface(tk.Frame):
     test_name = "Base Test"
     _TEST_TIMES = {
         "IV-MEASURE" : 10,
