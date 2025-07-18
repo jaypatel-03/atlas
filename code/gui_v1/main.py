@@ -7,10 +7,11 @@ import re # RegEx support
 from datetime import datetime
 import argparse
 from test_suite import PrelimTests, MinHealthTests, Tuning, PixelFailTests
+import threading
 
 import os
 
-
+logger = logging.getLogger(__name__)
 
 class TestSuite(tk.Tk):
     def __init__(self, mod_data : ModuleTestData, *args, **kwargs):
@@ -75,13 +76,13 @@ class InputScreen(tk.Frame):
         # Input module serial numbers and Oxford ID
         tk.Label(self, text="Module Serial Number \n (e.g. 20UPGM22110039) ").grid(row=0)
         e_mod_sn = tk.Entry(self, bg='white', fg='black')
-        e_mod_sn.insert(0,"20UPGM22110038")
+        e_mod_sn.insert(0,"20UPGM22110561")
         e_mod_sn.grid(row=0, column=1)
         
 
         tk.Label(self, text="Local ID \n (e.g. OX0006)").grid(row=1)
         e_local_id = tk.Entry(self, bg='white', fg='black')
-        e_local_id.insert(0, "OX0001")
+        e_local_id.insert(0, "OX0006")
         e_local_id.grid(row=1, column=1)
 
         # TODO: insert link (on hover?) to how to look up/assign local serial number
@@ -110,7 +111,7 @@ class InputScreen(tk.Frame):
         
         # Boolean flag from checkbox as to whether to overwrite existing config files 
         check_overwrite_config_flag = tk.BooleanVar()
-        check_config = tk.Checkbutton(self, text="Overwrite configs?", variable=check_overwrite_config_flag, onvalue=True, offvalue=False).grid(row=r+6,column=1)
+        tk.Checkbutton(self, text="Overwrite configs?", variable=check_overwrite_config_flag, onvalue=True, offvalue=False).grid(row=r+6,column=1)
         
         tk.Label(self, text="Module_QC directory \n (typically ~/Module_QC)").grid(row=0, column=2)
         e_home_path = tk.Entry(self)
@@ -122,9 +123,6 @@ class InputScreen(tk.Frame):
         # Validate serial numbers and generate config files
         tk.Button(self, text="Load & generate configs", width = 25, command = lambda : self.validate_module_info(controller, mod_data, e_mod_sn.get().strip(),e_local_id.get().strip(),self.version.get(), check_overwrite_config_flag.get(), e_home_path.get().strip())).grid(row=15)
         
-        
-        tk.Button(self, text="Yield", width = 25, command = lambda : print(vars(mod_data))).grid(row=15, column=2)
-
     
     def set_mod_data(self, attr : str, value : str, mod_data : ModuleTestData):
         logging.info(f"Set {attr} to {value}")
@@ -143,50 +141,54 @@ class InputScreen(tk.Frame):
             None : if attempting to unintentionally rewrite config files 
         '''
         logging.info("Load button pressed")
-        
+        echo = "echo" if mod_data.dry_run else ""
         if home_path == "":
             home_path = mod_data.home_path
         elif home_path.endswith('/'):
             home_path = home_path[0:-2]
         
         self.set_mod_data("home_path", home_path, mod_data)
-        
-        msg : str
-        flag = True
-        if re.search(r"^OX[0-9]{4}$", local_id) is None:
-            # ^___$ are anchors to force exact matches
-            logging.info(f"Invalid local ID {local_id}, should be of the form OX####.") 
-            flag = messagebox.askyesno("askyesno", f"Invalid local ID {local_id}, should be of the form OX####. \n Continue anyway?")
-        elif re.search(r"^20UPGM2[0-9]{7}$", mod_sn) is None:
-            logging.info(f"Invalid module serial number {mod_sn}, should be of the form 20UPGM########")
-            flag = messagebox.askyesno("askyesno", f"Invalid module serial number {mod_sn}, should be of the form 20UPGM########. \n Continue anyway?")
-        elif (re.search(r"^20UPGM2321[0-9]{4}$", mod_sn) is not None or re.search(r"^20UPGM2421[0-9]{4}$", mod_sn) is not None ) and version == "v1.1":
-            logging.info("Module serial number suggests this may be a v2 module.")
-            flag = messagebox.askyesno("yesno","Module serial number suggests this may be a v2 module. \n Continue anyway?")
-            
-        elif re.search(r"^20UPGM2211[0-9]{4}$", mod_sn) is not None and version == "v2":
-            logging.info("Module serial number suggests this may be a v1.1 module.")
-            flag = messagebox.askyesno("askyesno","Module serial number suggests this may be a v1.1 module. \n Continue anyway?")
-               
-        else:
-            flag = True
-            
-        if flag:
+                  
+        if self.regex_validation(local_id, mod_sn, version):
             logging.info("Module info looks reasonable.")
+            # Write data to ModuleTestData object 
             mod_data.loc_id = local_id
             mod_data.mod_sn = mod_sn
             mod_data.version = version
-            tk.Label(self, text=f"Module {local_id} loaded at {datetime.now().strftime('%H:%M:%S')}", fg='green').grid(row=16, column=0)
+            
+            logging.info(f"Module {local_id} loaded at {datetime.now().strftime('%H:%M:%S')} with : {vars(mod_data)=}")
             
             # Test whether the config files exist and will be unwittingly overwritten
-            if not overwrite_config and os.path.isdir(f"{home_path}/module-qc-database-tools/{local_id}"):
+            path_to_dir = f"{home_path}/module-qc-database-tools/{local_id}"
+            if not overwrite_config and os.path.isdir(path_to_dir):
                 messagebox.showerror("showerror", "Config files already exist, decide whether to overwrite or not.")
-                return 
-            subprocess.run(["echo" ,"cd", f"{mod_data.home_path}/module-qc-database-tools"])
-            subprocess.run(["echo", "mqdbt", "generate-yarr-config", "-sn", mod_sn, "-o", local_id])
-            subprocess.run(["echo", "cd", mod_data.home_path])
+                return
+            elif overwrite_config and os.path.isdir(path_to_dir):
+                subprocess.run([echo, "mkdir", f"{path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}"])
+                subprocess.run([echo, "rsync", "-r" f"{path_to_dir}", f"{path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}"])
+                
+            subprocess.run([echo ,"cd", f"{mod_data.home_path}/module-qc-database-tools"])
+            subprocess.run([echo, "mqdbt", "generate-yarr-config", "-sn", mod_sn, "-o", local_id])
+            subprocess.run([echo, "cd", mod_data.home_path])
             master.destroy()    
-
+       
+    def regex_validation(self, local_id : str, mod_sn : str, version : str) -> bool:
+        if re.search(r"^OX[0-9]{4}$", local_id) is None:
+        # ^___$ are anchors to force exact matches
+            logging.info(f"Invalid local ID {local_id}, should be of the form OX####.") 
+            return messagebox.askyesno("askyesno", f"Invalid local ID {local_id}, should be of the form OX####. \n Continue anyway?")
+        elif re.search(r"^20UPGM2[0-9]{7}$", mod_sn) is None:
+            logging.info(f"Invalid module serial number {mod_sn}, should be of the form 20UPGM########")
+            return messagebox.askyesno("askyesno", f"Invalid module serial number {mod_sn}, should be of the form 20UPGM########. \n Continue anyway?")
+        elif (re.search(r"^20UPGM2321[0-9]{4}$", mod_sn) is not None or re.search(r"^20UPGM2421[0-9]{4}$", mod_sn) is not None ) and version == "v1.1":
+            logging.info("Module serial number suggests this may be a v2 module.")
+            return messagebox.askyesno("yesno","Module serial number suggests this may be a v2 module. \n Continue anyway?")
+        elif re.search(r"^20UPGM2211[0-9]{4}$", mod_sn) is not None and version == "v2":
+            logging.info("Module serial number suggests this may be a v1.1 module.")
+            return messagebox.askyesno("askyesno","Module serial number suggests this may be a v1.1 module. \n Continue anyway?")   
+        else:
+             return True
+            
 
 def new_module(**kwargs):
     mod_data = ModuleTestData(cfg=kwargs['cfg'], dry_run=bool(int(kwargs['dry_run'])))
@@ -205,9 +207,8 @@ def parse_args(argv=None):
     parser = argparse.ArgumentParser(prog='ATLAS Module Electrical Testing', description='GUI to run electrical tests on ATLAS v1.1 and v2 modules')
     parser.add_argument('-c', '--config', dest='cfg', required=False, help='Path to config.json', default="./config.json")
     parser.add_argument('-d', "--dry-run", dest='dry_run', required=False, default=0)
-    parser.add_argument('-v', "--verbosity", dest='verb', required=False, )
+    parser.add_argument('-v', "--verbosity", dest='verb', required=False, default=20, help="Severity = [0, 10, 20, 30, 40, 50]") # TODO: fix
     args = vars(parser.parse_args(argv))
-    logger = logging.getLogger(__name__)
     logging.basicConfig(level=logging.DEBUG)
     return args
 

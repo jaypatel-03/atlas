@@ -10,14 +10,9 @@ TODO:
 TODO:
 - Configure icicle ports
 - Implement new test function 
-- Add success markers + chip control for eyeDiagram
 - Overwrite config = move to OX0006_backup and create new. Overwrite old backup with new backup
-- Document in README assumptions like directory 
 - Write unittests
-- Delete old eyeDiagram
 - Verbosity flag (Move logging)
-- Return to GUI dir after cd 
-- Add color information 
 
 ## Overview + Notes
 

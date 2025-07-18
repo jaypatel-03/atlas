@@ -5,6 +5,7 @@ import logging
 from module_test_data import ModuleTestData
 import datetime
 import threading 
+import os
 
 class TestInterface(tk.Frame):
     test_name = "Base Test"
@@ -23,27 +24,24 @@ class TestInterface(tk.Frame):
         "std_thresholdscan_zerobias" : 4,
         "selftrigger_source" : 30
     }
-
+    PWD = os.getcwd()
     def __init__(self, parent, controller, mod_data):
         super().__init__(parent) #this calls tk.Frame.__init__(self, parent)
-        
         tk.Label(self, text=self.test_name).grid(row=0, columnspan=2)
         self.test_list = self.get_test_list(mod_data)
-        self.make_buttons(controller, self.test_list, mod_data)  # TODO: Assumes mod_data is available
-        
+        self.make_buttons(controller, self.test_list, mod_data)        
     def get_test_list():
         # to be overrided
         return [] 
     
     def check_mod_data_loaded(self, mod_data : ModuleTestData):
-        '''Tests whether all the module testing properties have been loaded
+        """Tests whether all the module testing properties have been saved into the ModuleTestData file. NB: Only checks for existence, not validity. 
         
         Args:
             mod_data : Module test data
         Returns:
-            mod_data.loc_id, mod_data.mod_sn,mod_data.temp, mod_data.version | None, None, None, None 
-        
-        '''
+            mod_data.loc_id, mod_data.mod_sn, mod_data.temp, mod_data.version | None, None, None, None : Throws an exception and returns None if the attributes don't exist.
+        """
         try:
             return mod_data.loc_id, mod_data.mod_sn,mod_data.temp, mod_data.version
         except AttributeError:
@@ -51,6 +49,13 @@ class TestInterface(tk.Frame):
             return None, None, None, None
 
     def run_test(self, master, button : tk.Button, test : str, mod_data : ModuleTestData):
+        """ Locates and runs the script requested, autofilling module information into the relevant flags
+        Args:
+            master : Window containing the frame 
+            button : tkinter button triggering the script 
+            test : name of script
+            mod_data : ModuleTestData object with module data (SN, local ID etc) loaded.
+        """
         loc_id, mod_sn, temp, version = self.check_mod_data_loaded(mod_data)            
         
         home_path = mod_data.home_path
@@ -58,15 +63,15 @@ class TestInterface(tk.Frame):
         
         
         if loc_id is not None:
-            # TODO: remove echos 
-            # TODO: remove sleeps
             if test in ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION']:
                 template = "{echo}cd {home_path}/module-qc-tools ; {echo}measurement-{test} -c ../configs/new_hw_config_{version}.json -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
+                
             elif test == "eyeDiagram":
-                template = "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json" # TODO: change output directory
-                # TODO: add pipe out to > /home/jayp/atlas/code/gui_v1/logs/eyeDiagram.log 
+                template = "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json" if dry_run else "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json > {pwd}/logs/eyeDiagram.log"
+                # Remove pipe output for dry runs
             else:
-                template = "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh"
+                
+                template = "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh" if version == "v1.1" else "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/itkpixv2/{test} -Wh"
             
             echo = ""
             if dry_run:
@@ -74,7 +79,7 @@ class TestInterface(tk.Frame):
                 echo = "echo "
                     
             logging.info(f"Running {test}")
-            cmd = template.format(echo=echo, home_path=home_path, loc_id=loc_id, mod_sn=mod_sn, temp=temp, test=test, version=version)
+            cmd = template.format(echo=echo, home_path=home_path, loc_id=loc_id, mod_sn=mod_sn, temp=temp, test=test, version=version, pwd=self.PWD) # '/'.join(self.PWD.split('/')[:-1]
             
             if "zerobias" in test:
                 print("HV source to 0V")
@@ -83,6 +88,7 @@ class TestInterface(tk.Frame):
             else:
                 self.open_popup(master, test, cmd) 
             button.configure(bg="green")
+            subprocess.run(["echo cd ", self.PWD], shell=True)
 
     def make_buttons(self, master, tests : list, mod_data : ModuleTestData):
         test_buttons = []
@@ -96,7 +102,6 @@ class TestInterface(tk.Frame):
             r += 1
             
     def open_popup(self, master, test : str, cmd : str):
-        # TODO: incorporate into plot_eye_diagram?
         popup = tk.Toplevel(master)
         popup.title(f"{test}")
         popup.geometry("500x100")
