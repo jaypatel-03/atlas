@@ -2,13 +2,11 @@ import subprocess
 import tkinter as tk
 from tkinter import messagebox
 import logging
-from module_test_data import ModuleTestData
+from gui.module_test_data import ModuleTestData
 import re # RegEx support
 from datetime import datetime
 import argparse
-from test_suite import PrelimTests, MinHealthTests, Tuning, PixelFailTests
-import threading
-
+from gui.test_suite import PrelimTests, MinHealthTests, Tuning, PixelFailTests
 import os
 
 logger = logging.getLogger(__name__)
@@ -135,10 +133,10 @@ class InputScreen(tk.Frame):
         '''Validates module info entered and downloads config files from database if successful
         
         Args:
-            mod_sn : String containing the global module serial number
-            local_sn : String containing the local (Oxford) module identifier
+            mod_sn: String containing the global module serial number
+            local_sn: String containing the local (Oxford) module identifier
         Returns:
-            None : if attempting to unintentionally rewrite config files 
+            None: if attempting to unintentionally rewrite config files 
         '''
         logging.info("Load button pressed")
         echo = "echo" if mod_data.dry_run else ""
@@ -173,6 +171,12 @@ class InputScreen(tk.Frame):
             master.destroy()    
        
     def regex_validation(self, local_id : str, mod_sn : str, version : str) -> bool:
+        """ Performs RegEx validation on the local ID and the module serial number, with the option to manually override. Also test to see if the module serial number indicates a v1.1 module or v2. 
+        
+        Args: 
+             
+        """
+        
         if re.search(r"^OX[0-9]{4}$", local_id) is None:
         # ^___$ are anchors to force exact matches
             logging.info(f"Invalid local ID {local_id}, should be of the form OX####.") 
@@ -191,6 +195,7 @@ class InputScreen(tk.Frame):
             
 
 def new_module(**kwargs):
+    
     mod_data = ModuleTestData(cfg=kwargs['cfg'], dry_run=bool(int(kwargs['dry_run'])))
     win = LoadModuleInfo(mod_data)
     win.mainloop()
@@ -212,9 +217,16 @@ def parse_args(argv=None):
     logging.basicConfig(level=logging.DEBUG)
     return args
 
+def __str__(self):
+    """
+    This will be included in the docs because it has a docstring
+    """
+    return self.encode('utf-8')
+
+def __unicode__(self):
+    # This will NOT be included in the docs
+    return self.__class__.__name__
+
 if __name__ == "__main__":
     kwargs = parse_args()
     new_module(**kwargs)
-
-    # l = TestSuite(mod_data)
-    # l.mainloop()

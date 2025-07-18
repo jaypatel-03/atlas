@@ -10,7 +10,11 @@
 
 ## Config files
 
+
+
 ## Flags
+
+- d [0,1] : dry run 
 
 eyeDiagram:
 

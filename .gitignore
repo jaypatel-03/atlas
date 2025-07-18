@@ -22,4 +22,8 @@ code/sandbox.py
 
 .vscode
 
-code/gui_v1/__pycache__
+gui/sandbox.py
+
+docs
+
+gui_v1

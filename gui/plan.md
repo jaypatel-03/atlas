@@ -10,9 +10,10 @@ TODO:
 TODO:
 - Configure icicle ports
 - Implement new test function 
-- Overwrite config = move to OX0006_backup and create new. Overwrite old backup with new backup
 - Write unittests
 - Verbosity flag (Move logging)
+- Failure mode 
+- Dry run in config or 
 
 ## Overview + Notes
 

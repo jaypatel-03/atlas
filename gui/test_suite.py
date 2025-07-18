@@ -1,5 +1,5 @@
-from test_interface import TestInterface 
-from module_test_data import ModuleTestData
+from gui.test_interface import TestInterface 
+from gui.module_test_data import ModuleTestData
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
@@ -12,7 +12,7 @@ class PrelimTests(TestInterface):
     
     def __init__(self,parent,controller, mod_data):
         super().__init__(parent, controller, mod_data)
-        tk.Button(self, text="View", command=lambda : self.plot_eye_diagram(parent, mod_data)).grid(row=1, column=2)
+        tk.Button(self, text="View", command=lambda : self.sanitise_plot_eye_diagram(parent, mod_data)).grid(row=1, column=2)
 
     def get_test_list(self, mod_data : ModuleTestData):
         if mod_data.stage == "post":
@@ -21,7 +21,15 @@ class PrelimTests(TestInterface):
             return ['eyeDiagram', 'IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'DATA-TRANSMISSION', 'corecolumnscan']
         return ['eyeDiagram', 'IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION', 'corecolumnscan']
     
-    def plot_eye_diagram(self, master, mod_data : ModuleTestData, file : str = r"./logs/eyeDiagram.log"): 
+    def sanitise_plot_eye_diagram(self, master, mod_data : ModuleTestData, file : str = r"./logs/eyeDiagram.log"): 
+        """Reads and sanitises the shell output of the eyeDiagram script. Removes new line breaks, removes pipe delimiter, and removes shell colour information. 
+        
+        Args:
+            master: controlling tk.Frame to pass through to other functions 
+            mod_data
+            file (str): path to eyeDiagram.log. Default is ./logs/eyeDiagram.log
+        
+        """
         logging.debug("Plotting eyeDiagram")
         data = []
         delay = []
@@ -53,15 +61,23 @@ class PrelimTests(TestInterface):
         except FileNotFoundError as e:
             logging.info(f"{e}: Run eye diagram first")
     
-    def open_eyediagram_popup(self, master, data : list, delay : list, mod_data : ModuleTestData):
+    def open_eyediagram_popup(self, master, eye_diag : list[int], delay : list[bool], mod_data : ModuleTestData):
+        """Plots the heatmap for the eyeDiagram, as well as whether suitable delays have been found or not and gives the option (as checkboxes) to disable or re-enable particular chips.
+        
+        Args: 
+            master: Controlling tk.Frame so that a popup can be added on top.
+            eye_diag (list[int]): sanitised link quality values from eye diagram shell output (output of sanitise_plot_eye_diagram function)
+            delay (list[bool]): list of booleans indicating whether a delay has been successfully found for a certain lane (output of sanitise_plot_eye_diagram function)
+        """
         # TODO: incorporate into plot_eye_diagram?
         top = tk.Toplevel(master)
         top.transient(master)
         top.title("eyeDiagram")
         
+        # plots the heatmap for the eyeDiagram 
         fig = plt.Figure(figsize=(5,5), dpi=100)
         plot1 = fig.add_subplot(111)
-        plot1.imshow(data, cmap='winter')
+        plot1.imshow(eye_diag, cmap='winter')
         plot1.set_ylabel("Channel")
         plot1.set_xlabel("Lane")
         
@@ -69,12 +85,14 @@ class PrelimTests(TestInterface):
         canvas.draw()
         canvas.get_tk_widget().grid(row=0)
         
+        # uses the output from the processed config JSON to create labels stating whether a suitable delay has been found for each lane. 
         enabled = self.chip_enabled(mod_data)
         i = 0
         for d in delay:
             tk.Label(top, text= f"{i}. " + ("Delay found" if d == "green" else "Delay not found"), fg=d).grid(row=i+1)
             i += 1
         
+        # creates a column of checkboxes to allow for disabling/enabling particular ASICS. 
         i = 0
         self.checkbox_flags = []
         self.checkbox = []
@@ -84,18 +102,24 @@ class PrelimTests(TestInterface):
             self.chk.grid(row=i+1, column=1)
             self.checkbox.append(self.chk)
             if bool(a):
-                self.chk.select()
+                self.chk.select() #turn on checkboxes corresponding to on chips. 
             i += 1
         logging.debug(f"{self.checkbox_flags=}")
         ok_btn =tk.Button(top, text="OK",command = lambda : self.disable_chips(top,mod_data, [s.get() for s in self.checkbox_flags])).grid(row=18, columnspan=2)
     
-    def chip_enabled(self, mod_data : ModuleTestData) -> list:
+    def chip_enabled(self, mod_data : ModuleTestData) -> list[int]:
+        """Reads the relevant config file, located in module-qc-database-tools, to output which ASICs are turned on.
+        
+        Args:
+            mod_data: ModuleTestData object containing ID and serial number 
+        Returns:
+            enabled: list of integers in [0,1] designating whether the corresponding ASIC is off or on.  
+        """
         loc_id, mod_sn, temp, _ = self.check_mod_data_loaded(mod_data)
         enabled = []
         home_path = mod_data.home_path
         file = f"{home_path}/module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
-        
-        
+    
         with open(file, "r") as jsonfile:
             data = json.load(jsonfile)
             logging.info("Read successful")
@@ -105,6 +129,13 @@ class PrelimTests(TestInterface):
         return enabled
     
     def disable_chips(self, master, mod_data : ModuleTestData, chk_boxes : list):
+        """Writes to the config JSON with updated information (from checkboxes) as to which ASICS are to be turned off or on. If there is any write error, the original data is written in stead. 
+        
+        Args:
+            master: controlling tk.Frame so that the popup can be closed
+            mod_data: ModuleTestData object containing local ID and serial number, as well as whether it is a warm or cold test so that the correct JSON file can be located.
+            chk_boxes (list[int]): list of integers corresponding to whether chip[i] is off (0) or on (1). 
+        """
         loc_id, mod_sn, temp, _ = self.check_mod_data_loaded(mod_data)
         home_path = mod_data.home_path
         file = f"{home_path}/module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"

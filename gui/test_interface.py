@@ -2,13 +2,19 @@ import subprocess
 import tkinter as tk
 from tkinter import messagebox, ttk
 import logging
-from module_test_data import ModuleTestData
+from gui.module_test_data import ModuleTestData
 import datetime
 import threading 
 import os
-
+import time
 class TestInterface(tk.Frame):
+    """ Interface (or base class) from which all the sets of tests inherit. 
+    
+    This defines the basic behaviour for a pre-defined set of tests including making a set of buttons, running the associated scripts. 
+
+    """
     test_name = "Base Test"
+    # Dictionary of estimated time of running for the named tests. Any tests executed not listed below will assume to take 1 minute. 
     _TEST_TIMES = {
         "IV-MEASURE" : 10,
         "ADC-CALIBRATION" : 4,
@@ -25,22 +31,24 @@ class TestInterface(tk.Frame):
         "selftrigger_source" : 30
     }
     PWD = os.getcwd()
+    
     def __init__(self, parent, controller, mod_data):
         super().__init__(parent) #this calls tk.Frame.__init__(self, parent)
-        tk.Label(self, text=self.test_name).grid(row=0, columnspan=2)
-        self.test_list = self.get_test_list(mod_data)
+        tk.Label(self, text=self.test_name).grid(row=0, columnspan=2) # Title of set of test 
+        self.test_list = self.get_test_list(mod_data) 
         self.make_buttons(controller, self.test_list, mod_data)        
+    
     def get_test_list():
-        # to be overrided
+        # to be overrided by child classes.
         return [] 
     
     def check_mod_data_loaded(self, mod_data : ModuleTestData):
-        """Tests whether all the module testing properties have been saved into the ModuleTestData file. NB: Only checks for existence, not validity. 
+        """Tests whether all the module testing properties have been saved into the ModuleTestData file. NB: Only checks for existence, not validity - we assume that the imported data is all reasonable. 
         
         Args:
-            mod_data : Module test data
+            mod_data: Module test data
         Returns:
-            mod_data.loc_id, mod_data.mod_sn, mod_data.temp, mod_data.version | None, None, None, None : Throws an exception and returns None if the attributes don't exist.
+            mod_data.loc_id, mod_data.mod_sn, mod_data.temp, mod_data.version | None, None, None, None: Throws an exception and returns None if the attributes don't exist.
         """
         try:
             return mod_data.loc_id, mod_data.mod_sn,mod_data.temp, mod_data.version
@@ -49,12 +57,13 @@ class TestInterface(tk.Frame):
             return None, None, None, None
 
     def run_test(self, master, button : tk.Button, test : str, mod_data : ModuleTestData):
-        """ Locates and runs the script requested, autofilling module information into the relevant flags
+        """ Locates and runs the script requested, autofilling module information. 
+        
         Args:
-            master : Window containing the frame 
-            button : tkinter button triggering the script 
-            test : name of script
-            mod_data : ModuleTestData object with module data (SN, local ID etc) loaded.
+            master: Window containing the frame 
+            button: tkinter button triggering the script 
+            test: name of script
+            mod_data: ModuleTestData object with module data (SN, local ID etc) loaded.
         """
         loc_id, mod_sn, temp, version = self.check_mod_data_loaded(mod_data)            
         
@@ -64,33 +73,39 @@ class TestInterface(tk.Frame):
         
         if loc_id is not None:
             if test in ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION']:
-                template = "{echo}cd {home_path}/module-qc-tools ; {echo}measurement-{test} -c ../configs/new_hw_config_{version}.json -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
+                template = "{echo}cd {home_path}/module-qc-tools ; {echo}measurement-{test} -c '../configs/new_hw_config_{version}.json' -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
                 
             elif test == "eyeDiagram":
-                template = "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json" if dry_run else "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json > {pwd}/logs/eyeDiagram.log"
-                # Remove pipe output for dry runs
+                template = "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json" if dry_run else "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json > {pwd}/logs/eyeDiagram.log" # if statement removes pipe output for dry runs
             else:
-                
                 template = "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh" if version == "v1.1" else "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/itkpixv2/{test} -Wh"
             
             echo = ""
             if dry_run:
-                template += " ; sleep 2"
+                template += " ; sleep 2" # simulates the script taking some time 
                 echo = "echo "
+            template += " ; {echo}cd {pwd}" # returns to origina GUI directory after executing script
                     
             logging.info(f"Running {test}")
-            cmd = template.format(echo=echo, home_path=home_path, loc_id=loc_id, mod_sn=mod_sn, temp=temp, test=test, version=version, pwd=self.PWD) # '/'.join(self.PWD.split('/')[:-1]
-            
-            if "zerobias" in test:
-                print("HV source to 0V")
+            cmd = template.format(echo=echo, home_path=home_path, loc_id=loc_id, mod_sn=mod_sn, temp=temp, test=test, version=version, pwd=self.PWD) # fills module information
+            logging.debug(f"********** \n CMD: {cmd} \n ***********")
+            if "zerobias" in test: # TODO: implement HV ramping for zerobias test + (temp, LV, HV) checks for other tests  
+                messagebox.showinfo("show info", "HV source to 0V")
+                time.sleep(1) 
                 self.open_popup(master, test, cmd) 
-                print("HV source to -120V")
+                messagebox.showinfo("show info", "HV source to -120V")
             else:
                 self.open_popup(master, test, cmd) 
             button.configure(bg="green")
-            subprocess.run(["echo cd ", self.PWD], shell=True)
 
     def make_buttons(self, master, tests : list, mod_data : ModuleTestData):
+        """Loops over list of tests and makes corresponding buttons. Strips the std_prefix in YARR scans.
+        
+        Args:
+            master: controlling tk.Frame
+            tests: list[strings] of test names
+            mod_data: ModuleTestData object containing information about the module to pass through to button functions. 
+        """
         test_buttons = []
         r = 0
         for test in tests:
@@ -102,9 +117,15 @@ class TestInterface(tk.Frame):
             r += 1
             
     def open_popup(self, master, test : str, cmd : str):
+        """Opens small popup window with progress bar and executes the script for the test. Also defines actions to be taken after the test script has been executed (on_done).
+        
+        Args:
+            master: controlling Frame (Test Suite)
+            test (str): name of the test, with any flags
+            cmd (str) : shell command to be executed, including any cd to relevant dirs, cd back to working dir
+        """
         popup = tk.Toplevel(master)
         popup.title(f"{test}")
-        popup.geometry("500x100")
         popup.transient(master)
         popup.grab_set()
         
@@ -123,10 +144,15 @@ class TestInterface(tk.Frame):
             
         self.run_cmd(cmd, on_done)
         
-    def run_cmd(self, cmd, on_done):
-        
-        def task():
-            subprocess.run(cmd, shell=True) # This blocks the main thread 
+    def run_cmd(self, cmd : str, on_done):
+        """"Threaded subprocess run (shell command).
+        Args:
+            cmd (str): shell command to be executed, including prepended cd to script dir
+            on_done (function): function to define behaviour after command has been executed (e.g., stop progress bar and close popup).
+        """
+        # TODO: implement failure protocol. 
+        def task(): 
+            subprocess.run(cmd, shell=True, check=True) # This blocks the main thread 
             on_done() # callback in main thread
         threading.Thread(target=task, daemon=True).start()
         
