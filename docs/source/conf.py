@@ -31,17 +31,16 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',   # For Google/NumPy style docstrings
     'sphinx.ext.viewcode',
+    'myst_parser',
+    'sphinx.ext.autosummary',
 ]
-
-autoapi_type = 'python'
-autoapi_dirs = ['../../gui']  # Path to your codebase
 
 autosummary_generate = True  # build autosummary pages automatically
 autodoc_typehints = "description"  # nicer formatting (optional)
