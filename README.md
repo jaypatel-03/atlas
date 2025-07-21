@@ -16,12 +16,6 @@
 
 - d [0,1] : dry run 
 
-eyeDiagram:
-
-$$ \log( \rec{(|count  - expected count|/expected_count)})/13.0 $$
-
-LinkQuality = 
-
 To add:
 - venv instructions
 - download tkinter for different distributions 
