@@ -132,8 +132,10 @@ Run: DAQ
 
 LGAD = low-gain avalanche diode, 10x 100x gain so quick response
 
-TCAD
+TCAD = Technology CAD
+
 SDE = stochastic DE
+
 SPROCESS = simulates fabrication process
 
 SCADA = Supervisory control and data acquisition
@@ -148,6 +150,35 @@ CHIRP = Constellation Host Identification & Reconnaissance Protocol (IPv4 protoc
 
 CMDP = Constellation Monitoring Distribution Protocol 
 
+EOL: end-of-life
+
+TID: time in detector
+
+STE simulations?
+
+PIN signal?
+
+JTE:
+
+uTP: untwister pair
+
+STP: shielded twisted pair
+
+MOPS: monitoring of pixel system
+
+CAN: Controller Area Network
+
+FE: Front End
+
+ATLAS: A Toroidal LHC ApparatuS
+
+CMS: Compact Muon Solenoid
+
+NTC: Negative Temperature Coefficient thermometer (PTC are platinum and more expensive, but up to 500 C)
+
+MUX: multiplexer
+
+TRACI: Transportable Refrigeration Apparatus for CO 2 Investigation
 
 ## Testing procedure
 
@@ -342,3 +373,23 @@ class ExampleSatellite(Satellite):
         self.logger.info("Satellite is resetting.")
         self.set_state_idle()  # Return to IDLE
 ```
+
+## Project Notes
+
+SE4445 glue with 100um diameter microspheres to allow for uniform thickness. Needs to be kept rotating so it doesn't sediment
+
+Chips developed through ATLAS-CMS collaboration. CMS CROC (432x332 pixels : 18.3x21.6mm) vs ATLAS ITkPix (400x384 pixes : 20.7x20mm)
+
+Approx. 154k pixels in 50 core columns
+
+RD54B = ITkPixV1 = ITkPixV1.1
+
+RD54C = ITkPixV
+
+Bare modules come from Advafab or IZM
+
+Core columns : columns of 8 pixel columns
+
+Serial powering: 
+
+20-25% of v1 and v2 modules are affected by core column 

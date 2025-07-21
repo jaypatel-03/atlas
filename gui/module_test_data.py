@@ -9,15 +9,18 @@ class ModuleTestData:
         "final_cold" : "cold",
     }
     
-    def __init__(self, cfg : str = "./config.json", stage : str = "init", dry_run : bool = False) -> None:
+    def __init__(self, cfg : str = "./config.json", stage : str = "init", dry_run : int = 2) -> None:
         
         with open(cfg, "r") as jsonfile:
-            cfg_data = json.load(jsonfile) 
+            cfg_data = json.load(jsonfile)
+            self.dry_run = bool(int(cfg_data['dry_run'])) if dry_run == 2 else bool(int(dry_run))
         self.home_path : str = cfg_data['default_home_path']
         self.loc_id : str = ""
         self.mod_sn : str = ""
         self.version : str = ""
-        self.dry_run = dry_run
+
+        logging.info(f"*******************DRY RUN*******************" if self.dry_run else f"^^^^^^^^^^^^^^^^^^^^^ACTIVE RUN^^^^^^^^^^^^^^^^^^^^^" )
+        
         '''
         self.home_path : str = "~/Module_QC"
         self.port_hv_psu : str = "ASRL/dev/ttyUSB0::INSTR"

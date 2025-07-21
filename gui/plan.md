@@ -13,18 +13,8 @@ TODO:
 - Write unittests
 - Verbosity flag (Move logging)
 - Failure mode 
-- Dry run in config or 
 
 ## Overview + Notes
-
-Specify ports for Keithley?
-
-Copy over swinterlock code - ask about ssh into machine. 
-
-<https://www.digitalocean.com/community/tutorials/tkinter-working-with-classes>
-
-
-Add upload reminder after each scan?
 
 1) Open and initialise
 2) Connect to Keithley and R&S supplies through appropriate ports

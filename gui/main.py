@@ -2,11 +2,11 @@ import subprocess
 import tkinter as tk
 from tkinter import messagebox
 import logging
-from gui.module_test_data import ModuleTestData
+from module_test_data import ModuleTestData
 import re # RegEx support
 from datetime import datetime
 import argparse
-from gui.test_suite import PrelimTests, MinHealthTests, Tuning, PixelFailTests
+from test_suite import PrelimTests, MinHealthTests, Tuning, PixelFailTests
 import os
 
 logger = logging.getLogger(__name__)
@@ -157,22 +157,31 @@ class InputScreen(tk.Frame):
             logging.info(f"Module {local_id} loaded at {datetime.now().strftime('%H:%M:%S')} with : {vars(mod_data)=}")
             
             # Test whether the config files exist and will be unwittingly overwritten
-            path_to_dir = f"{home_path}/module-qc-database-tools/{local_id}"
+            path_to_dir = fr"{home_path}/module-qc-database-tools/{local_id}"
+            
             if not overwrite_config and os.path.isdir(path_to_dir):
                 messagebox.showerror("showerror", "Config files already exist, decide whether to overwrite or not.")
                 return
             elif overwrite_config and os.path.isdir(path_to_dir):
-                subprocess.run([echo, "mkdir", f"{path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}"])
-                subprocess.run([echo, "rsync", "-r" f"{path_to_dir}", f"{path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}"])
+                new_path = fr"{path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}/"
+                os.mkdir(new_path)
+                cmd = "mkdir " + new_path 
+                subprocess.run(cmd, shell=True)
+                logging.debug(f"Run mkdir {path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}/")
+                subprocess.run([echo, "rsync", "-r", path_to_dir, new_path], shell=True)
+                logging.debug(f"rsync -r {path_to_dir} {new_path}")
                 
-            subprocess.run([echo ,"cd", f"{mod_data.home_path}/module-qc-database-tools"])
-            subprocess.run([echo, "mqdbt", "generate-yarr-config", "-sn", mod_sn, "-o", local_id])
-            subprocess.run([echo, "cd", mod_data.home_path])
+            logging.debug(f"Run cd {mod_data.home_path}/module-qc-database-tools")
+            subprocess.run([echo ,"cd", f"{mod_data.home_path}/module-qc-database-tools"], shell=True)
+            logging.debug(f"Run mwdbt generate-yarr-config -sn {mod_sn} -o {local_id}")
+            subprocess.run([echo, "mqdbt", "generate-yarr-config", "-sn", mod_sn, "-o", local_id], shell=True)
+            logging.debug(f"cd {mod_data.home_path}")
+            subprocess.run([echo, "cd", mod_data.home_path], shell=True)
             master.destroy()    
        
     def regex_validation(self, local_id : str, mod_sn : str, version : str) -> bool:
         """ Performs RegEx validation on the local ID and the module serial number, with the option to manually override. Also test to see if the module serial number indicates a v1.1 module or v2. 
-        
+        # TODO: FINISH 
         Args: 
              
         """
@@ -211,21 +220,11 @@ def parse_args(argv=None):
     """
     parser = argparse.ArgumentParser(prog='ATLAS Module Electrical Testing', description='GUI to run electrical tests on ATLAS v1.1 and v2 modules')
     parser.add_argument('-c', '--config', dest='cfg', required=False, help='Path to config.json', default="./config.json")
-    parser.add_argument('-d', "--dry-run", dest='dry_run', required=False, default=0)
+    parser.add_argument('-d', "--dry-run", dest='dry_run', required=False, default=2) # 0 = FALSE (wet run), 1 = TRUE (dry run), 2 = unspecified, revert to config 
     parser.add_argument('-v', "--verbosity", dest='verb', required=False, default=20, help="Severity = [0, 10, 20, 30, 40, 50]") # TODO: fix
     args = vars(parser.parse_args(argv))
     logging.basicConfig(level=logging.DEBUG)
     return args
-
-def __str__(self):
-    """
-    This will be included in the docs because it has a docstring
-    """
-    return self.encode('utf-8')
-
-def __unicode__(self):
-    # This will NOT be included in the docs
-    return self.__class__.__name__
 
 if __name__ == "__main__":
     kwargs = parse_args()

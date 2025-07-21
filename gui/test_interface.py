@@ -2,7 +2,7 @@ import subprocess
 import tkinter as tk
 from tkinter import messagebox, ttk
 import logging
-from gui.module_test_data import ModuleTestData
+from module_test_data import ModuleTestData
 import datetime
 import threading 
 import os
