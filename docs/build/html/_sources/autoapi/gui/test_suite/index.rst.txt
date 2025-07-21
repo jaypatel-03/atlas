@@ -1,0 +1,141 @@
+gui.test_suite
+==============
+
+.. py:module:: gui.test_suite
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gui.test_suite.PrelimTests
+   gui.test_suite.MinHealthTests
+   gui.test_suite.Tuning
+   gui.test_suite.PixelFailTests
+
+
+Module Contents
+---------------
+
+.. py:class:: PrelimTests(parent, controller, mod_data)
+
+   Bases: :py:obj:`gui.test_interface.TestInterface`
+
+
+   Interface (or base class) from which all the sets of tests inherit.
+
+   This defines the basic behaviour for a pre-defined set of tests including making a set of buttons, running the associated scripts.
+
+
+
+   .. py:attribute:: test_name
+      :value: 'Preliminary Tests'
+
+
+
+   .. py:method:: get_test_list(mod_data)
+
+
+   .. py:method:: sanitise_plot_eye_diagram(master, mod_data, file = './logs/eyeDiagram.log')
+
+      Reads and sanitises the shell output of the eyeDiagram script. Removes new line breaks, removes pipe delimiter, and removes shell colour information.
+
+      :param master: controlling tk.Frame to pass through to other functions
+      :param mod_data:
+      :param file: path to eyeDiagram.log. Default is ./logs/eyeDiagram.log
+      :type file: str
+
+
+
+   .. py:method:: open_eyediagram_popup(master, eye_diag, delay, mod_data)
+
+      Plots the heatmap for the eyeDiagram, as well as whether suitable delays have been found or not and gives the option (as checkboxes) to disable or re-enable particular chips.
+
+      :param master: Controlling tk.Frame so that a popup can be added on top.
+      :param eye_diag: sanitised link quality values from eye diagram shell output (output of sanitise_plot_eye_diagram function)
+      :type eye_diag: list[int]
+      :param delay: list of booleans indicating whether a delay has been successfully found for a certain lane (output of sanitise_plot_eye_diagram function)
+      :type delay: list[bool]
+
+
+
+   .. py:method:: chip_enabled(mod_data)
+
+      Reads the relevant config file, located in module-qc-database-tools, to output which ASICs are turned on.
+
+      :param mod_data: ModuleTestData object containing ID and serial number
+
+      :returns: list of integers in [0,1] designating whether the corresponding ASIC is off or on.
+      :rtype: enabled
+
+
+
+   .. py:method:: disable_chips(master, mod_data, chk_boxes)
+
+      Writes to the config JSON with updated information (from checkboxes) as to which ASICS are to be turned off or on. If there is any write error, the original data is written in stead.
+
+      :param master: controlling tk.Frame so that the popup can be closed
+      :param mod_data: ModuleTestData object containing local ID and serial number, as well as whether it is a warm or cold test so that the correct JSON file can be located.
+      :param chk_boxes: list of integers corresponding to whether chip[i] is off (0) or on (1).
+      :type chk_boxes: list[int]
+
+
+
+.. py:class:: MinHealthTests(parent, controller, mod_data)
+
+   Bases: :py:obj:`gui.test_interface.TestInterface`
+
+
+   Interface (or base class) from which all the sets of tests inherit.
+
+   This defines the basic behaviour for a pre-defined set of tests including making a set of buttons, running the associated scripts.
+
+
+
+   .. py:attribute:: test_name
+      :value: 'Mininum Health Tests'
+
+
+
+   .. py:method:: get_test_list(mod_data)
+
+
+.. py:class:: Tuning(parent, controller, mod_data)
+
+   Bases: :py:obj:`gui.test_interface.TestInterface`
+
+
+   Interface (or base class) from which all the sets of tests inherit.
+
+   This defines the basic behaviour for a pre-defined set of tests including making a set of buttons, running the associated scripts.
+
+
+
+   .. py:attribute:: test_name
+      :value: 'Tuning'
+
+
+
+   .. py:method:: get_test_list(mod_data)
+
+
+.. py:class:: PixelFailTests(parent, controller, mod_data)
+
+   Bases: :py:obj:`gui.test_interface.TestInterface`
+
+
+   Interface (or base class) from which all the sets of tests inherit.
+
+   This defines the basic behaviour for a pre-defined set of tests including making a set of buttons, running the associated scripts.
+
+
+
+   .. py:attribute:: test_name
+      :value: 'Pixel Fail'
+
+
+
+   .. py:method:: get_test_list(mod_data)
+
+

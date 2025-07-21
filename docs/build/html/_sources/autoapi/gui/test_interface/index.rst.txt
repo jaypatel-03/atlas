@@ -1,0 +1,101 @@
+gui.test_interface
+==================
+
+.. py:module:: gui.test_interface
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gui.test_interface.TestInterface
+
+
+Module Contents
+---------------
+
+.. py:class:: TestInterface(parent, controller, mod_data)
+
+   Bases: :py:obj:`tkinter.Frame`
+
+
+   Interface (or base class) from which all the sets of tests inherit.
+
+   This defines the basic behaviour for a pre-defined set of tests including making a set of buttons, running the associated scripts.
+
+
+
+   .. py:attribute:: test_name
+      :value: 'Base Test'
+
+
+
+   .. py:attribute:: _TEST_TIMES
+
+
+   .. py:attribute:: PWD
+
+
+   .. py:attribute:: test_list
+      :value: []
+
+
+
+   .. py:method:: get_test_list()
+
+
+   .. py:method:: check_mod_data_loaded(mod_data)
+
+      Tests whether all the module testing properties have been saved into the ModuleTestData file. NB: Only checks for existence, not validity - we assume that the imported data is all reasonable.
+
+      :param mod_data: Module test data
+
+      :returns: Throws an exception and returns None if the attributes don't exist.
+      :rtype: mod_data.loc_id, mod_data.mod_sn, mod_data.temp, mod_data.version | None, None, None, None
+
+
+
+   .. py:method:: run_test(master, button, test, mod_data)
+
+      Locates and runs the script requested, autofilling module information.
+
+      :param master: Window containing the frame
+      :param button: tkinter button triggering the script
+      :param test: name of script
+      :param mod_data: ModuleTestData object with module data (SN, local ID etc) loaded.
+
+
+
+   .. py:method:: make_buttons(master, tests, mod_data)
+
+      Loops over list of tests and makes corresponding buttons. Strips the std_prefix in YARR scans.
+
+      :param master: controlling tk.Frame
+      :param tests: list[strings] of test names
+      :param mod_data: ModuleTestData object containing information about the module to pass through to button functions.
+
+
+
+   .. py:method:: open_popup(master, test, cmd)
+
+      Opens small popup window with progress bar and executes the script for the test. Also defines actions to be taken after the test script has been executed (on_done).
+
+      :param master: controlling Frame (Test Suite)
+      :param test: name of the test, with any flags
+      :type test: str
+      :param cmd: shell command to be executed, including any cd to relevant dirs, cd back to working dir
+      :type cmd: str
+
+
+
+   .. py:method:: run_cmd(cmd, on_done)
+
+      "Threaded subprocess run (shell command).
+      :param cmd: shell command to be executed, including prepended cd to script dir
+      :type cmd: str
+      :param on_done: function to define behaviour after command has been executed (e.g., stop progress bar and close popup).
+      :type on_done: function
+
+
+

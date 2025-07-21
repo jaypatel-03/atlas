@@ -1,0 +1,64 @@
+gui.module_test_data
+====================
+
+.. py:module:: gui.module_test_data
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gui.module_test_data.ModuleTestData
+
+
+Module Contents
+---------------
+
+.. py:class:: ModuleTestData(cfg = './config.json', stage = 'init', dry_run = 2)
+
+   .. py:attribute:: _STAGE_TEMP_MAP
+
+
+   .. py:attribute:: home_path
+      :type:  str
+
+
+   .. py:attribute:: loc_id
+      :type:  str
+      :value: ''
+
+
+
+   .. py:attribute:: mod_sn
+      :type:  str
+      :value: ''
+
+
+
+   .. py:attribute:: version
+      :type:  str
+      :value: ''
+
+
+
+   .. py:attribute:: _stage
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:attribute:: temp
+      :type:  str | None
+      :value: None
+
+
+
+   .. py:property:: stage
+      :type: str
+
+
+
+   .. py:method:: _get_temp_for_stage(stage)
+
+

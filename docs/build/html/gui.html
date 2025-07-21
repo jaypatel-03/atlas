@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gui package &mdash; ATLAS Module QC Testing GUI 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="autoapi/index.html" />
+    <link rel="prev" title="gui" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ATLAS Module QC Testing GUI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">gui</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">gui package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-gui.input_screen">gui.input_screen module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gui.input_screen.InputScreen"><code class="docutils literal notranslate"><span class="pre">InputScreen</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gui.input_screen.LoadModuleInfo"><code class="docutils literal notranslate"><span class="pre">LoadModuleInfo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gui.input_screen.TestSuite"><code class="docutils literal notranslate"><span class="pre">TestSuite</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-gui.main">gui.main module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gui.main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gui.main.new_module"><code class="docutils literal notranslate"><span class="pre">new_module()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gui.main.parse_args"><code class="docutils literal notranslate"><span class="pre">parse_args()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-gui.module_test_data">gui.module_test_data module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gui.module_test_data.ModuleTestData"><code class="docutils literal notranslate"><span class="pre">ModuleTestData</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-gui.sandbox">gui.sandbox module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-gui.test_interface">gui.test_interface module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gui.test_interface.TestInterface"><code class="docutils literal notranslate"><span class="pre">TestInterface</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-gui.test_suite">gui.test_suite module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gui.test_suite.MinHealthTests"><code class="docutils literal notranslate"><span class="pre">MinHealthTests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gui.test_suite.PixelFailTests"><code class="docutils literal notranslate"><span class="pre">PixelFailTests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gui.test_suite.PrelimTests"><code class="docutils literal notranslate"><span class="pre">PrelimTests</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gui.test_suite.Tuning"><code class="docutils literal notranslate"><span class="pre">Tuning</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ATLAS Module QC Testing GUI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">gui</a></li>
+      <li class="breadcrumb-item active">gui package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/gui.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-gui">
+<span id="gui-package"></span><h1>gui package<a class="headerlink" href="#module-gui" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-gui.input_screen">
+<span id="gui-input-screen-module"></span><h2>gui.input_screen module<a class="headerlink" href="#module-gui.input_screen" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.input_screen.InputScreen">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.input_screen.</span></span><span class="sig-name descname"><span class="pre">InputScreen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/input_screen.html#InputScreen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.input_screen.InputScreen" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.input_screen.InputScreen.regex_validation">
+<span class="sig-name descname"><span class="pre">regex_validation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_sn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/input_screen.html#InputScreen.regex_validation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.input_screen.InputScreen.regex_validation" title="Link to this definition"></a></dt>
+<dd><p>Performs RegEx validation on the local ID and the module serial number, with the option to manually override. Also test to see if the module serial number indicates a v1.1 module or v2.
+# TODO: FINISH
+Args:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>local_id</strong> (<em>str</em>)</p></li>
+<li><p><strong>mod_sn</strong> (<em>str</em>)</p></li>
+<li><p><strong>version</strong> (<em>str</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.input_screen.InputScreen.set_mod_data">
+<span class="sig-name descname"><span class="pre">set_mod_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/input_screen.html#InputScreen.set_mod_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.input_screen.InputScreen.set_mod_data" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attr</strong> (<em>str</em>)</p></li>
+<li><p><strong>value</strong> (<em>str</em>)</p></li>
+<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.input_screen.InputScreen.validate_module_info">
+<span class="sig-name descname"><span class="pre">validate_module_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_sn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">home_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/input_screen.html#InputScreen.validate_module_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.input_screen.InputScreen.validate_module_info" title="Link to this definition"></a></dt>
+<dd><p>Validates module info entered and downloads config files from database if successful</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mod_sn</strong> (<em>str</em>) – String containing the global module serial number</p></li>
+<li><p><strong>local_sn</strong> – String containing the local (Oxford) module identifier</p></li>
+<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p></li>
+<li><p><strong>local_id</strong> (<em>str</em>)</p></li>
+<li><p><strong>version</strong> (<em>str</em>)</p></li>
+<li><p><strong>overwrite_config</strong> (<em>bool</em>)</p></li>
+<li><p><strong>home_path</strong> (<em>str</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>if attempting to unintentionally rewrite config files</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.input_screen.LoadModuleInfo">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.input_screen.</span></span><span class="sig-name descname"><span class="pre">LoadModuleInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/input_screen.html#LoadModuleInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.input_screen.LoadModuleInfo" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Tk</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.input_screen.LoadModuleInfo.show_frame">
+<span class="sig-name descname"><span class="pre">show_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cont</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/input_screen.html#LoadModuleInfo.show_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.input_screen.LoadModuleInfo.show_frame" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.input_screen.TestSuite">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.input_screen.</span></span><span class="sig-name descname"><span class="pre">TestSuite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/input_screen.html#TestSuite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.input_screen.TestSuite" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Tk</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.input_screen.TestSuite.show_frame">
+<span class="sig-name descname"><span class="pre">show_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cont</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/input_screen.html#TestSuite.show_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.input_screen.TestSuite.show_frame" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-gui.main">
+<span id="gui-main-module"></span><h2>gui.main module<a class="headerlink" href="#module-gui.main" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gui.main.main">
+<span class="sig-prename descclassname"><span class="pre">gui.main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/main.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.main.main" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gui.main.new_module">
+<span class="sig-prename descclassname"><span class="pre">gui.main.</span></span><span class="sig-name descname"><span class="pre">new_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/main.html#new_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.main.new_module" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gui.main.parse_args">
+<span class="sig-prename descclassname"><span class="pre">gui.main.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/main.html#parse_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.main.parse_args" title="Link to this definition"></a></dt>
+<dd><p>Parse command line arguments.
+:param argv: List of string arguments to parse.
+:type argv: list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary of parameters.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gui.module_test_data">
+<span id="gui-module-test-data-module"></span><h2>gui.module_test_data module<a class="headerlink" href="#module-gui.module_test_data" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.module_test_data.ModuleTestData">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.module_test_data.</span></span><span class="sig-name descname"><span class="pre">ModuleTestData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./config.json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'init'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dry_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/module_test_data.html#ModuleTestData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.module_test_data.ModuleTestData" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cfg</strong> (<em>str</em>)</p></li>
+<li><p><strong>stage</strong> (<em>str</em>)</p></li>
+<li><p><strong>dry_run</strong> (<em>int</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="gui.module_test_data.ModuleTestData.stage">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stage</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="_modules/gui/module_test_data.html#ModuleTestData.stage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.module_test_data.ModuleTestData.stage" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-gui.sandbox">
+<span id="gui-sandbox-module"></span><h2>gui.sandbox module<a class="headerlink" href="#module-gui.sandbox" title="Link to this heading"></a></h2>
+</section>
+<section id="module-gui.test_interface">
+<span id="gui-test-interface-module"></span><h2>gui.test_interface module<a class="headerlink" href="#module-gui.test_interface" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.test_interface.TestInterface">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.test_interface.</span></span><span class="sig-name descname"><span class="pre">TestInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_interface.html#TestInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_interface.TestInterface" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>Interface (or base class) from which all the sets of tests inherit.</p>
+<p>This defines the basic behaviour for a pre-defined set of tests including making a set of buttons, running the associated scripts.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.test_interface.TestInterface.PWD">
+<span class="sig-name descname"><span class="pre">PWD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/home/jayp/atlas/docs'</span></em><a class="reference internal" href="_modules/gui/test_interface.html#TestInterface.PWD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_interface.TestInterface.PWD" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_interface.TestInterface.check_mod_data_loaded">
+<span class="sig-name descname"><span class="pre">check_mod_data_loaded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_interface.html#TestInterface.check_mod_data_loaded"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_interface.TestInterface.check_mod_data_loaded" title="Link to this definition"></a></dt>
+<dd><p>Tests whether all the module testing properties have been saved into the ModuleTestData file. NB: Only checks for existence, not validity - we assume that the imported data is all reasonable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>) – Module test data</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Throws an exception and returns None if the attributes don’t exist.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>mod_data.loc_id, mod_data.mod_sn, mod_data.temp, mod_data.version | None, None, None, None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_interface.TestInterface.get_test_list">
+<span class="sig-name descname"><span class="pre">get_test_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_interface.html#TestInterface.get_test_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_interface.TestInterface.get_test_list" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_interface.TestInterface.make_buttons">
+<span class="sig-name descname"><span class="pre">make_buttons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_interface.html#TestInterface.make_buttons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_interface.TestInterface.make_buttons" title="Link to this definition"></a></dt>
+<dd><p>Loops over list of tests and makes corresponding buttons. Strips the std_prefix in YARR scans.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>master</strong> – controlling tk.Frame</p></li>
+<li><p><strong>tests</strong> (<em>list</em>) – list[strings] of test names</p></li>
+<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>) – ModuleTestData object containing information about the module to pass through to button functions.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_interface.TestInterface.open_popup">
+<span class="sig-name descname"><span class="pre">open_popup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_interface.html#TestInterface.open_popup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_interface.TestInterface.open_popup" title="Link to this definition"></a></dt>
+<dd><p>Opens small popup window with progress bar and executes the script for the test. Also defines actions to be taken after the test script has been executed (on_done).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>master</strong> – controlling Frame (Test Suite)</p></li>
+<li><p><strong>test</strong> (<em>str</em>) – name of the test, with any flags</p></li>
+<li><p><strong>cmd</strong> (<em>str</em>) – shell command to be executed, including any cd to relevant dirs, cd back to working dir</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_interface.TestInterface.run_cmd">
+<span class="sig-name descname"><span class="pre">run_cmd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_done</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_interface.html#TestInterface.run_cmd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_interface.TestInterface.run_cmd" title="Link to this definition"></a></dt>
+<dd><p>“Threaded subprocess run (shell command).
+:param cmd: shell command to be executed, including prepended cd to script dir
+:type cmd: str
+:param on_done: function to define behaviour after command has been executed (e.g., stop progress bar and close popup).
+:type on_done: function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cmd</strong> (<em>str</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_interface.TestInterface.run_test">
+<span class="sig-name descname"><span class="pre">run_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">button</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_interface.html#TestInterface.run_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_interface.TestInterface.run_test" title="Link to this definition"></a></dt>
+<dd><p>Locates and runs the script requested, autofilling module information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>master</strong> – Window containing the frame</p></li>
+<li><p><strong>button</strong> (<em>tkinter.Button</em>) – tkinter button triggering the script</p></li>
+<li><p><strong>test</strong> (<em>str</em>) – name of script</p></li>
+<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>) – ModuleTestData object with module data (SN, local ID etc) loaded.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.test_interface.TestInterface.test_name">
+<span class="sig-name descname"><span class="pre">test_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Base</span> <span class="pre">Test'</span></em><a class="reference internal" href="_modules/gui/test_interface.html#TestInterface.test_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_interface.TestInterface.test_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-gui.test_suite">
+<span id="gui-test-suite-module"></span><h2>gui.test_suite module<a class="headerlink" href="#module-gui.test_suite" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.test_suite.MinHealthTests">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.test_suite.</span></span><span class="sig-name descname"><span class="pre">MinHealthTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#MinHealthTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.MinHealthTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gui.test_interface.TestInterface" title="gui.test_interface.TestInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestInterface</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.MinHealthTests.get_test_list">
+<span class="sig-name descname"><span class="pre">get_test_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#MinHealthTests.get_test_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.MinHealthTests.get_test_list" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.test_suite.MinHealthTests.test_name">
+<span class="sig-name descname"><span class="pre">test_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Mininum</span> <span class="pre">Health</span> <span class="pre">Tests'</span></em><a class="reference internal" href="_modules/gui/test_suite.html#MinHealthTests.test_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.MinHealthTests.test_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.test_suite.PixelFailTests">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.test_suite.</span></span><span class="sig-name descname"><span class="pre">PixelFailTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PixelFailTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PixelFailTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gui.test_interface.TestInterface" title="gui.test_interface.TestInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestInterface</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.PixelFailTests.get_test_list">
+<span class="sig-name descname"><span class="pre">get_test_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PixelFailTests.get_test_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PixelFailTests.get_test_list" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.test_suite.PixelFailTests.test_name">
+<span class="sig-name descname"><span class="pre">test_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Pixel</span> <span class="pre">Fail'</span></em><a class="reference internal" href="_modules/gui/test_suite.html#PixelFailTests.test_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PixelFailTests.test_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.test_suite.PrelimTests">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.test_suite.</span></span><span class="sig-name descname"><span class="pre">PrelimTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gui.test_interface.TestInterface" title="gui.test_interface.TestInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestInterface</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.PrelimTests.chip_enabled">
+<span class="sig-name descname"><span class="pre">chip_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.chip_enabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.chip_enabled" title="Link to this definition"></a></dt>
+<dd><p>Reads the relevant config file, located in module-qc-database-tools, to output which ASICs are turned on.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>) – ModuleTestData object containing ID and serial number</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of integers in [0,1] designating whether the corresponding ASIC is off or on.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>enabled</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.PrelimTests.disable_chips">
+<span class="sig-name descname"><span class="pre">disable_chips</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chk_boxes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.disable_chips"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.disable_chips" title="Link to this definition"></a></dt>
+<dd><p>Writes to the config JSON with updated information (from checkboxes) as to which ASICS are to be turned off or on. If there is any write error, the original data is written in stead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>master</strong> – controlling tk.Frame so that the popup can be closed</p></li>
+<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>) – ModuleTestData object containing local ID and serial number, as well as whether it is a warm or cold test so that the correct JSON file can be located.</p></li>
+<li><p><strong>chk_boxes</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – list of integers corresponding to whether chip[i] is off (0) or on (1).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.PrelimTests.get_test_list">
+<span class="sig-name descname"><span class="pre">get_test_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.get_test_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.get_test_list" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.PrelimTests.open_eyediagram_popup">
+<span class="sig-name descname"><span class="pre">open_eyediagram_popup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eye_diag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.open_eyediagram_popup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.open_eyediagram_popup" title="Link to this definition"></a></dt>
+<dd><p>Plots the heatmap for the eyeDiagram, as well as whether suitable delays have been found or not and gives the option (as checkboxes) to disable or re-enable particular chips.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>master</strong> – Controlling tk.Frame so that a popup can be added on top.</p></li>
+<li><p><strong>eye_diag</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – sanitised link quality values from eye diagram shell output (output of sanitise_plot_eye_diagram function)</p></li>
+<li><p><strong>delay</strong> (<em>list</em><em>[</em><em>bool</em><em>]</em>) – list of booleans indicating whether a delay has been successfully found for a certain lane (output of sanitise_plot_eye_diagram function)</p></li>
+<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.PrelimTests.sanitise_plot_eye_diagram">
+<span class="sig-name descname"><span class="pre">sanitise_plot_eye_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./logs/eyeDiagram.log'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.sanitise_plot_eye_diagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.sanitise_plot_eye_diagram" title="Link to this definition"></a></dt>
+<dd><p>Reads and sanitises the shell output of the eyeDiagram script. Removes new line breaks, removes pipe delimiter, and removes shell colour information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>master</strong> – controlling tk.Frame to pass through to other functions</p></li>
+<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p></li>
+<li><p><strong>file</strong> (<em>str</em>) – path to eyeDiagram.log. Default is ./logs/eyeDiagram.log</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.test_suite.PrelimTests.test_name">
+<span class="sig-name descname"><span class="pre">test_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Preliminary</span> <span class="pre">Tests'</span></em><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.test_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.test_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.test_suite.Tuning">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.test_suite.</span></span><span class="sig-name descname"><span class="pre">Tuning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#Tuning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.Tuning" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gui.test_interface.TestInterface" title="gui.test_interface.TestInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestInterface</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.Tuning.get_test_list">
+<span class="sig-name descname"><span class="pre">get_test_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#Tuning.get_test_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.Tuning.get_test_list" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.test_suite.Tuning.test_name">
+<span class="sig-name descname"><span class="pre">test_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Tuning'</span></em><a class="reference internal" href="_modules/gui/test_suite.html#Tuning.test_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.Tuning.test_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="gui" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="autoapi/index.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Jay Patel.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+gui.input_screen
+================
+
+.. py:module:: gui.input_screen
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   gui.input_screen.TestSuite
+   gui.input_screen.LoadModuleInfo
+   gui.input_screen.InputScreen
+
+
+Module Contents
+---------------
+
+.. py:class:: TestSuite(mod_data, *args, **kwargs)
+
+   Bases: :py:obj:`gui.test_suite.tk.Tk`
+
+
+   Toplevel widget of Tk which represents mostly the main window
+   of an application. It has an associated Tcl interpreter.
+
+
+   .. py:attribute:: frames
+
+
+   .. py:method:: show_frame(cont)
+
+
+.. py:class:: LoadModuleInfo(mod_data, *args, **kwargs)
+
+   Bases: :py:obj:`gui.test_suite.tk.Tk`
+
+
+   Toplevel widget of Tk which represents mostly the main window
+   of an application. It has an associated Tcl interpreter.
+
+
+   .. py:attribute:: frames
+
+
+   .. py:method:: show_frame(cont)
+
+
+.. py:class:: InputScreen(parent, controller, mod_data)
+
+   Bases: :py:obj:`gui.test_suite.tk.Frame`
+
+
+   Frame widget which may contain other widgets and can have a 3D border.
+
+
+   .. py:attribute:: version
+
+
+   .. py:attribute:: stage
+
+
+   .. py:method:: set_mod_data(attr, value, mod_data)
+
+
+   .. py:method:: validate_module_info(master, mod_data, mod_sn, local_id, version, overwrite_config, home_path)
+
+      Validates module info entered and downloads config files from database if successful
+
+      :param mod_sn: String containing the global module serial number
+      :param local_sn: String containing the local (Oxford) module identifier
+
+      :returns: if attempting to unintentionally rewrite config files
+      :rtype: None
+
+
+
+   .. py:method:: regex_validation(local_id, mod_sn, version)
+
+      Performs RegEx validation on the local ID and the module serial number, with the option to manually override. Also test to see if the module serial number indicates a v1.1 module or v2.
+      # TODO: FINISH
+      Args:
+
+
+
+

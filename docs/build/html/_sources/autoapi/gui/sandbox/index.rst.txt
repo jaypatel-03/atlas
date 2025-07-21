@@ -1,0 +1,40 @@
+gui.sandbox
+===========
+
+.. py:module:: gui.sandbox
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gui.sandbox.list
+   gui.sandbox.latest_file
+   gui.sandbox.threshold_scan
+   gui.sandbox.sldo
+   gui.sandbox.analog_readback
+   gui.sandbox.lines
+
+
+Module Contents
+---------------
+
+.. py:data:: list
+
+.. py:data:: latest_file
+
+.. py:data:: threshold_scan
+   :value: '/home/jayp/atlas/archive/OX0018/20UPGM22211390/thresholdscan_hr.log'
+
+
+.. py:data:: sldo
+   :value: '/home/jayp/atlas/archive/OX0018/20UPGM22211390/Measurements/SLDO/2025-07-18_153037/output.log'
+
+
+.. py:data:: analog_readback
+   :value: '/home/jayp/atlas/archive/OX0018/20UPGM22211390/Measurements/ANALOG_READBACK/2025-07-18_152721/ou...
+
+
+.. py:data:: lines
+

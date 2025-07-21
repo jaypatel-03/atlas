@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gui.test_suite &mdash; ATLAS Module QC Testing GUI 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ATLAS Module QC Testing GUI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">gui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ATLAS Module QC Testing GUI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">gui.test_suite</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for gui.test_suite</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gui.test_interface</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestInterface</span> 
+<span class="kn">from</span><span class="w"> </span><span class="nn">gui.module_test_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleTestData</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.backends.backend_tkagg</span><span class="w"> </span><span class="kn">import</span> <span class="n">FigureCanvasTkAgg</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">messagebox</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<div class="viewcode-block" id="PrelimTests">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PrelimTests</span><span class="p">(</span><span class="n">TestInterface</span><span class="p">):</span>
+<div class="viewcode-block" id="PrelimTests.test_name">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.test_name">[docs]</a>
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Preliminary Tests&quot;</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">parent</span><span class="p">,</span><span class="n">controller</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">)</span>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;View&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sanitise_plot_eye_diagram</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">))</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PrelimTests.get_test_list">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.get_test_list">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;post&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;eyeDiagram&#39;</span><span class="p">,</span> <span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;corecolumnscan&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;final_cold&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;eyeDiagram&#39;</span><span class="p">,</span> <span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;ADC-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;ANALOG-READBACK&#39;</span><span class="p">,</span> <span class="s1">&#39;SLDO&#39;</span><span class="p">,</span> <span class="s1">&#39;VCAL-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;INJECTION-CAPACITANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA-TRANSMISSION&#39;</span><span class="p">,</span> <span class="s1">&#39;corecolumnscan&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;eyeDiagram&#39;</span><span class="p">,</span> <span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;ADC-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;ANALOG-READBACK&#39;</span><span class="p">,</span> <span class="s1">&#39;SLDO&#39;</span><span class="p">,</span> <span class="s1">&#39;VCAL-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;INJECTION-CAPACITANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;LP-MODE&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA-TRANSMISSION&#39;</span><span class="p">,</span> <span class="s1">&#39;corecolumnscan&#39;</span><span class="p">]</span></div>
+
+    
+<div class="viewcode-block" id="PrelimTests.sanitise_plot_eye_diagram">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.sanitise_plot_eye_diagram">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sanitise_plot_eye_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">,</span> <span class="n">file</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./logs/eyeDiagram.log&quot;</span><span class="p">):</span> 
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads and sanitises the shell output of the eyeDiagram script. Removes new line breaks, removes pipe delimiter, and removes shell colour information. </span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            master: controlling tk.Frame to pass through to other functions </span>
+<span class="sd">            mod_data</span>
+<span class="sd">            file (str): path to eyeDiagram.log. Default is ./logs/eyeDiagram.log</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Plotting eyeDiagram&quot;</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">delay</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># ANSI escape sequence (\x1b[) + Select Graphic Rendition subset for colours (32 = green, 0 = black). Adds colour to eyeDiagram output</span>
+        <span class="n">green</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\x1b[32m&#39;</span>
+        <span class="n">black</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\x1b[0m&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Reading line&quot;</span><span class="p">)</span>
+                <span class="k">while</span> <span class="s2">&quot;0 | &quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+                    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">):</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;unicode_escape&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="c1"># remove weird encoding and convert to bash string</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">green</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">black</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                    <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)]</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+                    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+                    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                <span class="k">while</span> <span class="ow">not</span> <span class="s2">&quot;Determining&quot;</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+                    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">):</span>
+                    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                    <span class="n">delay</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;green&quot;</span> <span class="k">if</span> <span class="s2">&quot;width&quot;</span> <span class="ow">in</span> <span class="n">lines</span> <span class="k">else</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">open_eyediagram_popup</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">delay</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">)</span>
+            
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">: Run eye diagram first&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="PrelimTests.open_eyediagram_popup">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.open_eyediagram_popup">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">open_eyediagram_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">eye_diag</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">delay</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">bool</span><span class="p">],</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plots the heatmap for the eyeDiagram, as well as whether suitable delays have been found or not and gives the option (as checkboxes) to disable or re-enable particular chips.</span>
+<span class="sd">        </span>
+<span class="sd">        Args: </span>
+<span class="sd">            master: Controlling tk.Frame so that a popup can be added on top.</span>
+<span class="sd">            eye_diag (list[int]): sanitised link quality values from eye diagram shell output (output of sanitise_plot_eye_diagram function)</span>
+<span class="sd">            delay (list[bool]): list of booleans indicating whether a delay has been successfully found for a certain lane (output of sanitise_plot_eye_diagram function)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: incorporate into plot_eye_diagram?</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>
+        <span class="n">top</span><span class="o">.</span><span class="n">transient</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>
+        <span class="n">top</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;eyeDiagram&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># plots the heatmap for the eyeDiagram </span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">plot1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+        <span class="n">plot1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">eye_diag</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;winter&#39;</span><span class="p">)</span>
+        <span class="n">plot1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Channel&quot;</span><span class="p">)</span>
+        <span class="n">plot1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Lane&quot;</span><span class="p">)</span>
+        
+        <span class="n">canvas</span> <span class="o">=</span> <span class="n">FigureCanvasTkAgg</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">master</span> <span class="o">=</span> <span class="n">top</span><span class="p">)</span>
+        <span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+        <span class="n">canvas</span><span class="o">.</span><span class="n">get_tk_widget</span><span class="p">()</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># uses the output from the processed config JSON to create labels stating whether a suitable delay has been found for each lane. </span>
+        <span class="n">enabled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chip_enabled</span><span class="p">(</span><span class="n">mod_data</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">delay</span><span class="p">:</span>
+            <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;Delay found&quot;</span> <span class="k">if</span> <span class="n">d</span> <span class="o">==</span> <span class="s2">&quot;green&quot;</span> <span class="k">else</span> <span class="s2">&quot;Delay not found&quot;</span><span class="p">),</span> <span class="n">fg</span><span class="o">=</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="c1"># creates a column of checkboxes to allow for disabling/enabling particular ASICS. </span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checkbox_flags</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">checkbox</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">enabled</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">checkbox_flags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">IntVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">a</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chk</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Checkbutton</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Chip </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">checkbox_flags</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">onvalue</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">offvalue</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">chk</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">checkbox</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chk</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">chk</span><span class="o">.</span><span class="n">select</span><span class="p">()</span> <span class="c1">#turn on checkboxes corresponding to on chips. </span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">checkbox_flags</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">ok_btn</span> <span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;OK&quot;</span><span class="p">,</span><span class="n">command</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable_chips</span><span class="p">(</span><span class="n">top</span><span class="p">,</span><span class="n">mod_data</span><span class="p">,</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkbox_flags</span><span class="p">]))</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="PrelimTests.chip_enabled">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.chip_enabled">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">chip_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads the relevant config file, located in module-qc-database-tools, to output which ASICs are turned on.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            mod_data: ModuleTestData object containing ID and serial number </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            enabled: list of integers in [0,1] designating whether the corresponding ASIC is off or on.  </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">loc_id</span><span class="p">,</span> <span class="n">mod_sn</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_mod_data_loaded</span><span class="p">(</span><span class="n">mod_data</span><span class="p">)</span>
+        <span class="n">enabled</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">home_path</span> <span class="o">=</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">home_path</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">home_path</span><span class="si">}</span><span class="s2">/module-qc-database-tools/</span><span class="si">{</span><span class="n">loc_id</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">mod_sn</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">mod_sn</span><span class="si">}</span><span class="s2">_L2_</span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s2">.json&quot;</span>
+    
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonfile</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">jsonfile</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Read successful&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chip </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> enabled: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;chips&#39;</span><span class="p">][</span><span class="n">a</span><span class="p">][</span><span class="s1">&#39;enable&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
+            <span class="n">enabled</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;chips&#39;</span><span class="p">][</span><span class="n">a</span><span class="p">][</span><span class="s1">&#39;enable&#39;</span><span class="p">])))</span>
+        <span class="k">return</span> <span class="n">enabled</span></div>
+
+    
+<div class="viewcode-block" id="PrelimTests.disable_chips">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.disable_chips">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">disable_chips</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">,</span> <span class="n">chk_boxes</span> <span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes to the config JSON with updated information (from checkboxes) as to which ASICS are to be turned off or on. If there is any write error, the original data is written in stead. </span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            master: controlling tk.Frame so that the popup can be closed</span>
+<span class="sd">            mod_data: ModuleTestData object containing local ID and serial number, as well as whether it is a warm or cold test so that the correct JSON file can be located.</span>
+<span class="sd">            chk_boxes (list[int]): list of integers corresponding to whether chip[i] is off (0) or on (1). </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">loc_id</span><span class="p">,</span> <span class="n">mod_sn</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_mod_data_loaded</span><span class="p">(</span><span class="n">mod_data</span><span class="p">)</span>
+        <span class="n">home_path</span> <span class="o">=</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">home_path</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">home_path</span><span class="si">}</span><span class="s2">/module-qc-database-tools/</span><span class="si">{</span><span class="n">loc_id</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">mod_sn</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">mod_sn</span><span class="si">}</span><span class="s2">_L2_</span><span class="si">{</span><span class="n">temp</span><span class="si">}</span><span class="s2">.json&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonfile</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">jsonfile</span><span class="p">)</span>
+        <span class="n">data_edited</span> <span class="o">=</span> <span class="n">data</span> <span class="c1"># to preserve original data in case of RW error    </span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonfile</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">data_edited</span><span class="p">[</span><span class="s1">&#39;chips&#39;</span><span class="p">][</span><span class="n">a</span><span class="p">][</span><span class="s1">&#39;enable&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chk_boxes</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data_edited</span><span class="p">,</span> <span class="n">jsonfile</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;JSON RW error : unable to save new config&quot;</span><span class="p">)</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;showerror&quot;</span><span class="p">,</span> <span class="s2">&quot;JSON RW error : unable to save new config&quot;</span><span class="p">)</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">jsonfile</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                    
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Config edited&quot;</span><span class="p">)</span>   
+        <span class="n">master</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span></div>
+</div>
+
+
+<div class="viewcode-block" id="MinHealthTests">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.MinHealthTests">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">MinHealthTests</span><span class="p">(</span><span class="n">TestInterface</span><span class="p">):</span>
+<div class="viewcode-block" id="MinHealthTests.test_name">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.MinHealthTests.test_name">[docs]</a>
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Mininum Health Tests&quot;</span>   </div>
+
+<div class="viewcode-block" id="MinHealthTests.get_test_list">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.MinHealthTests.get_test_list">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;std_digitalscan&quot;</span><span class="p">,</span> <span class="s2">&quot;std_analogscan&quot;</span><span class="p">,</span> <span class="s2">&quot;std_thresholdscan_hr&quot;</span><span class="p">,</span> <span class="s2">&quot;std_totscan -t 6000&quot;</span><span class="p">]</span></div>
+</div>
+
+
+<div class="viewcode-block" id="Tuning">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.Tuning">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Tuning</span><span class="p">(</span><span class="n">TestInterface</span><span class="p">):</span>
+<div class="viewcode-block" id="Tuning.test_name">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.Tuning.test_name">[docs]</a>
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Tuning&quot;</span></div>
+
+<div class="viewcode-block" id="Tuning.get_test_list">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.Tuning.get_test_list">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_mod_data_loaded</span><span class="p">(</span><span class="n">mod_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;std_tune_globalthreshold -t 1700&quot;</span><span class="p">,</span> <span class="s2">&quot;std_tune_globalpreamp -t 6000 7&quot;</span><span class="p">,</span> <span class="s2">&quot;std_tune_globalthreshold -t 1700&quot;</span><span class="p">,</span> <span class="s2">&quot;std_tune_pixelthreshold -t 1500&quot;</span><span class="p">,</span> <span class="s2">&quot;std_thresholdscan_hd&quot;</span><span class="p">,</span> <span class="s2">&quot;std_totscan -t 6000&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="s2">&quot;v2&quot;</span> <span class="k">else</span> <span class="p">[</span><span class="s2">&quot;std_tune_globalthreshold -t 1700&quot;</span><span class="p">,</span> <span class="s2">&quot;std_totscan -t 6000&quot;</span><span class="p">,</span> <span class="s2">&quot;std_tune_globalthreshold -t 1700&quot;</span><span class="p">,</span> <span class="s2">&quot;std_tune_pixelthreshold -t 1500&quot;</span><span class="p">,</span> <span class="s2">&quot;std_retune_globalthreshold -t 1700&quot;</span><span class="p">,</span> <span class="s2">&quot;std_retune_pixelthreshold -t 1500&quot;</span><span class="p">,</span> <span class="s2">&quot;std_thresholdscan_hd&quot;</span><span class="p">,</span> <span class="s2">&quot;std_totscan -t 6000&quot;</span><span class="p">]</span></div>
+</div>
+
+
+<div class="viewcode-block" id="PixelFailTests">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PixelFailTests">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PixelFailTests</span><span class="p">(</span><span class="n">TestInterface</span><span class="p">):</span>
+<div class="viewcode-block" id="PixelFailTests.test_name">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PixelFailTests.test_name">[docs]</a>
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Pixel Fail&quot;</span></div>
+
+<div class="viewcode-block" id="PixelFailTests.get_test_list">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PixelFailTests.get_test_list">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;final_cold&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;std_discbumpscan&quot;</span><span class="p">,</span> <span class="s2">&quot;std_mergedbumpscan -t 1500&quot;</span><span class="p">,</span> <span class="s2">&quot;std_thresholdscan_zerobias&quot;</span><span class="p">,</span> <span class="s2">&quot;std_noisescan&quot;</span><span class="p">,</span> <span class="s2">&quot;selftrigger_source -p&quot;</span><span class="p">,</span> <span class="s2">&quot;selftrigger_source&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;std_discbumpscan&quot;</span><span class="p">,</span> <span class="s2">&quot;std_mergedbumpscan -t 1500&quot;</span><span class="p">,</span> <span class="s2">&quot;std_thresholdscan_zerobias&quot;</span><span class="p">,</span> <span class="s2">&quot;std_noisescan&quot;</span><span class="p">]</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Jay Patel.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

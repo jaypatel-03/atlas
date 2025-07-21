@@ -1,0 +1,43 @@
+gui.main
+========
+
+.. py:module:: gui.main
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   gui.main.logger
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   gui.main.new_module
+   gui.main.parse_args
+   gui.main.main
+
+
+Module Contents
+---------------
+
+.. py:data:: logger
+
+.. py:function:: new_module(**kwargs)
+
+.. py:function:: parse_args(argv=None)
+
+   Parse command line arguments.
+   :param argv: List of string arguments to parse.
+   :type argv: list
+
+   :returns: Dictionary of parameters.
+   :rtype: dict
+
+
+.. py:function:: main(argv=None)
+

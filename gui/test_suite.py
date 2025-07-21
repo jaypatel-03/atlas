@@ -1,5 +1,5 @@
-from test_interface import TestInterface 
-from module_test_data import ModuleTestData
+from gui.test_interface import TestInterface 
+from gui.module_test_data import ModuleTestData
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk

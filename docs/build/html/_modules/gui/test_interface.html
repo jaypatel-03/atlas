@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gui.test_interface &mdash; ATLAS Module QC Testing GUI 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ATLAS Module QC Testing GUI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">gui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ATLAS Module QC Testing GUI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">gui.test_interface</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for gui.test_interface</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="kn">import</span> <span class="n">messagebox</span><span class="p">,</span> <span class="n">ttk</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gui.module_test_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleTestData</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<div class="viewcode-block" id="TestInterface">
+<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TestInterface</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Interface (or base class) from which all the sets of tests inherit. </span>
+<span class="sd">    </span>
+<span class="sd">    This defines the basic behaviour for a pre-defined set of tests including making a set of buttons, running the associated scripts. </span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TestInterface.test_name">
+<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.test_name">[docs]</a>
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Base Test&quot;</span></div>
+
+    <span class="c1"># Dictionary of estimated time of running for the named tests. Any tests executed not listed below will assume to take 1 minute. </span>
+<div class="viewcode-block" id="TestInterface._TEST_TIMES">
+<a class="viewcode-back" href="../../autoapi/gui/test_interface/index.html#gui.test_interface.TestInterface._TEST_TIMES">[docs]</a>
+    <span class="n">_TEST_TIMES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;IV-MEASURE&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">&quot;ADC-CALIBRATION&quot;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s2">&quot;ANALOG-READBACK&quot;</span> <span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
+        <span class="s2">&quot;SLDO&quot;</span> <span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="s2">&quot;VCAL-CALIBRATION&quot;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s2">&quot;INJECTION-CAPACITANCE&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;LP-MODE&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">&quot;std_thresholdscan_hr&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="s2">&quot;std_tune_pixelthreshold -t 1500&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;std_thresholdscan_hd&quot;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s2">&quot;std_discbumpscan&quot;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;std_thresholdscan_zerobias&quot;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="s2">&quot;selftrigger_source&quot;</span> <span class="p">:</span> <span class="mi">30</span>
+    <span class="p">}</span></div>
+
+<div class="viewcode-block" id="TestInterface.PWD">
+<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.PWD">[docs]</a>
+    <span class="n">PWD</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span></div>
+
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span> <span class="c1">#this calls tk.Frame.__init__(self, parent)</span>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">test_name</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Title of set of test </span>
+<div class="viewcode-block" id="TestInterface.test_list">
+<a class="viewcode-back" href="../../autoapi/gui/test_interface/index.html#gui.test_interface.TestInterface.test_list">[docs]</a>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_test_list</span><span class="p">(</span><span class="n">mod_data</span><span class="p">)</span> </div>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_buttons</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_list</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">)</span>        
+    
+<div class="viewcode-block" id="TestInterface.get_test_list">
+<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.get_test_list">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_test_list</span><span class="p">():</span>
+        <span class="c1"># to be overrided by child classes.</span>
+        <span class="k">return</span> <span class="p">[]</span> </div>
+
+    
+<div class="viewcode-block" id="TestInterface.check_mod_data_loaded">
+<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.check_mod_data_loaded">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_mod_data_loaded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tests whether all the module testing properties have been saved into the ModuleTestData file. NB: Only checks for existence, not validity - we assume that the imported data is all reasonable. </span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            mod_data: Module test data</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            mod_data.loc_id, mod_data.mod_sn, mod_data.temp, mod_data.version | None, None, None, None: Throws an exception and returns None if the attributes don&#39;t exist.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">loc_id</span><span class="p">,</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">mod_sn</span><span class="p">,</span><span class="n">mod_data</span><span class="o">.</span><span class="n">temp</span><span class="p">,</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">version</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;showerror&quot;</span><span class="p">,</span> <span class="s2">&quot;Module info has not been loaded correctly, try load again.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="TestInterface.run_test">
+<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.run_test">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">button</span> <span class="p">:</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">,</span> <span class="n">test</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Locates and runs the script requested, autofilling module information. </span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            master: Window containing the frame </span>
+<span class="sd">            button: tkinter button triggering the script </span>
+<span class="sd">            test: name of script</span>
+<span class="sd">            mod_data: ModuleTestData object with module data (SN, local ID etc) loaded.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">loc_id</span><span class="p">,</span> <span class="n">mod_sn</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_mod_data_loaded</span><span class="p">(</span><span class="n">mod_data</span><span class="p">)</span>            
+        
+        <span class="n">home_path</span> <span class="o">=</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">home_path</span>
+        <span class="n">dry_run</span> <span class="o">=</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">dry_run</span> 
+        
+        
+        <span class="k">if</span> <span class="n">loc_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">test</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;ADC-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;ANALOG-READBACK&#39;</span><span class="p">,</span> <span class="s1">&#39;SLDO&#39;</span><span class="p">,</span> <span class="s1">&#39;VCAL-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;INJECTION-CAPACITANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;LP-MODE&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA-TRANSMISSION&#39;</span><span class="p">]:</span>
+                <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/module-qc-tools ; </span><span class="si">{echo}</span><span class="s2">measurement-</span><span class="si">{test}</span><span class="s2"> -c &#39;../configs/new_hw_config_</span><span class="si">{version}</span><span class="s2">.json&#39; -m ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json&quot;</span>
+                
+            <span class="k">elif</span> <span class="n">test</span> <span class="o">==</span> <span class="s2">&quot;eyeDiagram&quot;</span><span class="p">:</span>
+                <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/Yarr ; </span><span class="si">{echo}</span><span class="s2">bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json&quot;</span> <span class="k">if</span> <span class="n">dry_run</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/Yarr ; </span><span class="si">{echo}</span><span class="s2">bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json &gt; </span><span class="si">{pwd}</span><span class="s2">/logs/eyeDiagram.log&quot;</span> <span class="c1"># if statement removes pipe output for dry runs</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/Yarr ; </span><span class="si">{echo}</span><span class="s2">bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json -s configs/scans/rd53b/</span><span class="si">{test}</span><span class="s2"> -Wh&quot;</span> <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="s2">&quot;v1.1&quot;</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/Yarr ; </span><span class="si">{echo}</span><span class="s2">bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json -s configs/scans/itkpixv2/</span><span class="si">{test}</span><span class="s2"> -Wh&quot;</span>
+            
+            <span class="n">echo</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
+                <span class="n">template</span> <span class="o">+=</span> <span class="s2">&quot; ; sleep 2&quot;</span> <span class="c1"># simulates the script taking some time </span>
+                <span class="n">echo</span> <span class="o">=</span> <span class="s2">&quot;echo &quot;</span>
+            <span class="n">template</span> <span class="o">+=</span> <span class="s2">&quot; ; </span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{pwd}</span><span class="s2">&quot;</span> <span class="c1"># returns to origina GUI directory after executing script</span>
+                    
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running </span><span class="si">{</span><span class="n">test</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">echo</span><span class="o">=</span><span class="n">echo</span><span class="p">,</span> <span class="n">home_path</span><span class="o">=</span><span class="n">home_path</span><span class="p">,</span> <span class="n">loc_id</span><span class="o">=</span><span class="n">loc_id</span><span class="p">,</span> <span class="n">mod_sn</span><span class="o">=</span><span class="n">mod_sn</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">test</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="n">pwd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">PWD</span><span class="p">)</span> <span class="c1"># fills module information</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;********** </span><span class="se">\n</span><span class="s2"> CMD: </span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2"> </span><span class="se">\n</span><span class="s2"> ***********&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;zerobias&quot;</span> <span class="ow">in</span> <span class="n">test</span><span class="p">:</span> <span class="c1"># TODO: implement HV ramping for zerobias test + (temp, LV, HV) checks for other tests  </span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;show info&quot;</span><span class="p">,</span> <span class="s2">&quot;HV source to 0V&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
+                <span class="bp">self</span><span class="o">.</span><span class="n">open_popup</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">cmd</span><span class="p">)</span> 
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;show info&quot;</span><span class="p">,</span> <span class="s2">&quot;HV source to -120V&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">open_popup</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">cmd</span><span class="p">)</span> 
+            <span class="n">button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestInterface.make_buttons">
+<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.make_buttons">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_buttons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">tests</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Loops over list of tests and makes corresponding buttons. Strips the std_prefix in YARR scans.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            master: controlling tk.Frame</span>
+<span class="sd">            tests: list[strings] of test names</span>
+<span class="sd">            mod_data: ModuleTestData object containing information about the module to pass through to button functions. </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">test_buttons</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
+            <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">test_name</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">if</span> <span class="s2">&quot;_&quot;</span> <span class="ow">in</span> <span class="n">test</span> <span class="k">else</span> <span class="n">test</span>
+            <span class="n">quick_btn</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">test_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span> <span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_test</span><span class="p">(</span><span class="n">master</span><span class="p">,</span><span class="n">test_buttons</span><span class="p">[</span><span class="n">r</span><span class="p">],</span><span class="n">tests</span><span class="p">[</span><span class="n">r</span><span class="p">],</span> <span class="n">mod_data</span><span class="p">))</span>
+            <span class="n">test_buttons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">quick_btn</span><span class="p">)</span>
+            <span class="n">quick_btn</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span></div>
+
+            
+<div class="viewcode-block" id="TestInterface.open_popup">
+<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.open_popup">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">open_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">test</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cmd</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Opens small popup window with progress bar and executes the script for the test. Also defines actions to be taken after the test script has been executed (on_done).</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            master: controlling Frame (Test Suite)</span>
+<span class="sd">            test (str): name of the test, with any flags</span>
+<span class="sd">            cmd (str) : shell command to be executed, including any cd to relevant dirs, cd back to working dir</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">popup</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>
+        <span class="n">popup</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">test</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">popup</span><span class="o">.</span><span class="n">transient</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>
+        <span class="n">popup</span><span class="o">.</span><span class="n">grab_set</span><span class="p">()</span>
+        
+        <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_TEST_TIMES</span><span class="p">[</span><span class="n">test</span><span class="p">]</span> <span class="k">if</span> <span class="n">test</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_TEST_TIMES</span> <span class="k">else</span> <span class="mi">1</span>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">popup</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Running </span><span class="si">{</span><span class="n">test</span><span class="si">}</span><span class="s2">, will take approx </span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="s2"> mins. </span><span class="se">\n</span><span class="s2"> ETA: </span><span class="si">{</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">)))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        
+        
+        <span class="n">progbar</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Progressbar</span><span class="p">(</span><span class="n">popup</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;indeterminate&#39;</span><span class="p">)</span>
+        <span class="n">progbar</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">progbar</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        
+        <span class="k">def</span><span class="w"> </span><span class="nf">on_done</span><span class="p">():</span>
+            <span class="n">progbar</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="n">popup</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">,</span> <span class="s2">&quot;Finished!&quot;</span><span class="p">)</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">on_done</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="TestInterface.run_cmd">
+<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.run_cmd">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmd</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">on_done</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;Threaded subprocess run (shell command).</span>
+<span class="sd">        Args:</span>
+<span class="sd">            cmd (str): shell command to be executed, including prepended cd to script dir</span>
+<span class="sd">            on_done (function): function to define behaviour after command has been executed (e.g., stop progress bar and close popup).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: implement failure protocol. </span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">task</span><span class="p">():</span> 
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># This blocks the main thread </span>
+            <span class="n">on_done</span><span class="p">()</span> <span class="c1"># callback in main thread</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span></div>
+</div>
+
+        
+    
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Jay Patel.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

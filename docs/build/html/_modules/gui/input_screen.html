@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gui.input_screen &mdash; ATLAS Module QC Testing GUI 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ATLAS Module QC Testing GUI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">gui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ATLAS Module QC Testing GUI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">gui.input_screen</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for gui.input_screen</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gui.module_test_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleTestData</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gui.test_suite</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span> 
+
+<div class="viewcode-block" id="TestSuite">
+<a class="viewcode-back" href="../../gui.html#gui.input_screen.TestSuite">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TestSuite</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+       
+        <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ATLAS Module Testing - Test Suite&quot;</span><span class="p">)</span>
+        <span class="c1"># Creating Menubar</span>
+        <span class="n">menubar</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="c1"># Adding File Menu and commands</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="n">menubar</span><span class="p">,</span> <span class="n">tearoff</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">menubar</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span><span class="s1">&#39;File&#39;</span><span class="p">,</span> <span class="n">menu</span> <span class="o">=</span> <span class="n">file</span><span class="p">)</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span><span class="s1">&#39;New Test&#39;</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Save&#39;</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">add_separator</span><span class="p">()</span>
+       
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">menu</span><span class="o">=</span><span class="n">menubar</span><span class="p">)</span>
+       
+        <span class="n">window</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        
+<div class="viewcode-block" id="TestSuite.frames">
+<a class="viewcode-back" href="../../autoapi/gui/input_screen/index.html#gui.input_screen.TestSuite.frames">[docs]</a>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+        <span class="n">c</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">for</span> <span class="n">F</span> <span class="ow">in</span> <span class="p">[</span><span class="n">PrelimTests</span><span class="p">,</span> <span class="n">MinHealthTests</span><span class="p">,</span> <span class="n">Tuning</span><span class="p">,</span> <span class="n">PixelFailTests</span><span class="p">]:</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">F</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span>
+            <span class="n">frame</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;nswe&quot;</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">show_frame</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+        
+<div class="viewcode-block" id="TestSuite.show_frame">
+<a class="viewcode-back" href="../../gui.html#gui.input_screen.TestSuite.show_frame">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">show_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">cont</span><span class="p">):</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">cont</span><span class="p">]</span>
+        <span class="n">frame</span><span class="o">.</span><span class="n">tkraise</span><span class="p">()</span></div>
+</div>
+
+
+<div class="viewcode-block" id="LoadModuleInfo">
+<a class="viewcode-back" href="../../gui.html#gui.input_screen.LoadModuleInfo">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">LoadModuleInfo</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+       
+        <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ATLAS Module Testing - Module Loader&quot;</span><span class="p">)</span>
+
+       
+        <span class="n">window</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        
+<div class="viewcode-block" id="LoadModuleInfo.frames">
+<a class="viewcode-back" href="../../autoapi/gui/input_screen/index.html#gui.input_screen.LoadModuleInfo.frames">[docs]</a>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">InputScreen</span><span class="p">(</span><span class="n">window</span><span class="p">,</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">InputScreen</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span>
+        <span class="n">frame</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;nswe&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">show_frame</span><span class="p">(</span><span class="n">InputScreen</span><span class="p">)</span>  <span class="c1"># Shows the input screen</span>
+        
+<div class="viewcode-block" id="LoadModuleInfo.show_frame">
+<a class="viewcode-back" href="../../gui.html#gui.input_screen.LoadModuleInfo.show_frame">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">show_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">cont</span><span class="p">):</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">cont</span><span class="p">]</span>
+        <span class="n">frame</span><span class="o">.</span><span class="n">tkraise</span><span class="p">()</span></div>
+</div>
+
+           
+<div class="viewcode-block" id="InputScreen">
+<a class="viewcode-back" href="../../gui.html#gui.input_screen.InputScreen">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">InputScreen</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">parent</span><span class="p">,</span><span class="n">controller</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">parent</span><span class="p">)</span> <span class="c1"># inherits from main class</span>
+        
+        <span class="c1"># Input module serial numbers and Oxford ID</span>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Module Serial Number </span><span class="se">\n</span><span class="s2"> (e.g. 20UPGM22110039) &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">e_mod_sn</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+        <span class="n">e_mod_sn</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;20UPGM22110561&quot;</span><span class="p">)</span>
+        <span class="n">e_mod_sn</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+
+        <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Local ID </span><span class="se">\n</span><span class="s2"> (e.g. OX0006)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">e_local_id</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+        <span class="n">e_local_id</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;OX0006&quot;</span><span class="p">)</span>
+        <span class="n">e_local_id</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># TODO: insert link (on hover?) to how to look up/assign local serial number</span>
+        
+        <span class="c1"># Radio buttons to select version</span>
+        <span class="n">versions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;v1.1&quot;</span><span class="p">,</span> <span class="s2">&quot;v2&quot;</span><span class="p">]</span>
+        <span class="n">lbl_version</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Version:&quot;</span><span class="p">)</span>
+        <span class="n">lbl_version</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+<div class="viewcode-block" id="InputScreen.version">
+<a class="viewcode-back" href="../../autoapi/gui/input_screen/index.html#gui.input_screen.InputScreen.version">[docs]</a>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">versions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">versions</span><span class="p">:</span>
+            <span class="n">tk</span><span class="o">.</span><span class="n">Radiobutton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_mod_data</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">mod_data</span><span class="p">))</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span> <span class="o">+</span> <span class="n">r</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+            <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="c1"># Radio buttons to select warm or cold test     </span>
+        <span class="n">stages</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Initial (warm)&quot;</span> <span class="p">:</span> <span class="s2">&quot;init&quot;</span><span class="p">,</span> <span class="s2">&quot;Post-Parylene (warm)&quot;</span> <span class="p">:</span> <span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="s2">&quot;Final (warm)&quot;</span> <span class="p">:</span> <span class="s2">&quot;final_warm&quot;</span><span class="p">,</span> <span class="s2">&quot;Final (cold)&quot;</span> <span class="p">:</span> <span class="s2">&quot;final_cold&quot;</span><span class="p">}</span>
+        <span class="n">lbl_stage</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Testing Stage </span><span class="se">\n</span><span class="s2"> (selects relevant tests):&quot;</span><span class="p">)</span>
+        <span class="n">lbl_stage</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        
+<div class="viewcode-block" id="InputScreen.stage">
+<a class="viewcode-back" href="../../autoapi/gui/input_screen/index.html#gui.input_screen.InputScreen.stage">[docs]</a>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stages</span><span class="p">[</span><span class="s1">&#39;Initial (warm)&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">stages</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">tk</span><span class="o">.</span><span class="n">Radiobutton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">stages</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">command</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_mod_data</span><span class="p">(</span><span class="s2">&quot;stage&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span><span class="n">mod_data</span><span class="p">))</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span> <span class="o">+</span> <span class="n">r</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+            <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="c1"># Boolean flag from checkbox as to whether to overwrite existing config files </span>
+        <span class="n">check_overwrite_config_flag</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">BooleanVar</span><span class="p">()</span>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Checkbutton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Overwrite configs?&quot;</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">check_overwrite_config_flag</span><span class="p">,</span> <span class="n">onvalue</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">offvalue</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">r</span><span class="o">+</span><span class="mi">6</span><span class="p">,</span><span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Module_QC directory </span><span class="se">\n</span><span class="s2"> (typically ~/Module_QC)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">e_home_path</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># e_home_path.insert(0,&quot;~/Module_QC&quot;) TODO: change back</span>
+        <span class="n">e_home_path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">mod_data</span><span class="o">.</span><span class="n">home_path</span><span class="p">)</span>
+        <span class="n">e_home_path</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        
+
+        <span class="c1"># Validate serial numbers and generate config files</span>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Load &amp; generate configs&quot;</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_module_info</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">,</span> <span class="n">e_mod_sn</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span><span class="n">e_local_id</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">check_overwrite_config_flag</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">e_home_path</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+        
+    
+<div class="viewcode-block" id="InputScreen.set_mod_data">
+<a class="viewcode-back" href="../../gui.html#gui.input_screen.InputScreen.set_mod_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_mod_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">):</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set </span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mod_data</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mod_data</span><span class="si">!r}</span><span class="s2"> has no attribute </span><span class="si">{</span><span class="n">attr</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">mod_data</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+    
+        
+<div class="viewcode-block" id="InputScreen.validate_module_info">
+<a class="viewcode-back" href="../../gui.html#gui.input_screen.InputScreen.validate_module_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_module_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">master</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">,</span> <span class="n">mod_sn</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">local_id</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">overwrite_config</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">home_path</span> <span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Validates module info entered and downloads config files from database if successful</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            mod_sn: String containing the global module serial number</span>
+<span class="sd">            local_sn: String containing the local (Oxford) module identifier</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None: if attempting to unintentionally rewrite config files </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Load button pressed&quot;</span><span class="p">)</span>
+        <span class="n">echo</span> <span class="o">=</span> <span class="s2">&quot;echo&quot;</span> <span class="k">if</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">dry_run</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">home_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">home_path</span> <span class="o">=</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">home_path</span>
+        <span class="k">elif</span> <span class="n">home_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+            <span class="n">home_path</span> <span class="o">=</span> <span class="n">home_path</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_mod_data</span><span class="p">(</span><span class="s2">&quot;home_path&quot;</span><span class="p">,</span> <span class="n">home_path</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">)</span>
+                  
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">regex_validation</span><span class="p">(</span><span class="n">local_id</span><span class="p">,</span> <span class="n">mod_sn</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Module info looks reasonable.&quot;</span><span class="p">)</span>
+            <span class="c1"># Write data to ModuleTestData object </span>
+            <span class="n">mod_data</span><span class="o">.</span><span class="n">loc_id</span> <span class="o">=</span> <span class="n">local_id</span>
+            <span class="n">mod_data</span><span class="o">.</span><span class="n">mod_sn</span> <span class="o">=</span> <span class="n">mod_sn</span>
+            <span class="n">mod_data</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+            
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Module </span><span class="si">{</span><span class="n">local_id</span><span class="si">}</span><span class="s2"> loaded at </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> with : </span><span class="si">{</span><span class="nb">vars</span><span class="p">(</span><span class="n">mod_data</span><span class="p">)</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+            <span class="c1"># Test whether the config files exist and will be unwittingly overwritten</span>
+            <span class="n">path_to_dir</span> <span class="o">=</span> <span class="sa">fr</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">home_path</span><span class="si">}</span><span class="s2">/module-qc-database-tools/</span><span class="si">{</span><span class="n">local_id</span><span class="si">}</span><span class="s2">&quot;</span>
+            
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">overwrite_config</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path_to_dir</span><span class="p">):</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;showerror&quot;</span><span class="p">,</span> <span class="s2">&quot;Config files already exist, decide whether to overwrite or not.&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">elif</span> <span class="n">overwrite_config</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path_to_dir</span><span class="p">):</span>
+                <span class="n">new_path</span> <span class="o">=</span> <span class="sa">fr</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path_to_dir</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">%m%y_%H%M&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/&quot;</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">new_path</span><span class="p">)</span>
+                <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;mkdir &quot;</span> <span class="o">+</span> <span class="n">new_path</span> 
+                <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Run mkdir </span><span class="si">{</span><span class="n">path_to_dir</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">%m%y_%H%M&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/&quot;</span><span class="p">)</span>
+                <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">echo</span><span class="p">,</span> <span class="s2">&quot;rsync&quot;</span><span class="p">,</span> <span class="s2">&quot;-r&quot;</span><span class="p">,</span> <span class="n">path_to_dir</span><span class="p">,</span> <span class="n">new_path</span><span class="p">],</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;rsync -r </span><span class="si">{</span><span class="n">path_to_dir</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">new_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Run cd </span><span class="si">{</span><span class="n">mod_data</span><span class="o">.</span><span class="n">home_path</span><span class="si">}</span><span class="s2">/module-qc-database-tools&quot;</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">echo</span> <span class="p">,</span><span class="s2">&quot;cd&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">mod_data</span><span class="o">.</span><span class="n">home_path</span><span class="si">}</span><span class="s2">/module-qc-database-tools&quot;</span><span class="p">],</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Run mwdbt generate-yarr-config -sn </span><span class="si">{</span><span class="n">mod_sn</span><span class="si">}</span><span class="s2"> -o </span><span class="si">{</span><span class="n">local_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">echo</span><span class="p">,</span> <span class="s2">&quot;mqdbt&quot;</span><span class="p">,</span> <span class="s2">&quot;generate-yarr-config&quot;</span><span class="p">,</span> <span class="s2">&quot;-sn&quot;</span><span class="p">,</span> <span class="n">mod_sn</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">local_id</span><span class="p">],</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cd </span><span class="si">{</span><span class="n">mod_data</span><span class="o">.</span><span class="n">home_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">echo</span><span class="p">,</span> <span class="s2">&quot;cd&quot;</span><span class="p">,</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">home_path</span><span class="p">],</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">master</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>    </div>
+
+       
+<div class="viewcode-block" id="InputScreen.regex_validation">
+<a class="viewcode-back" href="../../gui.html#gui.input_screen.InputScreen.regex_validation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">regex_validation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_id</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mod_sn</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span> <span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Performs RegEx validation on the local ID and the module serial number, with the option to manually override. Also test to see if the module serial number indicates a v1.1 module or v2. </span>
+<span class="sd">        # TODO: FINISH </span>
+<span class="sd">        Args: </span>
+<span class="sd">             </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^OX[0-9]</span><span class="si">{4}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">local_id</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># ^___$ are anchors to force exact matches</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid local ID </span><span class="si">{</span><span class="n">local_id</span><span class="si">}</span><span class="s2">, should be of the form OX####.&quot;</span><span class="p">)</span> 
+            <span class="k">return</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askyesno</span><span class="p">(</span><span class="s2">&quot;askyesno&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Invalid local ID </span><span class="si">{</span><span class="n">local_id</span><span class="si">}</span><span class="s2">, should be of the form OX####. </span><span class="se">\n</span><span class="s2"> Continue anyway?&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^20UPGM2[0-9]</span><span class="si">{7}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">mod_sn</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid module serial number </span><span class="si">{</span><span class="n">mod_sn</span><span class="si">}</span><span class="s2">, should be of the form 20UPGM########&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askyesno</span><span class="p">(</span><span class="s2">&quot;askyesno&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Invalid module serial number </span><span class="si">{</span><span class="n">mod_sn</span><span class="si">}</span><span class="s2">, should be of the form 20UPGM########. </span><span class="se">\n</span><span class="s2"> Continue anyway?&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^20UPGM2321[0-9]</span><span class="si">{4}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">mod_sn</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^20UPGM2421[0-9]</span><span class="si">{4}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">mod_sn</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="p">)</span> <span class="ow">and</span> <span class="n">version</span> <span class="o">==</span> <span class="s2">&quot;v1.1&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Module serial number suggests this may be a v2 module.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askyesno</span><span class="p">(</span><span class="s2">&quot;yesno&quot;</span><span class="p">,</span><span class="s2">&quot;Module serial number suggests this may be a v2 module. </span><span class="se">\n</span><span class="s2"> Continue anyway?&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^20UPGM2211[0-9]</span><span class="si">{4}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">mod_sn</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">version</span> <span class="o">==</span> <span class="s2">&quot;v2&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Module serial number suggests this may be a v1.1 module.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askyesno</span><span class="p">(</span><span class="s2">&quot;askyesno&quot;</span><span class="p">,</span><span class="s2">&quot;Module serial number suggests this may be a v1.1 module. </span><span class="se">\n</span><span class="s2"> Continue anyway?&quot;</span><span class="p">)</span>   
+        <span class="k">else</span><span class="p">:</span>
+             <span class="k">return</span> <span class="kc">True</span></div>
+</div>
+
+            
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Jay Patel.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

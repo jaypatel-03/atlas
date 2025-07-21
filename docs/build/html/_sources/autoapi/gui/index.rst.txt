@@ -1,0 +1,20 @@
+gui
+===
+
+.. py:module:: gui
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/gui/input_screen/index
+   /autoapi/gui/main/index
+   /autoapi/gui/module_test_data/index
+   /autoapi/gui/sandbox/index
+   /autoapi/gui/test_interface/index
+   /autoapi/gui/test_suite/index
+
+
