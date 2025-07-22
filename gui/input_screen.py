@@ -6,6 +6,7 @@ import re
 import os 
 import subprocess
 from datetime import datetime 
+import time 
 
 class TestSuite(tk.Tk):
     def __init__(self, mod_data : ModuleTestData, *args, **kwargs):
@@ -153,19 +154,20 @@ class InputScreen(tk.Frame):
             logging.info(f"Module {local_id} loaded at {datetime.now().strftime('%H:%M:%S')} with : {vars(mod_data)=}")
             
             # Test whether the config files exist and will be unwittingly overwritten
-            path_to_dir = fr"{home_path}/module-qc-database-tools/{local_id}"
-            logging.debug(f"Looking for existence of {path_to_dir}")
+            path_to_dir = os.path.expanduser(f"{home_path}/module-qc-database-tools/{local_id}")
+            logging.debug(f"Looking for existence of {path_to_dir}: {os.path.isdir(path_to_dir)}")
             if not overwrite_config and os.path.isdir(path_to_dir):
                 messagebox.showerror("showerror", "Config files already exist, decide whether to overwrite or not.")
                 return
             elif overwrite_config and os.path.isdir(path_to_dir):
-                new_path = fr"{path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}/"
+                new_path = os.path.expanduser(f"{path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}/")
                 os.mkdir(new_path)
                 cmd = "mkdir " + new_path 
                 subprocess.run(cmd, shell=True)
                 logging.debug(f"Run mkdir {path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}/")
                 subprocess.run([echo, "rsync", "-r", path_to_dir, new_path], shell=True)
                 logging.debug(f"rsync -r {path_to_dir} {new_path}")
+                time.sleep(1)
                 
             logging.debug(f"Run cd {mod_data.home_path}/module-qc-database-tools")
             subprocess.run([echo ,"cd", f"{mod_data.home_path}/module-qc-database-tools"], shell=True)

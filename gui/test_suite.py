@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import messagebox
 import json
 import logging
-
+import os
 class EyeDiagram(TestInterface):
     test_name = "Communication"
     
@@ -115,7 +115,7 @@ class EyeDiagram(TestInterface):
         loc_id, mod_sn, temp, _ = self.check_mod_data_loaded(mod_data)
         enabled = []
         home_path = mod_data.home_path
-        file = f"{home_path}/module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
+        file = os.path.expanduser(f"{home_path}/module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json")
         logging.debug(f"Opening {file}")
         with open(file, "r") as jsonfile:
             data = json.load(jsonfile)
@@ -135,7 +135,7 @@ class EyeDiagram(TestInterface):
         """
         loc_id, mod_sn, temp, _ = self.check_mod_data_loaded(mod_data)
         home_path = mod_data.home_path
-        file = f"{home_path}/module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
+        file = os.path.expanduser(f"{home_path}/module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json")
         with open(file, "r") as jsonfile:
             data = json.load(jsonfile)
         data_edited = data # to preserve original data in case of RW error    
