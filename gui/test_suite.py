@@ -20,7 +20,7 @@ class EyeDiagram(TestInterface):
         return ["eyeDiagram"]
     
     def gen_cmd(self, mod_data : ModuleTestData):
-        return "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json" if mod_data.dry_run else "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json > {pwd}/logs/eyeDiagram.log" # if statement removes pipe output for dry runs
+        return "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json" if mod_data.dry_run else "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json > {pwd}/gui/logs/eyeDiagram.log" # if statement removes pipe output for dry runs
         
     
     def sanitise_plot_eye_diagram(self, master, mod_data : ModuleTestData, file : str = r"./gui/logs/eyeDiagram.log"): 
@@ -121,7 +121,7 @@ class EyeDiagram(TestInterface):
         enabled = []
         home_path = mod_data.home_path
         file = f"{home_path}/module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
-    
+        logging.debug(f"Opening {file}")
         with open(file, "r") as jsonfile:
             data = json.load(jsonfile)
             logging.info("Read successful")
@@ -173,7 +173,7 @@ class PrelimTests(TestInterface):
         return ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION', 'corecolumnscan']
     
     def gen_cmd(self, mod_data):
-        return "{echo}cd {home_path}/module-qc-tools ; {echo}measurement-{test} -c '../configs/new_hw_config_{version}.json' -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
+        return "{echo}cd {home_path}/module-qc-tools ; {echo}measurement-{test} -c ../configs/new_hw_config_{version}.json -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
     
     
 

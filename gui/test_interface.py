@@ -120,8 +120,9 @@ class TestInterface(tk.Frame):
         
         Args:
             master: controlling Frame (Test Suite)
-            test (str): name of the test, with any flags
-            cmd (str) : shell command to be executed, including any cd to relevant dirs, cd back to working dir
+            test: name of the test, with any flags
+            cmd: shell command to be executed, including any cd to relevant dirs, cd back to working dir
+            override: flag whether to override timeout and error handling # TODO
         """
         popup = tk.Toplevel(master)
         popup.title(f"{test}")
@@ -138,12 +139,12 @@ class TestInterface(tk.Frame):
         progbar.start(10)
         
         
-        def on_done():
+        def on_done(msg):
             progbar.stop()
             popup.destroy()
-            messagebox.showinfo("Done", "Finished!")
+            messagebox.showinfo("Done", msg)
         
-        self.run_cmd(cmd, on_done)
+        self.run_cmd(cmd, lambda msg: on_done(msg))
         
     def run_cmd(self, cmd : str, on_done):
         """"Threaded subprocess run (shell command).
@@ -156,10 +157,12 @@ class TestInterface(tk.Frame):
         def task(): 
             self.proc = subprocess.Popen(cmd, shell=True,preexec_fn=os.setsid) # This blocks the main thread 
             self.proc.wait()
-            on_done() # callback in main thread
+            on_done("Finished!") # callback in main thread
         threading.Thread(target=task, daemon=True).start()
         
     
     def kill_proc(self):
         if hasattr(self, 'proc') and self.proc.poll() is None:
             os.killpg(os.getpgid(self.proc.pid), signal.SIGTERM)
+    
+    
