@@ -17,6 +17,7 @@ TODO:
         - kill after 20 consecutive errors 
         - manual override
 - Making another folder in same minute?
+- add flags after json 
 
 
 ## Overview + Notes

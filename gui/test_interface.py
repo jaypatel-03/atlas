@@ -82,7 +82,7 @@ class TestInterface(tk.Frame):
             template += " ; {echo}cd {pwd}" # returns to original GUI directory after executing script. Use this instead of os changedir to emulate the dry run 
                     
             logging.info(f"Running {test}")
-            cmd = template.format(echo=echo, home_path=home_path, loc_id=loc_id, mod_sn=mod_sn, temp=temp, test=test, version=version, pwd=self.PWD) # fills module information
+            cmd = template.format(echo=echo, home_path=home_path, loc_id=loc_id, mod_sn=mod_sn, temp=temp, test=test.split(' ')[0], test_flags = ' '.join(test.split(' ')[1:]), version=version, pwd=self.PWD) # fills module information
             logging.debug(f"********** \n CMD: {cmd} \n ***********")
             if "zerobias" in test: # TODO: implement HV ramping for zerobias test + (temp, LV, HV) checks for other tests  
                 messagebox.showinfo("show info", "HV source to 0V")

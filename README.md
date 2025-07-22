@@ -10,8 +10,8 @@ Requirements:
 - Python version => 3.9
 - Python venv library 
 - Python matplotlib library
-- Clone of [module-qc-tools](https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-database-tools)
-- Clone of [module-qc-database-tools](https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-database-tools)
+- Clone of [module-qc-tools](https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-database-tools) AND INSTALL
+- Clone of [module-qc-database-tools](https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-database-tools) AND INSTALL
 - Clone of [Yarr scans](https://yarr.web.cern.ch/yarr/install/) 
 - The following directory structure:
 ```bash
