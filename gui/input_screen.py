@@ -163,10 +163,12 @@ class InputScreen(tk.Frame):
                 new_path = os.path.expanduser(f"{path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}/")
                 os.mkdir(new_path)
                 cmd = "mkdir " + new_path 
+                logging.debug(f"Run mkdir {new_path}/")
                 subprocess.run(cmd, shell=True)
-                logging.debug(f"Run mkdir {path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}/")
-                subprocess.run([echo, "rsync", "-r", path_to_dir, new_path], shell=True)
-                logging.debug(f"rsync -r {path_to_dir} {new_path}")
+                cmd = f"rsync -rv --stats --progress {path_to_dir}/* {new_path}"
+                time.sleep(1)
+                logging.debug(f"COPYING OLD CONFIG + RESULTS FILE AS BACKUO: Run rsync -r {path_to_dir}/* {new_path}/")
+                subprocess.run(cmd, shell=True)
                 time.sleep(1)
                 
             logging.debug(f"Run cd {mod_data.home_path}/module-qc-database-tools")
