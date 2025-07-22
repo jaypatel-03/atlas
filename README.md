@@ -40,7 +40,7 @@ Any CLI arguments specified by the ```-d``` flag override the config file.
 1. Activate ```venv``` and install ```matplotlib```
 2. Navigate to install directory
 3. ```git clone https://github.com/jaypatel-03/atlas```
-4. ```cd``` to the install directory
-5. ```python gui/main.py```
+4. ```cd``` to the install root directory 
+5. ```python -m gui -c ./```
 
 

@@ -1,6 +1,6 @@
 import logging
-from gui.module_test_data import ModuleTestData
 import argparse
+from gui.module_test_data import ModuleTestData
 from gui.input_screen import LoadModuleInfo, TestSuite
 
 logger = logging.getLogger(__name__)

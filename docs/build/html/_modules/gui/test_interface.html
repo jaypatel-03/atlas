@@ -8,7 +8,6 @@
   <title>gui.test_interface &mdash; ATLAS Module QC Testing GUI 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -43,7 +42,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">gui</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
 </ul>
 
         </div>
@@ -88,13 +86,8 @@
 <span class="sd">    This defines the basic behaviour for a pre-defined set of tests including making a set of buttons, running the associated scripts. </span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="TestInterface.test_name">
-<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.test_name">[docs]</a>
-    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Base Test&quot;</span></div>
-
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Base Test&quot;</span>
     <span class="c1"># Dictionary of estimated time of running for the named tests. Any tests executed not listed below will assume to take 1 minute. </span>
-<div class="viewcode-block" id="TestInterface._TEST_TIMES">
-<a class="viewcode-back" href="../../autoapi/gui/test_interface/index.html#gui.test_interface.TestInterface._TEST_TIMES">[docs]</a>
     <span class="n">_TEST_TIMES</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;IV-MEASURE&quot;</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
         <span class="s2">&quot;ADC-CALIBRATION&quot;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
@@ -109,20 +102,13 @@
         <span class="s2">&quot;std_discbumpscan&quot;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
         <span class="s2">&quot;std_thresholdscan_zerobias&quot;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
         <span class="s2">&quot;selftrigger_source&quot;</span> <span class="p">:</span> <span class="mi">30</span>
-    <span class="p">}</span></div>
-
-<div class="viewcode-block" id="TestInterface.PWD">
-<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.PWD">[docs]</a>
-    <span class="n">PWD</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span></div>
-
-    
+    <span class="p">}</span>
+    <span class="n">PWD</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">_QC_TESTS</span> <span class="o">=</span>  <span class="p">[</span><span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;ADC-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;ANALOG-READBACK&#39;</span><span class="p">,</span> <span class="s1">&#39;SLDO&#39;</span><span class="p">,</span> <span class="s1">&#39;VCAL-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;INJECTION-CAPACITANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;LP-MODE&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA-TRANSMISSION&#39;</span><span class="p">]</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span> <span class="c1">#this calls tk.Frame.__init__(self, parent)</span>
         <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">test_name</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Title of set of test </span>
-<div class="viewcode-block" id="TestInterface.test_list">
-<a class="viewcode-back" href="../../autoapi/gui/test_interface/index.html#gui.test_interface.TestInterface.test_list">[docs]</a>
-        <span class="bp">self</span><span class="o">.</span><span class="n">test_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_test_list</span><span class="p">(</span><span class="n">mod_data</span><span class="p">)</span> </div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_test_list</span><span class="p">(</span><span class="n">mod_data</span><span class="p">)</span> 
         <span class="bp">self</span><span class="o">.</span><span class="n">make_buttons</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_list</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">)</span>        
     
 <div class="viewcode-block" id="TestInterface.get_test_list">
@@ -167,19 +153,19 @@
         
         
         <span class="k">if</span> <span class="n">loc_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">test</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;ADC-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;ANALOG-READBACK&#39;</span><span class="p">,</span> <span class="s1">&#39;SLDO&#39;</span><span class="p">,</span> <span class="s1">&#39;VCAL-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;INJECTION-CAPACITANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;LP-MODE&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA-TRANSMISSION&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">test</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_QC_TESTS</span><span class="p">:</span>
                 <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/module-qc-tools ; </span><span class="si">{echo}</span><span class="s2">measurement-</span><span class="si">{test}</span><span class="s2"> -c &#39;../configs/new_hw_config_</span><span class="si">{version}</span><span class="s2">.json&#39; -m ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json&quot;</span>
                 
             <span class="k">elif</span> <span class="n">test</span> <span class="o">==</span> <span class="s2">&quot;eyeDiagram&quot;</span><span class="p">:</span>
                 <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/Yarr ; </span><span class="si">{echo}</span><span class="s2">bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json&quot;</span> <span class="k">if</span> <span class="n">dry_run</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/Yarr ; </span><span class="si">{echo}</span><span class="s2">bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json &gt; </span><span class="si">{pwd}</span><span class="s2">/logs/eyeDiagram.log&quot;</span> <span class="c1"># if statement removes pipe output for dry runs</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/Yarr ; </span><span class="si">{echo}</span><span class="s2">bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json -s configs/scans/rd53b/</span><span class="si">{test}</span><span class="s2"> -Wh&quot;</span> <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="s2">&quot;v1.1&quot;</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/Yarr ; </span><span class="si">{echo}</span><span class="s2">bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json -s configs/scans/itkpixv2/</span><span class="si">{test}</span><span class="s2"> -Wh&quot;</span>
+                <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/Yarr ; </span><span class="si">{echo}</span><span class="s2">bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json -s configs/scans/rd53b/</span><span class="si">{test}</span><span class="s2"> -Wh&quot;</span> <span class="k">if</span> <span class="n">version</span> <span class="o">==</span> <span class="s2">&quot;v1.1&quot;</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/Yarr ; </span><span class="si">{echo}</span><span class="s2">bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json -s configs/scans/itkpixv2/</span><span class="si">{test}</span><span class="s2"> -Wh&quot;</span> <span class="c1"># changes the config file depending on v1 or v2</span>
             
             <span class="n">echo</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
             <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
                 <span class="n">template</span> <span class="o">+=</span> <span class="s2">&quot; ; sleep 2&quot;</span> <span class="c1"># simulates the script taking some time </span>
                 <span class="n">echo</span> <span class="o">=</span> <span class="s2">&quot;echo &quot;</span>
-            <span class="n">template</span> <span class="o">+=</span> <span class="s2">&quot; ; </span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{pwd}</span><span class="s2">&quot;</span> <span class="c1"># returns to origina GUI directory after executing script</span>
+            <span class="n">template</span> <span class="o">+=</span> <span class="s2">&quot; ; </span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{pwd}</span><span class="s2">&quot;</span> <span class="c1"># returns to original GUI directory after executing script. Use this instead of os changedir to emulate the dry run </span>
                     
             <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running </span><span class="si">{</span><span class="n">test</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">cmd</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">echo</span><span class="o">=</span><span class="n">echo</span><span class="p">,</span> <span class="n">home_path</span><span class="o">=</span><span class="n">home_path</span><span class="p">,</span> <span class="n">loc_id</span><span class="o">=</span><span class="n">loc_id</span><span class="p">,</span> <span class="n">mod_sn</span><span class="o">=</span><span class="n">mod_sn</span><span class="p">,</span> <span class="n">temp</span><span class="o">=</span><span class="n">temp</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">test</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">,</span> <span class="n">pwd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">PWD</span><span class="p">)</span> <span class="c1"># fills module information</span>
@@ -193,7 +179,14 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">open_popup</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">cmd</span><span class="p">)</span> 
             <span class="n">button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span></div>
 
+            
+<div class="viewcode-block" id="TestInterface.select_tests">
+<a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.select_tests">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">select_tests</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="c1"># to be overridden by child classes</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
 
+    
 <div class="viewcode-block" id="TestInterface.make_buttons">
 <a class="viewcode-back" href="../../gui.html#gui.test_interface.TestInterface.make_buttons">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_buttons</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">tests</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">):</span>
@@ -254,6 +247,7 @@
 <span class="sd">            cmd (str): shell command to be executed, including prepended cd to script dir</span>
 <span class="sd">            on_done (function): function to define behaviour after command has been executed (e.g., stop progress bar and close popup).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        
         <span class="c1"># TODO: implement failure protocol. </span>
         <span class="k">def</span><span class="w"> </span><span class="nf">task</span><span class="p">():</span> 
             <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># This blocks the main thread </span>

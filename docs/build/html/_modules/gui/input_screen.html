@@ -8,7 +8,6 @@
   <title>gui.input_screen &mdash; ATLAS Module QC Testing GUI 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -43,7 +42,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">gui</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
 </ul>
 
         </div>
@@ -103,12 +101,9 @@
         <span class="n">window</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         
         
-<div class="viewcode-block" id="TestSuite.frames">
-<a class="viewcode-back" href="../../autoapi/gui/input_screen/index.html#gui.input_screen.TestSuite.frames">[docs]</a>
-        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">{}</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">c</span><span class="o">=</span><span class="mi">0</span>
-        <span class="k">for</span> <span class="n">F</span> <span class="ow">in</span> <span class="p">[</span><span class="n">PrelimTests</span><span class="p">,</span> <span class="n">MinHealthTests</span><span class="p">,</span> <span class="n">Tuning</span><span class="p">,</span> <span class="n">PixelFailTests</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">F</span> <span class="ow">in</span> <span class="p">[</span><span class="n">EyeDiagram</span><span class="p">,</span> <span class="n">PrelimTests</span><span class="p">,</span> <span class="n">MinHealthTests</span><span class="p">,</span> <span class="n">Tuning</span><span class="p">,</span> <span class="n">PixelFailTests</span><span class="p">]:</span>
             <span class="n">frame</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">window</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">F</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span>
             <span class="n">frame</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;nswe&quot;</span><span class="p">)</span>
@@ -136,10 +131,7 @@
         <span class="n">window</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         
         
-<div class="viewcode-block" id="LoadModuleInfo.frames">
-<a class="viewcode-back" href="../../autoapi/gui/input_screen/index.html#gui.input_screen.LoadModuleInfo.frames">[docs]</a>
-        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">{}</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">frame</span> <span class="o">=</span> <span class="n">InputScreen</span><span class="p">(</span><span class="n">window</span><span class="p">,</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">[</span><span class="n">InputScreen</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span>
         <span class="n">frame</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&quot;nswe&quot;</span><span class="p">)</span>
@@ -179,10 +171,7 @@
         <span class="n">lbl_version</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Version:&quot;</span><span class="p">)</span>
         <span class="n">lbl_version</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         
-<div class="viewcode-block" id="InputScreen.version">
-<a class="viewcode-back" href="../../autoapi/gui/input_screen/index.html#gui.input_screen.InputScreen.version">[docs]</a>
-        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">versions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">versions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">versions</span><span class="p">:</span>
             <span class="n">tk</span><span class="o">.</span><span class="n">Radiobutton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_mod_data</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">mod_data</span><span class="p">))</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span> <span class="o">+</span> <span class="n">r</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
@@ -193,10 +182,7 @@
         <span class="n">lbl_stage</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Testing Stage </span><span class="se">\n</span><span class="s2"> (selects relevant tests):&quot;</span><span class="p">)</span>
         <span class="n">lbl_stage</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
         
-<div class="viewcode-block" id="InputScreen.stage">
-<a class="viewcode-back" href="../../autoapi/gui/input_screen/index.html#gui.input_screen.InputScreen.stage">[docs]</a>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stages</span><span class="p">[</span><span class="s1">&#39;Initial (warm)&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stages</span><span class="p">[</span><span class="s1">&#39;Initial (warm)&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">stages</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">tk</span><span class="o">.</span><span class="n">Radiobutton</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">stages</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">command</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_mod_data</span><span class="p">(</span><span class="s2">&quot;stage&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span><span class="n">mod_data</span><span class="p">))</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span> <span class="o">+</span> <span class="n">r</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 

@@ -9,7 +9,7 @@ class ModuleTestData:
         "final_cold" : "cold",
     }
     
-    def __init__(self, cfg : str = "./config.json", stage : str = "init", dry_run : int = 2) -> None:
+    def __init__(self, cfg : str = "./gui/config.json", stage : str = "init", dry_run : int = 2) -> None:
         
         with open(cfg, "r") as jsonfile:
             cfg_data = json.load(jsonfile)

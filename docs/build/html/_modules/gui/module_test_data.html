@@ -8,7 +8,6 @@
   <title>gui.module_test_data &mdash; ATLAS Module QC Testing GUI 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -43,7 +42,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">gui</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
 </ul>
 
         </div>
@@ -77,37 +75,22 @@
 <div class="viewcode-block" id="ModuleTestData">
 <a class="viewcode-back" href="../../gui.html#gui.module_test_data.ModuleTestData">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ModuleTestData</span><span class="p">:</span>
-<div class="viewcode-block" id="ModuleTestData._STAGE_TEMP_MAP">
-<a class="viewcode-back" href="../../autoapi/gui/module_test_data/index.html#gui.module_test_data.ModuleTestData._STAGE_TEMP_MAP">[docs]</a>
     <span class="n">_STAGE_TEMP_MAP</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;init&quot;</span> <span class="p">:</span> <span class="s2">&quot;warm&quot;</span><span class="p">,</span>
         <span class="s2">&quot;post&quot;</span> <span class="p">:</span> <span class="s2">&quot;warm&quot;</span><span class="p">,</span>
         <span class="s2">&quot;final_warm&quot;</span> <span class="p">:</span> <span class="s2">&quot;warm&quot;</span><span class="p">,</span>
         <span class="s2">&quot;final_cold&quot;</span> <span class="p">:</span> <span class="s2">&quot;cold&quot;</span><span class="p">,</span>
-    <span class="p">}</span></div>
-
+    <span class="p">}</span>
     
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;./config.json&quot;</span><span class="p">,</span> <span class="n">stage</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;init&quot;</span><span class="p">,</span> <span class="n">dry_run</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;./gui/config.json&quot;</span><span class="p">,</span> <span class="n">stage</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;init&quot;</span><span class="p">,</span> <span class="n">dry_run</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonfile</span><span class="p">:</span>
             <span class="n">cfg_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">jsonfile</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dry_run</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">cfg_data</span><span class="p">[</span><span class="s1">&#39;dry_run&#39;</span><span class="p">]))</span> <span class="k">if</span> <span class="n">dry_run</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">dry_run</span><span class="p">))</span>
-<div class="viewcode-block" id="ModuleTestData.home_path">
-<a class="viewcode-back" href="../../autoapi/gui/module_test_data/index.html#gui.module_test_data.ModuleTestData.home_path">[docs]</a>
-        <span class="bp">self</span><span class="o">.</span><span class="n">home_path</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">cfg_data</span><span class="p">[</span><span class="s1">&#39;default_home_path&#39;</span><span class="p">]</span></div>
-
-<div class="viewcode-block" id="ModuleTestData.loc_id">
-<a class="viewcode-back" href="../../autoapi/gui/module_test_data/index.html#gui.module_test_data.ModuleTestData.loc_id">[docs]</a>
-        <span class="bp">self</span><span class="o">.</span><span class="n">loc_id</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span></div>
-
-<div class="viewcode-block" id="ModuleTestData.mod_sn">
-<a class="viewcode-back" href="../../autoapi/gui/module_test_data/index.html#gui.module_test_data.ModuleTestData.mod_sn">[docs]</a>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mod_sn</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span></div>
-
-<div class="viewcode-block" id="ModuleTestData.version">
-<a class="viewcode-back" href="../../autoapi/gui/module_test_data/index.html#gui.module_test_data.ModuleTestData.version">[docs]</a>
-        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">home_path</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">cfg_data</span><span class="p">[</span><span class="s1">&#39;default_home_path&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loc_id</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mod_sn</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;*******************DRY RUN*******************&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dry_run</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;^^^^^^^^^^^^^^^^^^^^^ACTIVE RUN^^^^^^^^^^^^^^^^^^^^^&quot;</span> <span class="p">)</span>
 <span class="w">        </span>
@@ -120,24 +103,15 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         
         <span class="c1"># To be overwritten by setter </span>
-<div class="viewcode-block" id="ModuleTestData._stage">
-<a class="viewcode-back" href="../../autoapi/gui/module_test_data/index.html#gui.module_test_data.ModuleTestData._stage">[docs]</a>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_stage</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></div>
-
-<div class="viewcode-block" id="ModuleTestData.temp">
-<a class="viewcode-back" href="../../autoapi/gui/module_test_data/index.html#gui.module_test_data.ModuleTestData.temp">[docs]</a>
-        <span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stage</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="c1"># Use the property so temp is set consistently</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">stage</span>
 
     <span class="nd">@property</span>
-<div class="viewcode-block" id="ModuleTestData.stage">
-<a class="viewcode-back" href="../../gui.html#gui.module_test_data.ModuleTestData.stage">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stage</span></div>
-
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stage</span>
 
     <span class="nd">@stage</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">stage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
@@ -149,11 +123,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_temp_for_stage</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Setter ran: stage=</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s2"> -&gt; temp=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">temp</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ModuleTestData._get_temp_for_stage">
-<a class="viewcode-back" href="../../autoapi/gui/module_test_data/index.html#gui.module_test_data.ModuleTestData._get_temp_for_stage">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_temp_for_stage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stage</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_STAGE_TEMP_MAP</span><span class="p">[</span><span class="n">stage</span><span class="p">]</span></div>
-</div>
 
 </pre></div>
 

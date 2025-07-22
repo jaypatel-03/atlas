@@ -52,12 +52,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#gui.input_screen.TestSuite"><code class="docutils literal notranslate"><span class="pre">TestSuite</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-gui.main">gui.main module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#gui.main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gui.main.new_module"><code class="docutils literal notranslate"><span class="pre">new_module()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#gui.main.parse_args"><code class="docutils literal notranslate"><span class="pre">parse_args()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-gui.module_test_data">gui.module_test_data module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#gui.module_test_data.ModuleTestData"><code class="docutils literal notranslate"><span class="pre">ModuleTestData</span></code></a></li>
 </ul>
@@ -68,6 +62,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-gui.test_suite">gui.test_suite module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gui.test_suite.EyeDiagram"><code class="docutils literal notranslate"><span class="pre">EyeDiagram</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gui.test_suite.MinHealthTests"><code class="docutils literal notranslate"><span class="pre">MinHealthTests</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gui.test_suite.PixelFailTests"><code class="docutils literal notranslate"><span class="pre">PixelFailTests</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gui.test_suite.PrelimTests"><code class="docutils literal notranslate"><span class="pre">PrelimTests</span></code></a></li>
@@ -210,40 +205,11 @@ Args:</p>
 </dd></dl>
 
 </section>
-<section id="module-gui.main">
-<span id="gui-main-module"></span><h2>gui.main module<a class="headerlink" href="#module-gui.main" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="gui.main.main">
-<span class="sig-prename descclassname"><span class="pre">gui.main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/main.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.main.main" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gui.main.new_module">
-<span class="sig-prename descclassname"><span class="pre">gui.main.</span></span><span class="sig-name descname"><span class="pre">new_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/main.html#new_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.main.new_module" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="gui.main.parse_args">
-<span class="sig-prename descclassname"><span class="pre">gui.main.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/main.html#parse_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.main.parse_args" title="Link to this definition"></a></dt>
-<dd><p>Parse command line arguments.
-:param argv: List of string arguments to parse.
-:type argv: list</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Dictionary of parameters.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
 <section id="module-gui.module_test_data">
 <span id="gui-module-test-data-module"></span><h2>gui.module_test_data module<a class="headerlink" href="#module-gui.module_test_data" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="gui.module_test_data.ModuleTestData">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.module_test_data.</span></span><span class="sig-name descname"><span class="pre">ModuleTestData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./config.json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'init'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dry_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/module_test_data.html#ModuleTestData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.module_test_data.ModuleTestData" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.module_test_data.</span></span><span class="sig-name descname"><span class="pre">ModuleTestData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./gui/config.json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'init'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dry_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/module_test_data.html#ModuleTestData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.module_test_data.ModuleTestData" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -361,6 +327,16 @@ Args:</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_interface.TestInterface.select_tests">
+<span class="sig-name descname"><span class="pre">select_tests</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_interface.html#TestInterface.select_tests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_interface.TestInterface.select_tests" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gui.test_interface.TestInterface.test_name">
 <span class="sig-name descname"><span class="pre">test_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Base</span> <span class="pre">Test'</span></em><a class="headerlink" href="#gui.test_interface.TestInterface.test_name" title="Link to this definition"></a></dt>
@@ -372,6 +348,90 @@ Args:</p>
 <section id="module-gui.test_suite">
 <span id="gui-test-suite-module"></span><h2>gui.test_suite module<a class="headerlink" href="#module-gui.test_suite" title="Link to this heading"></a></h2>
 <dl class="py class">
+<dt class="sig sig-object py" id="gui.test_suite.EyeDiagram">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.test_suite.</span></span><span class="sig-name descname"><span class="pre">EyeDiagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#EyeDiagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.EyeDiagram" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#gui.test_interface.TestInterface" title="gui.test_interface.TestInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestInterface</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.EyeDiagram.chip_enabled">
+<span class="sig-name descname"><span class="pre">chip_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#EyeDiagram.chip_enabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.EyeDiagram.chip_enabled" title="Link to this definition"></a></dt>
+<dd><p>Reads the relevant config file, located in module-qc-database-tools, to output which ASICs are turned on.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>) – ModuleTestData object containing ID and serial number</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of integers in [0,1] designating whether the corresponding ASIC is off or on.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>enabled</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.EyeDiagram.disable_chips">
+<span class="sig-name descname"><span class="pre">disable_chips</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chk_boxes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#EyeDiagram.disable_chips"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.EyeDiagram.disable_chips" title="Link to this definition"></a></dt>
+<dd><p>Writes to the config JSON with updated information (from checkboxes) as to which ASICS are to be turned off or on. If there is any write error, the original data is written in stead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>master</strong> – controlling tk.Frame so that the popup can be closed</p></li>
+<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>) – ModuleTestData object containing local ID and serial number, as well as whether it is a warm or cold test so that the correct JSON file can be located.</p></li>
+<li><p><strong>chk_boxes</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – list of integers corresponding to whether chip[i] is off (0) or on (1).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.EyeDiagram.get_test_list">
+<span class="sig-name descname"><span class="pre">get_test_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#EyeDiagram.get_test_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.EyeDiagram.get_test_list" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.EyeDiagram.open_eyediagram_popup">
+<span class="sig-name descname"><span class="pre">open_eyediagram_popup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eye_diag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#EyeDiagram.open_eyediagram_popup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.EyeDiagram.open_eyediagram_popup" title="Link to this definition"></a></dt>
+<dd><p>Plots the heatmap for the eyeDiagram, as well as whether suitable delays have been found or not and gives the option (as checkboxes) to disable or re-enable particular chips.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>master</strong> – Controlling tk.Frame so that a popup can be added on top.</p></li>
+<li><p><strong>eye_diag</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – sanitised link quality values from eye diagram shell output (output of sanitise_plot_eye_diagram function)</p></li>
+<li><p><strong>delay</strong> (<em>list</em><em>[</em><em>bool</em><em>]</em>) – list of booleans indicating whether a delay has been successfully found for a certain lane (output of sanitise_plot_eye_diagram function)</p></li>
+<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.EyeDiagram.sanitise_plot_eye_diagram">
+<span class="sig-name descname"><span class="pre">sanitise_plot_eye_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./gui/logs/eyeDiagram.log'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#EyeDiagram.sanitise_plot_eye_diagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.EyeDiagram.sanitise_plot_eye_diagram" title="Link to this definition"></a></dt>
+<dd><p>Reads and sanitises the shell output of the eyeDiagram script. Removes new line breaks, removes pipe delimiter, and removes shell colour information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>master</strong> – controlling tk.Frame to pass through to other functions</p></li>
+<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p></li>
+<li><p><strong>file</strong> (<em>str</em>) – path to eyeDiagram.log. Default is ./logs/eyeDiagram.log</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gui.test_suite.EyeDiagram.test_name">
+<span class="sig-name descname"><span class="pre">test_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Communication'</span></em><a class="headerlink" href="#gui.test_suite.EyeDiagram.test_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="gui.test_suite.MinHealthTests">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.test_suite.</span></span><span class="sig-name descname"><span class="pre">MinHealthTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#MinHealthTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.MinHealthTests" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gui.test_interface.TestInterface" title="gui.test_interface.TestInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestInterface</span></code></a></p>
@@ -379,6 +439,16 @@ Args:</p>
 <dt class="sig sig-object py" id="gui.test_suite.MinHealthTests.get_test_list">
 <span class="sig-name descname"><span class="pre">get_test_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#MinHealthTests.get_test_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.MinHealthTests.get_test_list" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.test_suite.MinHealthTests.select_tests">
+<span class="sig-name descname"><span class="pre">select_tests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#MinHealthTests.select_tests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.MinHealthTests.select_tests" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gui.test_suite.MinHealthTests.test_name">
@@ -408,38 +478,6 @@ Args:</p>
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.test_suite.</span></span><span class="sig-name descname"><span class="pre">PrelimTests</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#gui.test_interface.TestInterface" title="gui.test_interface.TestInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestInterface</span></code></a></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.test_suite.PrelimTests.chip_enabled">
-<span class="sig-name descname"><span class="pre">chip_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.chip_enabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.chip_enabled" title="Link to this definition"></a></dt>
-<dd><p>Reads the relevant config file, located in module-qc-database-tools, to output which ASICs are turned on.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>) – ModuleTestData object containing ID and serial number</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>list of integers in [0,1] designating whether the corresponding ASIC is off or on.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>enabled</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.test_suite.PrelimTests.disable_chips">
-<span class="sig-name descname"><span class="pre">disable_chips</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chk_boxes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.disable_chips"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.disable_chips" title="Link to this definition"></a></dt>
-<dd><p>Writes to the config JSON with updated information (from checkboxes) as to which ASICS are to be turned off or on. If there is any write error, the original data is written in stead.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>master</strong> – controlling tk.Frame so that the popup can be closed</p></li>
-<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>) – ModuleTestData object containing local ID and serial number, as well as whether it is a warm or cold test so that the correct JSON file can be located.</p></li>
-<li><p><strong>chk_boxes</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – list of integers corresponding to whether chip[i] is off (0) or on (1).</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="gui.test_suite.PrelimTests.get_test_list">
 <span class="sig-name descname"><span class="pre">get_test_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.get_test_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.get_test_list" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -450,35 +488,9 @@ Args:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gui.test_suite.PrelimTests.open_eyediagram_popup">
-<span class="sig-name descname"><span class="pre">open_eyediagram_popup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eye_diag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.open_eyediagram_popup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.open_eyediagram_popup" title="Link to this definition"></a></dt>
-<dd><p>Plots the heatmap for the eyeDiagram, as well as whether suitable delays have been found or not and gives the option (as checkboxes) to disable or re-enable particular chips.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>master</strong> – Controlling tk.Frame so that a popup can be added on top.</p></li>
-<li><p><strong>eye_diag</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – sanitised link quality values from eye diagram shell output (output of sanitise_plot_eye_diagram function)</p></li>
-<li><p><strong>delay</strong> (<em>list</em><em>[</em><em>bool</em><em>]</em>) – list of booleans indicating whether a delay has been successfully found for a certain lane (output of sanitise_plot_eye_diagram function)</p></li>
-<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gui.test_suite.PrelimTests.sanitise_plot_eye_diagram">
-<span class="sig-name descname"><span class="pre">sanitise_plot_eye_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./logs/eyeDiagram.log'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.sanitise_plot_eye_diagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.sanitise_plot_eye_diagram" title="Link to this definition"></a></dt>
-<dd><p>Reads and sanitises the shell output of the eyeDiagram script. Removes new line breaks, removes pipe delimiter, and removes shell colour information.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>master</strong> – controlling tk.Frame to pass through to other functions</p></li>
-<li><p><strong>mod_data</strong> (<a class="reference internal" href="#gui.module_test_data.ModuleTestData" title="gui.module_test_data.ModuleTestData"><em>ModuleTestData</em></a>)</p></li>
-<li><p><strong>file</strong> (<em>str</em>) – path to eyeDiagram.log. Default is ./logs/eyeDiagram.log</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="gui.test_suite.PrelimTests.select_tests">
+<span class="sig-name descname"><span class="pre">select_tests</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui/test_suite.html#PrelimTests.select_tests"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gui.test_suite.PrelimTests.select_tests" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="gui.test_suite.PrelimTests.test_name">

@@ -13,6 +13,7 @@ TODO:
 - Write unittests
 - Verbosity flag (Move logging)
 - Failure mode 
+- Making another folder in same minute?
 
 ## Overview + Notes
 

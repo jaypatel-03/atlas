@@ -7,21 +7,23 @@ from tkinter import messagebox
 import json
 import logging
 
-class PrelimTests(TestInterface):
-    test_name = "Preliminary Tests"
+class EyeDiagram(TestInterface):
+    test_name = "Communication"
     
-    def __init__(self,parent,controller, mod_data):
+    def __init__(self, parent, controller, mod_data):
         super().__init__(parent, controller, mod_data)
-        tk.Button(self, text="View", command=lambda : self.sanitise_plot_eye_diagram(parent, mod_data)).grid(row=1, column=2)
-
-    def get_test_list(self, mod_data : ModuleTestData):
-        if mod_data.stage == "post":
-            return ['eyeDiagram', 'IV-MEASURE', 'corecolumnscan']
-        elif mod_data.stage == "final_cold":
-            return ['eyeDiagram', 'IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'DATA-TRANSMISSION', 'corecolumnscan']
-        return ['eyeDiagram', 'IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION', 'corecolumnscan']
+        tk.Label(self, text="2.").grid(row=2, column=0)
+        tk.Button(self, text="View", command=lambda : self.sanitise_plot_eye_diagram(parent, mod_data)).grid(row=2, column=1)
     
-    def sanitise_plot_eye_diagram(self, master, mod_data : ModuleTestData, file : str = r"./logs/eyeDiagram.log"): 
+    def get_test_list(self, mod_data : ModuleTestData):
+        
+        return ["eyeDiagram"]
+    
+    def gen_cmd(self, mod_data : ModuleTestData):
+        return "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json" if mod_data.dry_run else "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json > {pwd}/logs/eyeDiagram.log" # if statement removes pipe output for dry runs
+        
+    
+    def sanitise_plot_eye_diagram(self, master, mod_data : ModuleTestData, file : str = r"./gui/logs/eyeDiagram.log"): 
         """Reads and sanitises the shell output of the eyeDiagram script. Removes new line breaks, removes pipe delimiter, and removes shell colour information. 
         
         Args:
@@ -155,20 +157,51 @@ class PrelimTests(TestInterface):
             logging.info("Config edited")   
         master.destroy()
 
+
+class PrelimTests(TestInterface):
+    test_name = "Preliminary Tests"
+    
+    def __init__(self,parent,controller, mod_data):
+        super().__init__(parent, controller, mod_data)
+
+
+    def get_test_list(self, mod_data : ModuleTestData):
+        if mod_data.stage == "post":
+            return ['IV-MEASURE', 'corecolumnscan']
+        elif mod_data.stage == "final_cold":
+            return ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'DATA-TRANSMISSION', 'corecolumnscan']
+        return ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION', 'corecolumnscan']
+    
+    def gen_cmd(self, mod_data):
+        return "{echo}cd {home_path}/module-qc-tools ; {echo}measurement-{test} -c '../configs/new_hw_config_{version}.json' -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
+    
+    
+
 class MinHealthTests(TestInterface):
     test_name = "Mininum Health Tests"   
     def get_test_list(self, mod_data):
         return ["std_digitalscan", "std_analogscan", "std_thresholdscan_hr", "std_totscan -t 6000"]
+    
+    def gen_cmd(self, mod_data: ModuleTestData):
+        return "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh" if mod_data.version == "v1.1" else "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/itkpixv2/{test} -Wh" # changes the config file depending on v1 or v2
 
 class Tuning(TestInterface):
     test_name = "Tuning"
     def get_test_list(self, mod_data):
         _, _, _, version = self.check_mod_data_loaded(mod_data)
         return ["std_tune_globalthreshold -t 1700", "std_tune_globalpreamp -t 6000 7", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000"] if version == "v2" else ["std_tune_globalthreshold -t 1700", "std_totscan -t 6000", "std_tune_globalthreshold -t 1700", "std_tune_pixelthreshold -t 1500", "std_retune_globalthreshold -t 1700", "std_retune_pixelthreshold -t 1500", "std_thresholdscan_hd", "std_totscan -t 6000"]
+    
+    def gen_cmd(self, mod_data: ModuleTestData):
+        return "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh" if mod_data.version == "v1.1" else "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/itkpixv2/{test} -Wh" # changes the config file depending on v1 or v2
 
 class PixelFailTests(TestInterface):
     test_name = "Pixel Fail"
     def get_test_list(self, mod_data):
+    
         if mod_data.stage == "final_cold":
             return ["std_discbumpscan", "std_mergedbumpscan -t 1500", "std_thresholdscan_zerobias", "std_noisescan", "selftrigger_source -p", "selftrigger_source"]
         return ["std_discbumpscan", "std_mergedbumpscan -t 1500", "std_thresholdscan_zerobias", "std_noisescan"]
+    
+    def gen_cmd(self, mod_data: ModuleTestData):
+        """"Returns the template for the pixel fail test scripts, changing the config depending on the chip version """
+        return "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh" if mod_data.version == "v1.1" else "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/itkpixv2/{test} -Wh" # changes the config file depending on v1 or v2

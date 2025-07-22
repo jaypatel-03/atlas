@@ -17,14 +17,6 @@ gui.input\_screen module
    :show-inheritance:
    :undoc-members:
 
-gui.main module
----------------
-
-.. automodule:: gui.main
-   :members:
-   :show-inheritance:
-   :undoc-members:
-
 gui.module\_test\_data module
 -----------------------------
 

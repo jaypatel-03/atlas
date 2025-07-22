@@ -8,7 +8,6 @@
   <title>gui.test_suite &mdash; ATLAS Module QC Testing GUI 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -43,7 +42,6 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">gui</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../autoapi/index.html">API Reference</a></li>
 </ul>
 
         </div>
@@ -80,31 +78,25 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
-<div class="viewcode-block" id="PrelimTests">
-<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">PrelimTests</span><span class="p">(</span><span class="n">TestInterface</span><span class="p">):</span>
-<div class="viewcode-block" id="PrelimTests.test_name">
-<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.test_name">[docs]</a>
-    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Preliminary Tests&quot;</span></div>
-
+<div class="viewcode-block" id="EyeDiagram">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.EyeDiagram">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EyeDiagram</span><span class="p">(</span><span class="n">TestInterface</span><span class="p">):</span>
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Communication&quot;</span>
     
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">parent</span><span class="p">,</span><span class="n">controller</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">)</span>
-        <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;View&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sanitise_plot_eye_diagram</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">))</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<div class="viewcode-block" id="PrelimTests.get_test_list">
-<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.get_test_list">[docs]</a>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;2.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;View&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sanitise_plot_eye_diagram</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">))</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="EyeDiagram.get_test_list">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.EyeDiagram.get_test_list">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;post&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;eyeDiagram&#39;</span><span class="p">,</span> <span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;corecolumnscan&#39;</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;final_cold&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;eyeDiagram&#39;</span><span class="p">,</span> <span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;ADC-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;ANALOG-READBACK&#39;</span><span class="p">,</span> <span class="s1">&#39;SLDO&#39;</span><span class="p">,</span> <span class="s1">&#39;VCAL-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;INJECTION-CAPACITANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA-TRANSMISSION&#39;</span><span class="p">,</span> <span class="s1">&#39;corecolumnscan&#39;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;eyeDiagram&#39;</span><span class="p">,</span> <span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;ADC-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;ANALOG-READBACK&#39;</span><span class="p">,</span> <span class="s1">&#39;SLDO&#39;</span><span class="p">,</span> <span class="s1">&#39;VCAL-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;INJECTION-CAPACITANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;LP-MODE&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA-TRANSMISSION&#39;</span><span class="p">,</span> <span class="s1">&#39;corecolumnscan&#39;</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;eyeDiagram&quot;</span><span class="p">]</span></div>
 
     
-<div class="viewcode-block" id="PrelimTests.sanitise_plot_eye_diagram">
-<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.sanitise_plot_eye_diagram">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">sanitise_plot_eye_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">,</span> <span class="n">file</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./logs/eyeDiagram.log&quot;</span><span class="p">):</span> 
+<div class="viewcode-block" id="EyeDiagram.sanitise_plot_eye_diagram">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.EyeDiagram.sanitise_plot_eye_diagram">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sanitise_plot_eye_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">,</span> <span class="n">file</span> <span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./gui/logs/eyeDiagram.log&quot;</span><span class="p">):</span> 
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads and sanitises the shell output of the eyeDiagram script. Removes new line breaks, removes pipe delimiter, and removes shell colour information. </span>
 <span class="sd">        </span>
 <span class="sd">        Args:</span>
@@ -145,8 +137,8 @@
             <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">: Run eye diagram first&quot;</span><span class="p">)</span></div>
 
     
-<div class="viewcode-block" id="PrelimTests.open_eyediagram_popup">
-<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.open_eyediagram_popup">[docs]</a>
+<div class="viewcode-block" id="EyeDiagram.open_eyediagram_popup">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.EyeDiagram.open_eyediagram_popup">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">open_eyediagram_popup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">eye_diag</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">delay</span> <span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">bool</span><span class="p">],</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plots the heatmap for the eyeDiagram, as well as whether suitable delays have been found or not and gives the option (as checkboxes) to disable or re-enable particular chips.</span>
 <span class="sd">        </span>
@@ -194,8 +186,8 @@
         <span class="n">ok_btn</span> <span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;OK&quot;</span><span class="p">,</span><span class="n">command</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable_chips</span><span class="p">(</span><span class="n">top</span><span class="p">,</span><span class="n">mod_data</span><span class="p">,</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkbox_flags</span><span class="p">]))</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
 
     
-<div class="viewcode-block" id="PrelimTests.chip_enabled">
-<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.chip_enabled">[docs]</a>
+<div class="viewcode-block" id="EyeDiagram.chip_enabled">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.EyeDiagram.chip_enabled">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">chip_enabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reads the relevant config file, located in module-qc-database-tools, to output which ASICs are turned on.</span>
 <span class="sd">        </span>
@@ -218,8 +210,8 @@
         <span class="k">return</span> <span class="n">enabled</span></div>
 
     
-<div class="viewcode-block" id="PrelimTests.disable_chips">
-<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.disable_chips">[docs]</a>
+<div class="viewcode-block" id="EyeDiagram.disable_chips">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.EyeDiagram.disable_chips">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">disable_chips</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">,</span> <span class="n">chk_boxes</span> <span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Writes to the config JSON with updated information (from checkboxes) as to which ASICS are to be turned off or on. If there is any write error, the original data is written in stead. </span>
 <span class="sd">        </span>
@@ -249,27 +241,56 @@
 </div>
 
 
+
+<div class="viewcode-block" id="PrelimTests">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PrelimTests</span><span class="p">(</span><span class="n">TestInterface</span><span class="p">):</span>
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Preliminary Tests&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">parent</span><span class="p">,</span><span class="n">controller</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PrelimTests.get_test_list">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.get_test_list">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span> <span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;post&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;corecolumnscan&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">mod_data</span><span class="o">.</span><span class="n">stage</span> <span class="o">==</span> <span class="s2">&quot;final_cold&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;ADC-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;ANALOG-READBACK&#39;</span><span class="p">,</span> <span class="s1">&#39;SLDO&#39;</span><span class="p">,</span> <span class="s1">&#39;VCAL-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;INJECTION-CAPACITANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA-TRANSMISSION&#39;</span><span class="p">,</span> <span class="s1">&#39;corecolumnscan&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;IV-MEASURE&#39;</span><span class="p">,</span> <span class="s1">&#39;ADC-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;ANALOG-READBACK&#39;</span><span class="p">,</span> <span class="s1">&#39;SLDO&#39;</span><span class="p">,</span> <span class="s1">&#39;VCAL-CALIBRATION&#39;</span><span class="p">,</span> <span class="s1">&#39;INJECTION-CAPACITANCE&#39;</span><span class="p">,</span> <span class="s1">&#39;LP-MODE&#39;</span><span class="p">,</span> <span class="s1">&#39;DATA-TRANSMISSION&#39;</span><span class="p">,</span> <span class="s1">&#39;corecolumnscan&#39;</span><span class="p">]</span></div>
+
+    
+<div class="viewcode-block" id="PrelimTests.select_tests">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.PrelimTests.select_tests">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">select_tests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{echo}</span><span class="s2">cd </span><span class="si">{home_path}</span><span class="s2">/module-qc-tools ; </span><span class="si">{echo}</span><span class="s2">measurement-</span><span class="si">{test}</span><span class="s2"> -c &#39;../configs/new_hw_config_</span><span class="si">{version}</span><span class="s2">.json&#39; -m ../module-qc-database-tools/</span><span class="si">{loc_id}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">/</span><span class="si">{mod_sn}</span><span class="s2">_L2_</span><span class="si">{temp}</span><span class="s2">.json&quot;</span></div>
+</div>
+
+    
+    
+
 <div class="viewcode-block" id="MinHealthTests">
 <a class="viewcode-back" href="../../gui.html#gui.test_suite.MinHealthTests">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MinHealthTests</span><span class="p">(</span><span class="n">TestInterface</span><span class="p">):</span>
-<div class="viewcode-block" id="MinHealthTests.test_name">
-<a class="viewcode-back" href="../../gui.html#gui.test_suite.MinHealthTests.test_name">[docs]</a>
-    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Mininum Health Tests&quot;</span>   </div>
-
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Mininum Health Tests&quot;</span>   
 <div class="viewcode-block" id="MinHealthTests.get_test_list">
 <a class="viewcode-back" href="../../gui.html#gui.test_suite.MinHealthTests.get_test_list">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;std_digitalscan&quot;</span><span class="p">,</span> <span class="s2">&quot;std_analogscan&quot;</span><span class="p">,</span> <span class="s2">&quot;std_thresholdscan_hr&quot;</span><span class="p">,</span> <span class="s2">&quot;std_totscan -t 6000&quot;</span><span class="p">]</span></div>
+
+    
+<div class="viewcode-block" id="MinHealthTests.select_tests">
+<a class="viewcode-back" href="../../gui.html#gui.test_suite.MinHealthTests.select_tests">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">select_tests</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">:</span> <span class="n">ModuleTestData</span><span class="p">):</span>
+        <span class="k">return</span> </div>
 </div>
 
 
 <div class="viewcode-block" id="Tuning">
 <a class="viewcode-back" href="../../gui.html#gui.test_suite.Tuning">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Tuning</span><span class="p">(</span><span class="n">TestInterface</span><span class="p">):</span>
-<div class="viewcode-block" id="Tuning.test_name">
-<a class="viewcode-back" href="../../gui.html#gui.test_suite.Tuning.test_name">[docs]</a>
-    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Tuning&quot;</span></div>
-
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Tuning&quot;</span>
 <div class="viewcode-block" id="Tuning.get_test_list">
 <a class="viewcode-back" href="../../gui.html#gui.test_suite.Tuning.get_test_list">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>
@@ -281,10 +302,7 @@
 <div class="viewcode-block" id="PixelFailTests">
 <a class="viewcode-back" href="../../gui.html#gui.test_suite.PixelFailTests">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PixelFailTests</span><span class="p">(</span><span class="n">TestInterface</span><span class="p">):</span>
-<div class="viewcode-block" id="PixelFailTests.test_name">
-<a class="viewcode-back" href="../../gui.html#gui.test_suite.PixelFailTests.test_name">[docs]</a>
-    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Pixel Fail&quot;</span></div>
-
+    <span class="n">test_name</span> <span class="o">=</span> <span class="s2">&quot;Pixel Fail&quot;</span>
 <div class="viewcode-block" id="PixelFailTests.get_test_list">
 <a class="viewcode-back" href="../../gui.html#gui.test_suite.PixelFailTests.get_test_list">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_test_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mod_data</span><span class="p">):</span>

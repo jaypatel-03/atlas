@@ -30,7 +30,7 @@ class TestSuite(tk.Tk):
         
         self.frames = {}
         c=0
-        for F in [PrelimTests, MinHealthTests, Tuning, PixelFailTests]:
+        for F in [EyeDiagram, PrelimTests, MinHealthTests, Tuning, PixelFailTests]:
             frame = F(window, self, mod_data)
             self.frames[F] = frame
             frame.grid(row=0, column=c, sticky="nswe")

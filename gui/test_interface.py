@@ -31,7 +31,7 @@ class TestInterface(tk.Frame):
         "selftrigger_source" : 30
     }
     PWD = os.getcwd()
-    
+    _QC_TESTS =  ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION']
     def __init__(self, parent, controller, mod_data):
         super().__init__(parent) #this calls tk.Frame.__init__(self, parent)
         tk.Label(self, text=self.test_name).grid(row=0, columnspan=2) # Title of set of test 
@@ -72,14 +72,8 @@ class TestInterface(tk.Frame):
         
         
         if loc_id is not None:
-            if test in ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION']:
-                template = "{echo}cd {home_path}/module-qc-tools ; {echo}measurement-{test} -c '../configs/new_hw_config_{version}.json' -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
-                
-            elif test == "eyeDiagram":
-                template = "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json" if dry_run else "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json > {pwd}/logs/eyeDiagram.log" # if statement removes pipe output for dry runs
-            else:
-                template = "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh" if version == "v1.1" else "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/itkpixv2/{test} -Wh" # changes the config file depending on v1 or v2
-            
+            template = self.gen_cmd(mod_data)
+           
             echo = ""
             if dry_run:
                 template += " ; sleep 2" # simulates the script taking some time 
@@ -97,7 +91,11 @@ class TestInterface(tk.Frame):
             else:
                 self.open_popup(master, test, cmd) 
             button.configure(bg="green")
-
+            
+    def gen_cmd() -> str:
+        """"Returns the command template for the relevant test scripts, changing the config depending on the chip version and temperature; to be overridden by child classes. """
+        return ""
+    
     def make_buttons(self, master, tests : list, mod_data : ModuleTestData):
         """Loops over list of tests and makes corresponding buttons. Strips the std_prefix in YARR scans.
         
@@ -137,7 +135,7 @@ class TestInterface(tk.Frame):
         progbar.pack(expand=True, fill="x", padx=20, pady=10)
         progbar.start(10)
         
-        def on_done(msg : str):
+        def on_done():
             progbar.stop()
             popup.destroy()
             messagebox.showinfo("Done", "Finished!")
