@@ -16,7 +16,6 @@ class EyeDiagram(TestInterface):
         tk.Button(self, text="View", command=lambda : self.sanitise_plot_eye_diagram(parent, mod_data)).grid(row=2, column=1)
     
     def get_test_list(self, mod_data : ModuleTestData):
-        
         return ["eyeDiagram"]
     
     def gen_cmd(self, mod_data : ModuleTestData):
@@ -29,7 +28,7 @@ class EyeDiagram(TestInterface):
         Args:
             master: controlling tk.Frame to pass through to other functions 
             mod_data
-            file (str): path to eyeDiagram.log. Default is ./logs/eyeDiagram.log
+            file (str): path to eyeDiagram.log. Default is ..gui/logs/eyeDiagram.log
         
         """
         logging.debug("Plotting eyeDiagram")
@@ -38,30 +37,26 @@ class EyeDiagram(TestInterface):
         # ANSI escape sequence (\x1b[) + Select Graphic Rendition subset for colours (32 = green, 0 = black). Adds colour to eyeDiagram output
         green = r'\x1b[32m'
         black = r'\x1b[0m'
-        try:
-            with open(file) as f:
+        with open(file) as f:
+            lines = f.readline()
+            logging.debug("Reading line")
+            while "0 | " not in lines:
                 lines = f.readline()
-                logging.debug("Reading line")
-                while "0 | " not in lines:
-                    lines = f.readline()
-                for _ in range(32):
-                    line = lines.encode('unicode_escape').decode() # remove weird encoding and convert to bash string
-                    line = line.replace(green, '').replace(black, '')
-                    line = line.replace('\n', '')
-                    print(line)
-                    parts = [x.strip() for x in line.split('|')]
-                    row = [float(val) for val in parts[1:-1]]
-                    data.append(row)
-                    lines = f.readline()
-                while not "Determining" in lines:
-                    lines = f.readline()
-                for _ in range(16):
-                    lines = f.readline()
-                    delay.append("green" if "width" in lines else "red")
-                self.open_eyediagram_popup(master, data, delay, mod_data)
-            
-        except FileNotFoundError as e:
-            logging.info(f"{e}: Run eye diagram first")
+            for _ in range(32):
+                line = lines.encode('unicode_escape').decode() # remove weird encoding and convert to bash string
+                line = line.replace(green, '').replace(black, '')
+                line = line.replace('\n', '')
+                print(line)
+                parts = [x.strip() for x in line.split('|')]
+                row = [float(val) for val in parts[1:-1]]
+                data.append(row)
+                lines = f.readline()
+            while not "Determining" in lines:
+                lines = f.readline()
+            for _ in range(16):
+                lines = f.readline()
+                delay.append("green" if "width" in lines else "red")
+            self.open_eyediagram_popup(master, data, delay, mod_data)
     
     def open_eyediagram_popup(self, master, eye_diag : list[int], delay : list[bool], mod_data : ModuleTestData):
         """Plots the heatmap for the eyeDiagram, as well as whether suitable delays have been found or not and gives the option (as checkboxes) to disable or re-enable particular chips.
@@ -167,10 +162,10 @@ class PrelimTests(TestInterface):
 
     def get_test_list(self, mod_data : ModuleTestData):
         if mod_data.stage == "post":
-            return ['IV-MEASURE', 'corecolumnscan']
+            return ['IV-MEASURE']
         elif mod_data.stage == "final_cold":
-            return ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'DATA-TRANSMISSION', 'corecolumnscan']
-        return ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION', 'corecolumnscan']
+            return ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'DATA-TRANSMISSION']
+        return ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION']
     
     def gen_cmd(self, mod_data):
         return "{echo}cd {home_path}/module-qc-tools ; pwd ; {echo}measurement-{test} -c ../configs/new_hw_config_{version}.json -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
@@ -180,7 +175,7 @@ class PrelimTests(TestInterface):
 class MinHealthTests(TestInterface):
     test_name = "Mininum Health Tests"   
     def get_test_list(self, mod_data):
-        return ["std_digitalscan", "std_analogscan", "std_thresholdscan_hr", "std_totscan -t 6000"]
+        return ["corecolumnscan", "std_digitalscan", "std_analogscan", "std_thresholdscan_hr", "std_totscan -t 6000"]
     
     def gen_cmd(self, mod_data: ModuleTestData):
         return "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test}.json {test_flags} -Wh" if mod_data.version == "v1.1" else "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/itkpixv2/{test}.json {test_flags} -Wh" # changes the config file depending on v1 or v2

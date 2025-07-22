@@ -18,12 +18,11 @@ class TestInterface(tk.Frame):
     # Dictionary of estimated time of running for the named tests. Any tests executed not listed below will assume to take 1 minute. 
     _TEST_TIMES = {
         "IV-MEASURE" : 10,
-        "ADC-CALIBRATION" : 4,
-        "ANALOG-READBACK" : 45,
-        "SLDO" : 15,
-        "VCAL-CALIBRATION" : 5,
-        "INJECTION-CAPACITANCE" : 2,
-        "LP-MODE" : 10,
+        "ADC-CALIBRATION" : 2,
+        "ANALOG-READBACK" : 30,
+        "SLDO" : 10,
+        "VCAL-CALIBRATION" : 3,
+        "LP-MODE" : 2,
         "std_thresholdscan_hr" : 10,
         "std_tune_pixelthreshold -t 1500" : 2,
         "std_thresholdscan_hd" : 5,
