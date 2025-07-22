@@ -78,13 +78,13 @@ class TestInterface(tk.Frame):
             elif test == "eyeDiagram":
                 template = "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json" if dry_run else "{echo}cd {home_path}/Yarr ; {echo}bin/eyeDiagram -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json > {pwd}/logs/eyeDiagram.log" # if statement removes pipe output for dry runs
             else:
-                template = "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh" if version == "v1.1" else "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/itkpixv2/{test} -Wh"
+                template = "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/rd53b/{test} -Wh" if version == "v1.1" else "{echo}cd {home_path}/Yarr ; {echo}bin/scanConsole -r configs/controller/specCfg-rd53b-16x1.json -c ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json -s configs/scans/itkpixv2/{test} -Wh" # changes the config file depending on v1 or v2
             
             echo = ""
             if dry_run:
                 template += " ; sleep 2" # simulates the script taking some time 
                 echo = "echo "
-            template += " ; {echo}cd {pwd}" # returns to origina GUI directory after executing script
+            template += " ; {echo}cd {pwd}" # returns to original GUI directory after executing script. Use this instead of os changedir to emulate the dry run 
                     
             logging.info(f"Running {test}")
             cmd = template.format(echo=echo, home_path=home_path, loc_id=loc_id, mod_sn=mod_sn, temp=temp, test=test, version=version, pwd=self.PWD) # fills module information
@@ -137,7 +137,7 @@ class TestInterface(tk.Frame):
         progbar.pack(expand=True, fill="x", padx=20, pady=10)
         progbar.start(10)
         
-        def on_done():
+        def on_done(msg : str):
             progbar.stop()
             popup.destroy()
             messagebox.showinfo("Done", "Finished!")
@@ -150,6 +150,7 @@ class TestInterface(tk.Frame):
             cmd (str): shell command to be executed, including prepended cd to script dir
             on_done (function): function to define behaviour after command has been executed (e.g., stop progress bar and close popup).
         """
+        
         # TODO: implement failure protocol. 
         def task(): 
             subprocess.run(cmd, shell=True, check=True) # This blocks the main thread 

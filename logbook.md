@@ -331,6 +331,7 @@ Through WSL
 
     rsync -av -e "ssh -J jesu4129@bastion.physics.ox.ac.uk" French.txt jesu4129@pplxint12.physics.ox.ac.uk:./copy
 
+tree -I 'node_modules|cache|test_*'
 
 
 

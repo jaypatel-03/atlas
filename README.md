@@ -1,29 +1,46 @@
 # ATLAS Module Electrical Testing GUI
 
-## File structure
-
-~
-└── Module_QC
-    ├── module-qc-database-tools
-    └── module-qc-tools
-    ├── Yarr
-
-## Config files
-
-
-
-## Flags
-
-- d [0,1] : dry run 
 
 To add:
 - venv instructions
-- download tkinter for different distributions 
-- minimum python version (3.9)
 
 Requirements:
-- Linux OS
-- Python version 3.9 or greater
-- matplotlib 
-- tkinter: ```sudo apt-get install python3-tk``` for Debian-based systems or ```sudo dnf install python3-tkinter``` for Fedora/Alma
+- *nix OS (or WSL on Windows)
+- tkinter: GUI backend ```sudo apt-get install python3-tk``` for Debian-based systems or ```sudo dnf install python3-tkinter``` for Fedora/Alma
+- Python version => 3.9
+- Python venv library 
+- Python matplotlib library
+- Clone of [module-qc-tools](https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-database-tools)
+- Clone of [module-qc-database-tools](https://gitlab.cern.ch/atlas-itk/pixel/module/module-qc-database-tools)
+- Clone of [Yarr scans](https://yarr.web.cern.ch/yarr/install/) 
+- The following directory structure:
+```bash
+~ 
+└── Module_QC
+    ├── module-qc-database-tools
+    ├── module-qc-tools
+    ├── Yarr
+``` 
+
+The gui/config.json file contains the following data:
+```json
+{
+    "default_home_path" : "/home/jayp/atlas",
+    "dry_run" : 1,
+    "_comment" : "Dry run: [0 = wet run, 1 = dry run], overriden by -d flag. "
+}
+```
+
+Where ```dry_run``` can take the following values:
+- 0: indicating a live run
+- 1: indicating a dry run, only echoing the shell commands
+
+Any CLI arguments specified by the ```-d``` flag override the config file. 
+
+1. Activate ```venv``` and install ```matplotlib```
+2. Navigate to install directory
+3. ```git clone https://github.com/jaypatel-03/atlas```
+4. ```cd``` to the install directory
+5. ```python gui/main.py```
+
 
