@@ -7,6 +7,7 @@ import datetime
 import threading 
 import os
 import time
+import signal
 class TestInterface(tk.Frame):
     """ Interface (or base class) from which all the sets of tests inherit. 
     
@@ -114,7 +115,7 @@ class TestInterface(tk.Frame):
             quick_btn.grid(row=r + 1, column=1)
             r += 1
             
-    def open_popup(self, master, test : str, cmd : str):
+    def open_popup(self, master, test : str, cmd : str, override : bool = False):
         """Opens small popup window with progress bar and executes the script for the test. Also defines actions to be taken after the test script has been executed (on_done).
         
         Args:
@@ -133,13 +134,15 @@ class TestInterface(tk.Frame):
         
         progbar = ttk.Progressbar(popup, mode='indeterminate')
         progbar.pack(expand=True, fill="x", padx=20, pady=10)
+        kill_btn = tk.Button(popup, text="Murder", command=self.kill_proc).pack()
         progbar.start(10)
+        
         
         def on_done():
             progbar.stop()
             popup.destroy()
             messagebox.showinfo("Done", "Finished!")
-            
+        
         self.run_cmd(cmd, on_done)
         
     def run_cmd(self, cmd : str, on_done):
@@ -151,8 +154,12 @@ class TestInterface(tk.Frame):
         
         # TODO: implement failure protocol. 
         def task(): 
-            subprocess.run(cmd, shell=True, check=True) # This blocks the main thread 
+            self.proc = subprocess.Popen(cmd, shell=True,preexec_fn=os.setsid) # This blocks the main thread 
+            self.proc.wait()
             on_done() # callback in main thread
         threading.Thread(target=task, daemon=True).start()
         
     
+    def kill_proc(self):
+        if hasattr(self, 'proc') and self.proc.poll() is None:
+            os.killpg(os.getpgid(self.proc.pid), signal.SIGTERM)

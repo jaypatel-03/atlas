@@ -12,8 +12,12 @@ TODO:
 - Implement new test function 
 - Write unittests
 - Verbosity flag (Move logging)
-- Failure mode 
+- Failure mode - manual override:
+    - Threshold scan:
+        - kill after 20 consecutive errors 
+        - manual override
 - Making another folder in same minute?
+
 
 ## Overview + Notes
 
@@ -21,8 +25,6 @@ TODO:
 2) Connect to Keithley and R&S supplies through appropriate ports
 3) Bias HV and LV supplies 
 4) Temperature check
-5) 
-
 
 1) Mount 
 2) Vacuum on + dry air on, check gauge and maybe test nominal
