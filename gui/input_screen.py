@@ -154,7 +154,7 @@ class InputScreen(tk.Frame):
             
             # Test whether the config files exist and will be unwittingly overwritten
             path_to_dir = fr"{home_path}/module-qc-database-tools/{local_id}"
-            
+            logging.debug(f"Looking for existence of {path_to_dir}")
             if not overwrite_config and os.path.isdir(path_to_dir):
                 messagebox.showerror("showerror", "Config files already exist, decide whether to overwrite or not.")
                 return

@@ -173,7 +173,7 @@ class PrelimTests(TestInterface):
         return ['IV-MEASURE', 'ADC-CALIBRATION', 'ANALOG-READBACK', 'SLDO', 'VCAL-CALIBRATION', 'INJECTION-CAPACITANCE', 'LP-MODE', 'DATA-TRANSMISSION', 'corecolumnscan']
     
     def gen_cmd(self, mod_data):
-        return "{echo}cd {home_path}/module-qc-tools ; {echo}measurement-{test} -c ../configs/new_hw_config_{version}.json -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
+        return "{echo}cd {home_path}/module-qc-tools ; pwd ; {echo}measurement-{test} -c ../configs/new_hw_config_{version}.json -m ../module-qc-database-tools/{loc_id}/{mod_sn}/{mod_sn}_L2_{temp}.json"
     
     
 
