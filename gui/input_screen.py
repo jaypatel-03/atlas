@@ -66,7 +66,7 @@ class LoadModuleInfo(tk.Tk):
 class InputScreen(tk.Frame):
     
     def __init__(self,parent,controller, mod_data):
-        tk.Frame.__init__(self,parent) # inherits from main class
+        tk.Frame.__init__(self, parent) # inherits from main class
         
         # Input module serial numbers and Oxford ID
         tk.Label(self, text="Module Serial Number \n (e.g. 20UPGM22110039) ").grid(row=0)
@@ -120,6 +120,16 @@ class InputScreen(tk.Frame):
         
     
     def set_mod_data(self, attr : str, value : str, mod_data : ModuleTestData):
+        """Function to save module information into ModuleTestData object 
+
+        Args:
+            attr (str): Attribute/key to be saved to 
+            value (str): Value of attribute
+            mod_data (ModuleTestData): ModuleTestData object to store information
+
+        Raises:
+            AttributeError: raised if 
+        """
         logging.info(f"Set {attr} to {value}")
         if not hasattr(mod_data, attr):
             raise AttributeError(f"{mod_data!r} has no attribute {attr!r}")
@@ -131,7 +141,8 @@ class InputScreen(tk.Frame):
         
         Args:
             mod_sn: String containing the global module serial number
-            local_sn: String containing the local (Oxford) module identifier
+            local_id: String containing the local (Oxford) module identifier
+            overwrite_config: Boolean flag from checkbox indicating whether config files should be written over 
         Returns:
             None: if attempting to unintentionally rewrite config files 
         '''
@@ -147,24 +158,27 @@ class InputScreen(tk.Frame):
         if self.regex_validation(local_id, mod_sn, version):
             logging.info("Module info looks reasonable.")
             # Write data to ModuleTestData object 
-            mod_data.loc_id = local_id
-            mod_data.mod_sn = mod_sn
-            mod_data.version = version
+            self.set_mod_data("loc_id",local_id, mod_data)
+            self.set_mod_data("mod_sn", mod_sn, mod_data)
+            self.set_mod_data("version", version, mod_data)
             
             logging.info(f"Module {local_id} loaded at {datetime.now().strftime('%H:%M:%S')} with : {vars(mod_data)=}")
             
             # Test whether the config files exist and will be unwittingly overwritten
+            # Use os.path.expanduser whenever the path contains ~ 
             path_to_dir = os.path.expanduser(f"{home_path}/module-qc-database-tools/{local_id}")
             logging.debug(f"Looking for existence of {path_to_dir}: {os.path.isdir(path_to_dir)}")
             if not overwrite_config and os.path.isdir(path_to_dir):
                 messagebox.showerror("showerror", "Config files already exist, decide whether to overwrite or not.")
                 return
             elif overwrite_config and os.path.isdir(path_to_dir):
-                new_path = os.path.expanduser(f"{path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M')}/")
+                # make a new folder in the same directory with the date and time appended, e.g OX0001_22072025_174610
+                new_path = os.path.expanduser(f"{path_to_dir}_{datetime.now().strftime(r'%d%m%y_%H%M%S')}")
                 os.mkdir(new_path)
                 cmd = "mkdir " + new_path 
                 logging.debug(f"Run mkdir {new_path}/")
                 subprocess.run(cmd, shell=True)
+                # copy contents of old folder into new to preserve last run 
                 cmd = f"rsync -rv --stats --progress {path_to_dir}/* {new_path}"
                 time.sleep(1)
                 logging.debug(f"COPYING OLD CONFIG + RESULTS FILE AS BACKUO: Run rsync -r {path_to_dir}/* {new_path}/")
@@ -173,6 +187,7 @@ class InputScreen(tk.Frame):
                 
             logging.debug(f"Run cd {mod_data.home_path}/module-qc-database-tools")
             subprocess.run([echo ,"cd", f"{mod_data.home_path}/module-qc-database-tools"], shell=True)
+            
             logging.debug(f"Run mwdbt generate-yarr-config -sn {mod_sn} -o {local_id}")
             subprocess.run([echo, "mqdbt", "generate-yarr-config", "-sn", mod_sn, "-o", local_id], shell=True)
             logging.debug(f"cd {mod_data.home_path}")
@@ -180,10 +195,13 @@ class InputScreen(tk.Frame):
             master.destroy()    
        
     def regex_validation(self, local_id : str, mod_sn : str, version : str) -> bool:
-        """ Performs RegEx validation on the local ID and the module serial number, with the option to manually override. Also test to see if the module serial number indicates a v1.1 module or v2. 
-        # TODO: FINISH 
+        """ Performs RegEx validation on the local ID and the module serial number, with the option to manually override. Also tests to see if the module serial number suggests a v1.1 module or v2. 
         Args: 
-             
+            - local_id: Local OX### ID number, tests to match ^OX[0-9]{4}$
+            - mod_sn: Module Serial Number (full ID), tests to match ^20UPGM2[0-9]{7}$
+            - version: v1.1 (^20UPGM2211[0-9]{4}$) or v2 (^20UPGM2321[0-9]{4}$ or ^20UPGM2421[0-9]{4}$)
+        Returns:
+            - True | False : flag to indicate whether the local ID and serial number look reasonable. 
         """
         
         if re.search(r"^OX[0-9]{4}$", local_id) is None:

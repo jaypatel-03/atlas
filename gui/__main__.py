@@ -7,7 +7,6 @@ logger = logging.getLogger(__name__)
 
 
 def new_module(**kwargs):
-    
     mod_data = ModuleTestData(cfg=kwargs['cfg'], dry_run=bool(int(kwargs['dry_run'])))
     win = LoadModuleInfo(mod_data)
     win.mainloop()

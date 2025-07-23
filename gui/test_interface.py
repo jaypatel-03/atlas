@@ -139,6 +139,7 @@ class TestInterface(tk.Frame):
         
         
         def on_done(msg):
+            time.sleep(2) # wait for data to be committed
             progbar.stop()
             popup.destroy()
             messagebox.showinfo("Done", msg)
@@ -154,7 +155,7 @@ class TestInterface(tk.Frame):
         
         # TODO: implement failure protocol. 
         def task(): 
-            self.proc = subprocess.Popen(cmd, shell=True,preexec_fn=os.setsid) # This blocks the main thread 
+            self.proc = subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid) # This blocks the main thread 
             self.proc.wait()
             on_done("Finished!") # callback in main thread
         threading.Thread(target=task, daemon=True).start()

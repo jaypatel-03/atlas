@@ -10,15 +10,12 @@ TODO:
 TODO:
 - Configure icicle ports
 - Implement new test function 
-- Write unittests
+- Write unit tests
 - Verbosity flag (Move logging)
 - Failure mode - manual override:
     - Threshold scan:
-        - kill after 20 consecutive errors 
+        - kill after 20 consecutive errors - reset at mask stage + add big red flashing light 
         - manual override
-- Making another folder in same minute?
-- add flags after json 
-
 
 ## Overview + Notes
 

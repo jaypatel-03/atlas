@@ -1,6 +1,7 @@
 # ATLAS Module Electrical Testing GUI
 
-
+RTD: <https://atlas-summer-project.readthedocs.io/en/latest/>
+ 
 To add:
 - venv instructions
 
