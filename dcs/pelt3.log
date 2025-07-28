@@ -1,0 +1,59 @@
+DEBUG:root:Turning pelt3 off
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __enter__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.visa_instrument:Setting timeout to 10000
+DEBUG:icicle.visa_instrument:Setting read_termination to '\n'
+DEBUG:icicle.visa_instrument:Setting write_termination to '\n'
+DEBUG:pyvisa:Reusing ResourceManager with session 5545564
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - opening ...
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is open with session 9403870
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__enter__]: Context reference count now at 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to set...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to set...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Trying set up to 3 times...
+DEBUG:icicle.instrument:Attempt 1/3...
+DEBUG:icicle.scpi_instrument:Setting "STAT 2 0"
+DEBUG:icicle.scpi_instrument:Write returned: 9
+DEBUG:icicle.instrument:Checking lock requirements for call to query...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.scpi_instrument:Querying "STAT? 2"
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+
+DEBUG:icicle.instrument:[Errno 104] Connection reset by peer
+DEBUG:icicle.instrument:Traceback (most recent call last):
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 183, in set
+    ret = self.query(setting, *value, no_lock=True, attempts=1)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 310, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 255, in query
+    ret = helper.read(self._instrument)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/utils/setting_processors.py", line 41, in _read
+    return instrument.read().strip()
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 485, in read
+    message = self._read_raw().decode(enco)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 441, in _read_raw
+    chunk, status = self.visalib.read(self.session, size)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/highlevel.py", line 513, in read
+    data, status_code = self.sessions[session].read(count)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/tcpip.py", line 1195, in read
+    read_data = read_fun(chunk_length)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+WARNING:icicle.instrument:Failure... unknown exception...
