@@ -1,25 +1,5 @@
 from icicle.pidcontroller import PIDController
-import threading
-import time
-
-# Shared PID controller for all 4 peltiers
-p = PIDController(resource="TCPIP::localhost::19898::SOCKET")
-
-# Control pelt2 and pelt3
-pelt2 = p.channel("STATE", 2)
-pelt3 = p.channel("STATE", 3)
-
-try:
-    print("Turning off pelt2")
-    pelt2.state = False  # this should work
-    time.sleep(0.1)
-
-    print("Turning off pelt3")
-    pelt3.state = False  # this may trigger the crash
-except Exception as e:
-    print(f"Error occurred: {e}")
-
-
+import subprocess, shutil, time, threading
 
 class PeltierManager:
     def __init__(self, resource="TCPIP::localhost::19898::SOCKET"):
@@ -29,10 +9,34 @@ class PeltierManager:
     def set_state(self, channel: int, state: bool):
         with self._lock:
             pelt = self._pid.channel("TemperatureChannel", channel)
-            pelt.state = state
+            with pelt: state = pelt.state
+            
+    def read_state(self, channel: int) -> bool:
+        with self._lock:
+            pelt = self._pid.channel("TemperatureChannel", channel)
+            return pelt.state
+
+
+
+def open_tricicle(config_file):
+    print(shutil.which("pidcontroller-ui"))
+    return subprocess.Popen([shutil.which("pidcontroller-ui"), "-c", config_file, "-a"], stdin=None, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
 
 manager = PeltierManager()
+tricicle = open_tricicle("../configs/pidcontroller.toml")
 
-# Usage
-# manager.set_state(2, False)
-# manager.set_state(3, False)
+p = PIDController(resource="TCPIP::localhost::19898::SOCKET")
+
+try:
+    for j in range(1,5):
+        modules = range(1, j+1)
+        print(f"Testing with modules: {modules}")
+        # pelt = [p.channel("TemperatureChannel", i) for i in modules]
+        for i in modules:
+            print(f"Peltier {i} state: {manager.read_state(i)}")
+            manager.set_state(i, True)  # Enable the peltier
+            print(f"->{manager.read_state(i)}")  # Check if the peltier is enabled
+            
+except Exception as e:
+    print(f"Error occurred: {e}")
