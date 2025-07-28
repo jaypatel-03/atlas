@@ -14,9 +14,6 @@ from icicle.itkdcsinterlock import ITkDCSInterlock
 from icicle.pidcontroller import PIDController
 from icicle import hubercc508
 
-from influxdb_client import InfluxDBClient, Point, WritePrecision
-from influxdb_client.client.write_api import SYNCHRONOUS
-
 import logging
 
 logger = logging.getLogger(__name__)
@@ -51,7 +48,10 @@ def pelts_read(pelt) -> list:
         except ConnectionError as e:
                 logging.info(f"{e} - FAILED: failed to query pelt{i}, trying to reinitialise")
                 p = PIDController(resource = "TCPIP::localhost::19898::SOCKET")
+                time.sleep(2)
                 pelt[i] = p.channel("TemperatureChannel", i+1)
+                time.sleep(2)
+                with pelt[i]: peltier_on.append(pelt[i].state)
     return peltier_on
 
 def pelts_on_off(pelt : list, peltier_on : list, switch : bool):
@@ -72,9 +72,10 @@ def pelts_on_off(pelt : list, peltier_on : list, switch : bool):
             except ConnectionError as e:
                 logging.info(f"{e} - FAILED: failed to turn pelt{i} to {switch}, trying to reinitialise")
                 p = PIDController(resource = "TCPIP::localhost::19898::SOCKET")
+                time.sleep(2)
                 pelt[i] = p.channel("TemperatureChannel", i+1)
-    
-
+                time.sleep(2)
+                with pelt[i]: pelt[i].state = switch
 
 def log_information(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up):
     outstring=[]
@@ -110,7 +111,6 @@ def log_information(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, tem
     #outstring.append(peltiers[1].measure_voltage.value)
     #outstring.append(peltiers[1].measure_current.value)
     outstring.append(0.0) # ONLY WHILE THE REST IS COMMENTED OUT
-    outstring.append(0.0)
     #print('PELT Status', peltiers[1].status)
 
     print('HV setpoint', hvs[0].voltage, hvs[0].current)
@@ -169,73 +169,6 @@ def log_information(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, tem
         pelts_on_off(pelt, peltier_on, False)
     return temp, interlock_condition, mini_ramp_up, cause
 
-def log_interlock_condition_information(fl, ntcs, lvs, peltiers, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, temp_85, cause):
-    outstring = []
-    kill_processes()
-    ramp_down_output = safe_shutdown(cause, humi, temp, pelt, base)
-    outstring.extend(ramp_down_output)
-    for i in outstring:
-        if i == '\n':
-            fl.write('\n')
-        else:
-            fl.write(str(i)+', ')
-    for j in range(1,5):
-        outstring = []
-        outstring_time=datetime.datetime.utcfromtimestamp(time.time())
-        outstring.append(outstring_time)
-        print('NTC ', ntcs[1].value)
-        outstring.append(ntcs[1].value)
-        print('HUMI ', humidity := humi.value)
-        outstring.append(humidity)
-        print('TEMP', chuck_temp[1].value)
-        outstring.append(chuck_temp[1].value)
-        if humidity <= 0.00001:
-            dewpoint = -100.0
-        else:
-            try:
-                dewpoint = 243.04*(math.log(humidity/100)+17.625*temp_85.value/(243.04+temp_85.value))/(17.625-math.log(humidity/100)-17.625*temp_85.value/(243.04+temp_85.value))
-            except Exception as e:
-                print(f'Exception: {e} with humi: {humidity} temp: {chuck_temp[1].value}')
-        print('DEWPOINT ', dewpoint)
-        outstring.append(dewpoint)
-
-        print('LV setpoint', lvs[1].voltage, lvs[1].current)
-        print('LV actual', lvs[1].measure_voltage.value, lvs[1].measure_current.value)
-        outstring.append(lvs[1].measure_voltage.value)
-        outstring.append(lvs[1].measure_current.value)
-        print('LV Status', lvs[1].status)
-
-        #print('PELT setpoint', peltiers[1].voltage, peltiers[1].current)
-        #print('PELT actual', peltiers[1].measure_voltage.value, peltiers[1].measure_current.value)
-        #outstring.append(peltiers[1].measure_voltage.value)
-        #outstring.append(peltiers[1].measure_current.value)
-        outstring.append(0.0) # ONLY WHILE THE REST IS COMMENTED OUT
-        outstring.append(0.0)
-        #print('PELT Status', peltiers[1].status)
-        
-        print('HV setpoint', hvs[0].voltage, hvs[0].current)
-        print('HV State', hvs[0].state)
-        if int(hvs[0].state) == 1:
-            print('HV actual', hvs[0].measure_voltage.value, hvs[0].measure_current.value)
-            outstring.append(hvs[0].measure_voltage.value)
-            outstring.append(hvs[0].measure_current.value)
-        else:
-            print('HV off, will not read voltage and current')
-            outstring.append(0.0)
-            outstring.append(0.0)
-        print('HV Status', hvs[0].state)
-        for i in outstring[:-1]:
-            fl.write(str(i)+', ')
-        fl.write(str(outstring[-1])+'\n')
-        dictionary={
-	        "measurement":'4-module testbox software',
-	        "tags":{'location':'OPMD-cleanroom-main'},
-#time, NTC, HUMI, TEMP, DEWPOINT, LV VOLT, LV CURR, PELT VOLT, PELT CURR, HV VOLT, HV CURR
-	        "fields": {k: v for k, v in zip(HEADER[1:], outstring[1:])},
-	        "time": outstring[0]
-        }
-        #write_to_db(write_api, dictionary) #JAY
-
 def save_ramp_down(ramp_down_data, humi, temp, hv, temp_85):
     print('HV ramp down')
     ramp_down_data.append(datetime.datetime.utcfromtimestamp(time.time()))
@@ -284,7 +217,6 @@ def kill_processes():
         time.sleep(0.1)
         if poll_process(proc):
             kill_process(proc)
-
 
 def signal_handler(sig, frame):
     # If we press ctr+c
@@ -475,8 +407,6 @@ def main_with_instruments(ntcs, lvs, peltiers, hvs, humi, chuck_temp, chiller, p
         if interlock_condition:
             with base: base.state = True
             with base: base.temperature = 20
-            log_interlock_condition_information(fl, ntcs, lvs, peltiers, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, temp_85, cause)
-				    
 
     fl.close()
 
@@ -511,34 +441,6 @@ def get_process_output(popen):
 
 def open_module_qc_tools(tool=sys.argv[1]):
     return subprocess.Popen([*BASE_COMMAND_XTERM, shutil.which(tool), *sys.argv[2:]], stdin=None, stdout=None, stderr=None)
-
-def connect_db(url,
-               token='REDACTED',
-               org=''):
-    client = InfluxDBClient(url=url, token='')
-    write_api = client.write_api(write_options=SYNCHRONOUS)
-    if client.ping():
-        return write_api
-    else:
-        return False
-
-def connect_to_db(endpoint):
-    write_api = connect_db(endpoint)
-    if write_api:
-        print('\nConnected to database, logging locally, and to influxDB if switched on!\n')
-        return write_api
-    else:
-        print('\nCould not connect to database, only logging locally!\n')
-        return None
-
-def write_to_db(write_api, dictionary):
-    try:
-        org=''
-        write_api.write('mydb', org, dictionary)
-        return True
-    except Exception as e:
-        print('[ERROR] Error writing to db: ' + str(e))
-        return False
 
 if __name__ == '__main__':
     main()

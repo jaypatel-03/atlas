@@ -1,0 +1,1143 @@
+Target temperature increased due to chuck_temp > dewpoint + 5
+THIS IS THE LID VALUE 4.98
+INSIDE MINI RAMP UP TEMP -12
+INSIDE RAMP UP
+WARNING:icicle.instrument:Failure... unknown exception...
+Traceback (most recent call last):
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 539, in <module>
+    main()
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 395, in main
+    main_with_instruments(ntcs, lvs, peltiers, hvs, humi, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, lid, temp_85)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 449, in main_with_instruments
+    interlock_condition, cause = ramp_down(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, HEADER, write_api, lid, temp_85, mini_ramp_up, min_temp)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 341, in ramp_down
+    interlock_condition, cause = ramp_up(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp - 5, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, HEADER, write_api, lid, temp_85, mini_ramp_up, temp) #Last temp is the new target temperature (increased by 5 through the mini ramp up condition and set to level in the temp - 5)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 286, in ramp_up
+    with pelt3: pelt3.state = False
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 143, in state
+    self._instrument.set_channel("STATE", self.channel, value)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 240, in set_channel
+    return self.set(f"{setting}", channel - 1, *value, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 183, in set
+    ret = self.query(setting, *value, no_lock=True, attempts=1)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 310, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 255, in query
+    ret = helper.read(self._instrument)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/utils/setting_processors.py", line 41, in _read
+    return instrument.read().strip()
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 485, in read
+    message = self._read_raw().decode(enco)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 441, in _read_raw
+    chunk, status = self.visalib.read(self.session, size)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/highlevel.py", line 513, in read
+    data, status_code = self.sessions[session].read(count)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/tcpip.py", line 1195, in read
+    read_data = read_fun(chunk_length)
+ConnectionResetError: [Errno 104] Connection reset by peer
+**********************************************************************************************************************************************************************************************************************************
+INSIDE RAMP DOWN
+Failure... unknown exception...
+Traceback (most recent call last):
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 539, in <module>
+    main()
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 395, in main
+    main_with_instruments(ntcs, lvs, peltiers, hvs, humi, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, lid, temp_85)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 449, in main_with_instruments
+    interlock_condition, cause = ramp_down(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, HEADER, write_api, lid, temp_85, mini_ramp_up, min_temp)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 318, in ramp_down
+    with pelt2: pelt2.state = True
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 143, in state
+    self._instrument.set_channel("STATE", self.channel, value)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 240, in set_channel
+    return self.set(f"{setting}", channel - 1, *value, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 183, in set
+    ret = self.query(setting, *value, no_lock=True, attempts=1)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 310, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 259, in query
+    ret = setting_["parser"](ret, setting_)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/utils/parser_utils.py", line 11, in numeric_bool
+    return bool(int(value))
+ValueError: invalid literal for int() with base 10: 'ERR_PY_EXCEPTION'
+**********************************************************************************************************************************************************************************************************************************
+Failure... unknown exception...
+Traceback (most recent call last):
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 539, in <module>
+    main()
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 395, in main
+    main_with_instruments(ntcs, lvs, peltiers, hvs, humi, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, lid, temp_85)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 449, in main_with_instruments
+    interlock_condition, cause = ramp_down(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, HEADER, write_api, lid, temp_85, mini_ramp_up, min_temp)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 320, in ramp_down
+    with pelt3: pelt3.state = True
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 143, in state
+    self._instrument.set_channel("STATE", self.channel, value)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 240, in set_channel
+    return self.set(f"{setting}", channel - 1, *value, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 183, in set
+    ret = self.query(setting, *value, no_lock=True, attempts=1)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 310, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 259, in query
+    ret = setting_["parser"](ret, setting_)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/utils/parser_utils.py", line 11, in numeric_bool
+    return bool(int(value))
+ValueError: invalid literal for int() with base 10: 'ERR_PY_EXCEPTION'
+**********************************************************************************************************************************************************************************************************************************
+
+
+THIS IS THE LID VALUE 4.98
+DEBUG:icicle.instrument:Checking lock requirements for call to query...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to query...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----9898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----9898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Trying query up to 3 times...
+DEBUG:icicle.instrument:Attempt 1/3...
+DEBUG:icicle.scpi_instrument:Querying "LID:MEAS:VOLT?"
+DEBUG:pyvisa:TCPIP0::localhost::9898::SOCKET - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+DEBUG:icicle.scpi_instrument:Query returned: 4.98
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to query...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to query...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----9898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----9898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Trying query up to 3 times...
+DEBUG:icicle.instrument:Attempt 1/3...
+DEBUG:icicle.scpi_instrument:Querying "PT100:MEAS:TEMP? 1"
+DEBUG:pyvisa:TCPIP0::localhost::9898::SOCKET - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+DEBUG:icicle.scpi_instrument:Query returned: 15.539
+DEBUG:icicle.instrument:Lock released /\
+INSIDE RAMP UP
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __enter__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.visa_instrument:Setting timeout to 10000
+DEBUG:icicle.visa_instrument:Setting read_termination to '\n'
+DEBUG:icicle.visa_instrument:Setting write_termination to '\n'
+DEBUG:pyvisa:Reusing ResourceManager with session 5545564
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - opening ...
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is open with session 3708942
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__enter__]: Context reference count now at 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to query...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to query...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Trying query up to 3 times...
+DEBUG:icicle.instrument:Attempt 1/3...
+DEBUG:icicle.scpi_instrument:Querying "STAT? 0"
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+DEBUG:icicle.scpi_instrument:Query returned: 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__exit__]: Context reference count now at 0
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - closing
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is closed
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __enter__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.visa_instrument:Setting timeout to 10000
+DEBUG:icicle.visa_instrument:Setting read_termination to '\n'
+DEBUG:icicle.visa_instrument:Setting write_termination to '\n'
+DEBUG:pyvisa:Reusing ResourceManager with session 5545564
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - opening ...
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is open with session 3869817
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__enter__]: Context reference count now at 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to query...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to query...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Trying query up to 3 times...
+DEBUG:icicle.instrument:Attempt 1/3...
+DEBUG:icicle.scpi_instrument:Querying "STAT? 1"
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+DEBUG:icicle.scpi_instrument:Query returned: 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__exit__]: Context reference count now at 0
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - closing
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is closed
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __enter__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.visa_instrument:Setting timeout to 10000
+DEBUG:icicle.visa_instrument:Setting read_termination to '\n'
+DEBUG:icicle.visa_instrument:Setting write_termination to '\n'
+DEBUG:pyvisa:Reusing ResourceManager with session 5545564
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - opening ...
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is open with session 4515498
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__enter__]: Context reference count now at 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to query...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to query...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Trying query up to 3 times...
+DEBUG:icicle.instrument:Attempt 1/3...
+DEBUG:icicle.scpi_instrument:Querying "STAT? 2"
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+DEBUG:icicle.scpi_instrument:Query returned: 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__exit__]: Context reference count now at 0
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - closing
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is closed
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __enter__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.visa_instrument:Setting timeout to 10000
+DEBUG:icicle.visa_instrument:Setting read_termination to '\n'
+DEBUG:icicle.visa_instrument:Setting write_termination to '\n'
+DEBUG:pyvisa:Reusing ResourceManager with session 5545564
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - opening ...
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is open with session 6541026
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__enter__]: Context reference count now at 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to query...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to query...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Trying query up to 3 times...
+DEBUG:icicle.instrument:Attempt 1/3...
+DEBUG:icicle.scpi_instrument:Querying "STAT? 3"
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+DEBUG:icicle.scpi_instrument:Query returned: 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__exit__]: Context reference count now at 0
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - closing
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is closed
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:root:Turning pelt1 off
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __enter__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.visa_instrument:Setting timeout to 10000
+DEBUG:icicle.visa_instrument:Setting read_termination to '\n'
+DEBUG:icicle.visa_instrument:Setting write_termination to '\n'
+DEBUG:pyvisa:Reusing ResourceManager with session 5545564
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - opening ...
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is open with session 7188755
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__enter__]: Context reference count now at 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to set...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to set...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Trying set up to 3 times...
+DEBUG:icicle.instrument:Attempt 1/3...
+DEBUG:icicle.scpi_instrument:Setting "STAT 0 0"
+DEBUG:icicle.scpi_instrument:Write returned: 9
+DEBUG:icicle.instrument:Checking lock requirements for call to query...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.scpi_instrument:Querying "STAT? 0"
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+DEBUG:icicle.scpi_instrument:Query returned: 1
+DEBUG:icicle.scpi_instrument:Read-back of "STAT 0 0" returned: True
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__exit__]: Context reference count now at 0
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - closing
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is closed
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:root:Turning pelt2 off
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __enter__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.visa_instrument:Setting timeout to 10000
+DEBUG:icicle.visa_instrument:Setting read_termination to '\n'
+DEBUG:icicle.visa_instrument:Setting write_termination to '\n'
+DEBUG:pyvisa:Reusing ResourceManager with session 5545564
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - opening ...
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is open with session 9968237
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__enter__]: Context reference count now at 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to set...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to set...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Trying set up to 3 times...
+DEBUG:icicle.instrument:Attempt 1/3...
+DEBUG:icicle.scpi_instrument:Setting "STAT 1 0"
+DEBUG:icicle.scpi_instrument:Write returned: 9
+DEBUG:icicle.instrument:Checking lock requirements for call to query...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.scpi_instrument:Querying "STAT? 1"
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+DEBUG:icicle.scpi_instrument:Query returned: 1
+DEBUG:icicle.scpi_instrument:Read-back of "STAT 1 0" returned: True
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__exit__]: Context reference count now at 0
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - closing
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is closed
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:root:Turning pelt3 off
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __enter__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.visa_instrument:Setting timeout to 10000
+DEBUG:icicle.visa_instrument:Setting read_termination to '\n'
+DEBUG:icicle.visa_instrument:Setting write_termination to '\n'
+DEBUG:pyvisa:Reusing ResourceManager with session 5545564
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - opening ...
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is open with session 9403870
+DEBUG:icicle.instrument:Checking lock requirements for call to __enter__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__enter__]: Context reference count now at 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to set...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to set...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Trying set up to 3 times...
+DEBUG:icicle.instrument:Attempt 1/3...
+DEBUG:icicle.scpi_instrument:Setting "STAT 2 0"
+DEBUG:icicle.scpi_instrument:Write returned: 9
+DEBUG:icicle.instrument:Checking lock requirements for call to query...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.scpi_instrument:Querying "STAT? 2"
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+DEBUG:icicle.instrument:[Errno 104] Connection reset by peer
+DEBUG:icicle.instrument:Traceback (most recent call last):
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 183, in set
+    ret = self.query(setting, *value, no_lock=True, attempts=1)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 310, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 255, in query
+    ret = helper.read(self._instrument)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/utils/setting_processors.py", line 41, in _read
+    return instrument.read().strip()
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 485, in read
+    message = self._read_raw().decode(enco)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 441, in _read_raw
+    chunk, status = self.visalib.read(self.session, size)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/highlevel.py", line 513, in read
+    data, status_code = self.sessions[session].read(count)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/tcpip.py", line 1195, in read
+    read_data = read_fun(chunk_length)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+WARNING:icicle.instrument:Failure... unknown exception...
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----19898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----19898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[PIDController(TCPIP::localhost::19898::SOCKET).__exit__]: Context reference count now at 0
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - closing
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - is closed
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----9898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----9898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[ITkDCSInterlock(TCPIP::localhost::9898::SOCKET).__exit__]: Context reference count now at 8
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----9898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----9898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[ITkDCSInterlock(TCPIP::localhost::9898::SOCKET).__exit__]: Context reference count now at 7
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----9898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----9898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[ITkDCSInterlock(TCPIP::localhost::9898::SOCKET).__exit__]: Context reference count now at 6
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----9898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----9898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[ITkDCSInterlock(TCPIP::localhost::9898::SOCKET).__exit__]: Context reference count now at 5
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /dev/ttyACM1
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/dev/ttyACM1' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[HMP4040(ASRL/dev/ttyHMP4040a::INSTR).__exit__]: Context reference count now at 3
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /dev/ttyACM1
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/dev/ttyACM1' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[HMP4040(ASRL/dev/ttyHMP4040a::INSTR).__exit__]: Context reference count now at 2
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /dev/ttyACM1
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/dev/ttyACM1' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[HMP4040(ASRL/dev/ttyHMP4040a::INSTR).__exit__]: Context reference count now at 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /dev/ttyACM1
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/dev/ttyACM1' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[HMP4040(ASRL/dev/ttyHMP4040a::INSTR).__exit__]: Context reference count now at 0
+DEBUG:pyvisa:ASRL/dev/ttyHMP4040a::INSTR - closing
+DEBUG:pyvisa:ASRL/dev/ttyHMP4040a::INSTR - is closed
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /dev/ttyACM2
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/dev/ttyACM2' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[HMP4040(ASRL/dev/ttyHMP4040b::INSTR).__exit__]: Context reference count now at 3
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /dev/ttyACM2
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/dev/ttyACM2' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[HMP4040(ASRL/dev/ttyHMP4040b::INSTR).__exit__]: Context reference count now at 2
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /dev/ttyACM2
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/dev/ttyACM2' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[HMP4040(ASRL/dev/ttyHMP4040b::INSTR).__exit__]: Context reference count now at 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /dev/ttyACM2
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/dev/ttyACM2' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[HMP4040(ASRL/dev/ttyHMP4040b::INSTR).__exit__]: Context reference count now at 0
+DEBUG:pyvisa:ASRL/dev/ttyHMP4040b::INSTR - closing
+DEBUG:pyvisa:ASRL/dev/ttyHMP4040b::INSTR - is closed
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /dev/ttyUSB0
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/dev/ttyUSB0' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[Keithley2410(ASRL/dev/ttyUSB0::INSTR).__exit__]: Context reference count now at 0
+DEBUG:pyvisa:ASRL/dev/ttyUSB0::INSTR - closing
+DEBUG:pyvisa:ASRL/dev/ttyUSB0::INSTR - is closed
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----9898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----9898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[ITkDCSInterlock(TCPIP::localhost::9898::SOCKET).__exit__]: Context reference count now at 4
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----9898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----9898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[ITkDCSInterlock(TCPIP::localhost::9898::SOCKET).__exit__]: Context reference count now at 3
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----9898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----9898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[ITkDCSInterlock(TCPIP::localhost::9898::SOCKET).__exit__]: Context reference count now at 2
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----9898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----9898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[ITkDCSInterlock(TCPIP::localhost::9898::SOCKET).__exit__]: Context reference count now at 1
+DEBUG:icicle.instrument:Lock released /\
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Attempting to acquire lock for call to __exit__...
+DEBUG:icicle.instrument:Acquire flock() on /tmp/icicle/TCPIP----localhost----9898----SOCKET
+DEBUG:icicle.instrument:Opened file as: <_io.TextIOWrapper name='/tmp/icicle/TCPIP----localhost----9898----SOCKET' mode='w' encoding='UTF-8'>
+DEBUG:icicle.instrument:Lock acquired \/
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:Checking lock requirements for call to __exit__...
+DEBUG:icicle.instrument:Lock bypassed...
+DEBUG:icicle.instrument:[ITkDCSInterlock(TCPIP::localhost::9898::SOCKET).__exit__]: Context reference count now at 0
+DEBUG:pyvisa:TCPIP0::localhost::9898::SOCKET - closing
+DEBUG:pyvisa:TCPIP0::localhost::9898::SOCKET - is closed
+DEBUG:icicle.instrument:Lock released /\
+Traceback (most recent call last):
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 568, in <module>
+    main()
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 424, in main
+    main_with_instruments(ntcs, lvs, peltiers, hvs, humi, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, lid, temp_85)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 480, in main_with_instruments
+    interlock_condition, cause = ramp_up(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, HEADER, write_api, lid, temp_85, mini_ramp_up, max_temp)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 296, in ramp_up
+    with pelt3: pelt3.state = False
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 143, in state
+    self._instrument.set_channel("STATE", self.channel, value)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 240, in set_channel
+    return self.set(f"{setting}", channel - 1, *value, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 183, in set
+    ret = self.query(setting, *value, no_lock=True, attempts=1)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 310, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 255, in query
+    ret = helper.read(self._instrument)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/utils/setting_processors.py", line 41, in _read
+    return instrument.read().strip()
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 485, in read
+    message = self._read_raw().decode(enco)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 441, in _read_raw
+    chunk, status = self.visalib.read(self.session, size)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/highlevel.py", line 513, in read
+    data, status_code = self.sessions[session].read(count)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/tcpip.py", line 1195, in read
+    read_data = read_fun(chunk_length)
+ConnectionResetError: [Errno 104] Connection reset by peer
+DEBUG:pyvisa:Closing ResourceManager (session: 5545564)
+DEBUG:pyvisa:TCPIP0::localhost::19898::SOCKET - closing
+DEBUG:pyvisa:ASRL/dev/ttyUSB0::INSTR - closing
+DEBUG:pyvisa:TCPIP0::localhost::9898::SOCKET - closing
+DEBUG:pyvisa:ASRL/dev/ttyHMP4040a::INSTR - closing
+DEBUG:pyvisa:ASRL/dev/ttyHMP4040b::INSTR - closing
+*************************************************************************************************
+THIS IS THE LID VALUE 4.98
+INFO:root:Ramp down: Set pelt1 temperature to 16
+INFO:root:Ramp down: Set pelt2 temperature to 16
+INFO:root:Ramp down: Set pelt3 temperature to 16
+INFO:root:Ramp down: Set pelt4 temperature to 16
+INFO:root:INSIDE RAMP UP
+INFO:root:Ramp up: pelt1 is True
+INFO:root:Ramp up: pelt2 is True
+INFO:root:Ramp up: pelt3 is True
+INFO:root:Ramp up: pelt4 is True
+INFO:root:Ramp up: Turning pelt1 off
+INFO:root:Ramp up: Turning pelt2 off
+INFO:root:Ramp up: Turning pelt3 off
+WARNING:icicle.instrument:Failure... unknown exception...
+INFO:root:Failed to turn pelt4 off, retrying
+WARNING:icicle.instrument:Failure... unknown exception...
+Traceback (most recent call last):
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 320, in ramp_up
+    with pelt4: pelt4.state = False
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 143, in state
+    self._instrument.set_channel("STATE", self.channel, value)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 240, in set_channel
+    return self.set(f"{setting}", channel - 1, *value, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 161, in set
+    rval = helper.send(self._instrument, command)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/utils/setting_processors.py", line 38, in _send
+    return instrument.write(command)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 196, in write
+    count = self.write_raw(message.encode(enco))
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 156, in write_raw
+    return self.visalib.write(self.session, message)[0]
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/highlevel.py", line 544, in write
+    written, status_code = self.sessions[session].write(data)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/tcpip.py", line 1247, in write
+    size = self.interface.send(block)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 593, in <module>
+    main()
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 449, in main
+    main_with_instruments(ntcs, lvs, peltiers, hvs, humi, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, lid, temp_85)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 505, in main_with_instruments
+    interlock_condition, cause = ramp_up(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, HEADER, write_api, lid, temp_85, mini_ramp_up, max_temp)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 325, in ramp_up
+    with pelt4: pelt4.state = False
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 143, in state
+    self._instrument.set_channel("STATE", self.channel, value)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/pidcontroller.py", line 240, in set_channel
+    return self.set(f"{setting}", channel - 1, *value, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/scpi_instrument.py", line 161, in set
+    rval = helper.send(self._instrument, command)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/icicle/utils/setting_processors.py", line 38, in _send
+    return instrument.write(command)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 196, in write
+    count = self.write_raw(message.encode(enco))
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 156, in write_raw
+    return self.visalib.write(self.session, message)[0]
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/highlevel.py", line 544, in write
+    written, status_code = self.sessions[session].write(data)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/tcpip.py", line 1247, in write
+    size = self.interface.send(block)
+ConnectionRefusedError: [Errno 111] Connection refused
+****************************************************************************************
+INSIDE RAMP DOWN
+INFO:root:Setting STATE to channel 0
+INFO:root:Setting STATE to channel 1
+INFO:root:Setting STATE to channel 2
+INFO:root:Setting STATE to channel 3
+INFO:root:Ramp down: Turn pelt1 on
+INFO:root:Setting STATE to value (True,)
+INFO:root:Ramp down: Turn pelt2 on
+INFO:root:Setting STATE to value (True,)
+INFO:root:Ramp down: Turn pelt3 on
+INFO:root:Setting STATE to value (True,)
+INFO:root:Ramp down: Turn pelt4 on
+INFO:root:Setting STATE to value (True,)
+INFO:root:Setting TEMPERATURE_SETPOINT to value (20,)
+INFO:root:Ramp down: Set pelt1 temperature to 20
+INFO:root:Setting TEMPERATURE_SETPOINT to value (20,)
+INFO:root:Ramp down: Set pelt2 temperature to 20
+INFO:root:Setting TEMPERATURE_SETPOINT to value (20,)
+INFO:root:Ramp down: Set pelt3 temperature to 20
+INFO:root:Setting TEMPERATURE_SETPOINT to value (20,)
+INFO:root:Ramp down: Set pelt4 temperature to 20
+INFO:root:Setting TEMPERATURE_SETPOINT to value (19,)
+INFO:root:Ramp down: Set pelt1 temperature to 19
+INFO:root:Setting TEMPERATURE_SETPOINT to value (19,)
+INFO:root:Ramp down: Set pelt2 temperature to 19
+INFO:root:Setting TEMPERATURE_SETPOINT to value (19,)
+INFO:root:Ramp down: Set pelt3 temperature to 19
+INFO:root:Setting TEMPERATURE_SETPOINT to value (19,)
+INFO:root:Ramp down: Set pelt4 temperature to 19
+INFO:root:Setting TEMPERATURE_SETPOINT to value (18,)
+INFO:root:Ramp down: Set pelt1 temperature to 18
+INFO:root:Setting TEMPERATURE_SETPOINT to value (18,)
+INFO:root:Ramp down: Set pelt2 temperature to 18
+INFO:root:Setting TEMPERATURE_SETPOINT to value (18,)
+INFO:root:Ramp down: Set pelt3 temperature to 18
+INFO:root:Setting TEMPERATURE_SETPOINT to value (18,)
+INFO:root:Ramp down: Set pelt4 temperature to 18
+INFO:root:Setting TEMPERATURE_SETPOINT to value (17,)
+INFO:root:Ramp down: Set pelt1 temperature to 17
+INFO:root:Setting TEMPERATURE_SETPOINT to value (17,)
+INFO:root:Ramp down: Set pelt2 temperature to 17
+INFO:root:Setting TEMPERATURE_SETPOINT to value (17,)
+INFO:root:Ramp down: Set pelt3 temperature to 17
+INFO:root:Setting TEMPERATURE_SETPOINT to value (17,)
+INFO:root:Ramp down: Set pelt4 temperature to 17
+INFO:root:Setting TEMPERATURE_SETPOINT to value (16,)
+INFO:root:Ramp down: Set pelt1 temperature to 16
+INFO:root:Setting TEMPERATURE_SETPOINT to value (16,)
+INFO:root:Ramp down: Set pelt2 temperature to 16
+INFO:root:Setting TEMPERATURE_SETPOINT to value (16,)
+INFO:root:Ramp down: Set pelt3 temperature to 16
+INFO:root:Setting TEMPERATURE_SETPOINT to value (16,)
+INFO:root:Ramp down: Set pelt4 temperature to 16
+INFO:root:INSIDE RAMP UP
+INFO:root:Setting STATE to channel 0
+INFO:root:Ramp up: pelt1 is True
+INFO:root:Setting STATE to channel 1
+INFO:root:Ramp up: pelt2 is True
+INFO:root:Setting STATE to channel 2
+INFO:root:Ramp up: pelt3 is True
+INFO:root:Setting STATE to channel 3
+INFO:root:Ramp up: pelt4 is True
+INFO:root:Ramp up: Turning pelt1 off
+INFO:root:Setting STATE to value (False,)
+INFO:root:Ramp up: Turning pelt2 off
+INFO:root:Setting STATE to value (False,)
+INFO:root:Setting STATE to value (False,)
+INFO:root:Ramp up: Turning pelt3 off
+INFO:root:Setting STATE to value (False,)
+INFO:root:Setting STATE to value (False,)
+INFO:root:Failed to turn pelt4 off, retrying
+INFO:root:Setting STATE to value (False,)
+INFO:root:Setting STATE to value (False,)
+WARNING:icicle.instrument:Failure... unknown exception...
+Traceback (most recent call last):
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 321, in ramp_up
+    pelt4.state = False
+  File "/home/opmd/Module_QC/icicle/icicle/pidcontroller.py", line 146, in state
+    self._instrument.set_channel("STATE", self.channel, value)
+  File "/home/opmd/Module_QC/icicle/icicle/pidcontroller.py", line 244, in set_channel
+    return self.set(f"{setting}", channel - 1, *value, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 302, in wrapper
+    raise RuntimeError(
+RuntimeError: Function set on instrument PIDController requires active connection - please make sure to call __enter__() via with ...: or similar.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 585, in <module>
+    main()
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 441, in main
+    main_with_instruments(ntcs, lvs, peltiers, hvs, humi, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, lid, temp_85)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 497, in main_with_instruments
+    interlock_condition, cause = ramp_up(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, HEADER, write_api, lid, temp_85, mini_ramp_up, max_temp)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 326, in ramp_up
+    with pelt4: pelt4.state = False
+  File "/home/opmd/Module_QC/icicle/icicle/pidcontroller.py", line 146, in state
+    self._instrument.set_channel("STATE", self.channel, value)
+  File "/home/opmd/Module_QC/icicle/icicle/pidcontroller.py", line 244, in set_channel
+    return self.set(f"{setting}", channel - 1, *value, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/scpi_instrument.py", line 183, in set
+    ret = self.query(setting, *value, no_lock=True, attempts=1)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 310, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/scpi_instrument.py", line 259, in query
+    ret = setting_["parser"](ret, setting_)
+  File "/home/opmd/Module_QC/icicle/icicle/utils/parser_utils.py", line 11, in numeric_bool
+    return bool(int(value))
+ValueError: invalid literal for int() with base 10: 'ERR_COMM_IGN'
+*********************************************************************
+INSIDE RAMP DOWN
+INFO:root:Querying STATE on channel 0
+INFO:root:Querying STATE on channel 1
+INFO:root:Querying STATE on channel 2
+INFO:root:Querying STATE on channel 3
+INFO:root:Ramp down: Turn pelt1 on
+INFO:root:Setting STATE to value (True,)
+INFO:root:Ramp down: Turn pelt2 on
+INFO:root:Setting STATE to value (True,)
+INFO:root:Ramp down: Turn pelt3 on
+INFO:root:Setting STATE to value (True,)
+INFO:root:Ramp down: Turn pelt4 on
+INFO:root:Setting STATE to value (True,)
+INFO:root:Setting TEMPERATURE_SETPOINT to value (22,)
+WARNING:icicle.instrument:Failure... unknown exception...
+Traceback (most recent call last):
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 585, in <module>
+    main()
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 441, in main
+    main_with_instruments(ntcs, lvs, peltiers, hvs, humi, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, lid, temp_85)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 499, in main_with_instruments
+    interlock_condition, cause = ramp_down(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, HEADER, write_api, lid, temp_85, mini_ramp_up, 20)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 367, in ramp_down
+    with pelt1: pelt1.temperature = temp
+  File "/home/opmd/Module_QC/icicle/icicle/pidcontroller.py", line 154, in temperature
+    self._instrument.set_channel("TEMPERATURE_SETPOINT", self.channel, value)
+  File "/home/opmd/Module_QC/icicle/icicle/pidcontroller.py", line 244, in set_channel
+    return self.set(f"{setting}", channel - 1, *value, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/scpi_instrument.py", line 183, in set
+    ret = self.query(setting, *value, no_lock=True, attempts=1)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 310, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/scpi_instrument.py", line 255, in query
+    ret = helper.read(self._instrument)
+  File "/home/opmd/Module_QC/icicle/icicle/utils/setting_processors.py", line 41, in _read
+    return instrument.read().strip()
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 485, in read
+    message = self._read_raw().decode(enco)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 441, in _read_raw
+    chunk, status = self.visalib.read(self.session, size)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/highlevel.py", line 513, in read
+    data, status_code = self.sessions[session].read(count)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/tcpip.py", line 1195, in read
+    read_data = read_fun(chunk_length)
+ConnectionResetError: [Errno 104] Connection reset by peer
+************************************************************************************
+THIS IS THE LID VALUE 4.98
+INFO:icicle.scpi_instrument:Querying "LID:MEAS:VOLT?"
+INFO:icicle.scpi_instrument:Query returned: 4.98
+INFO:icicle.scpi_instrument:Querying "PT100:MEAS:TEMP? 1"
+INFO:icicle.scpi_instrument:Query returned: 15.372
+INFO:root:INSIDE RAMP UP
+INFO:root:Querying STATE on channel 0
+INFO:icicle.scpi_instrument:Querying "STAT? 0"
+INFO:icicle.scpi_instrument:Query returned: 1
+INFO:root:Ramp up: pelt1 is True
+INFO:root:Querying STATE on channel 1
+INFO:icicle.scpi_instrument:Querying "STAT? 1"
+INFO:icicle.scpi_instrument:Query returned: 1
+INFO:root:Ramp up: pelt2 is True
+INFO:root:Querying STATE on channel 2
+INFO:icicle.scpi_instrument:Querying "STAT? 2"
+INFO:icicle.scpi_instrument:Query returned: 1
+INFO:root:Ramp up: pelt3 is True
+INFO:root:Querying STATE on channel 3
+INFO:icicle.scpi_instrument:Querying "STAT? 3"
+INFO:icicle.scpi_instrument:Query returned: 1
+INFO:root:Ramp up: pelt4 is True
+INFO:root:Ramp up: Turning pelt1 off
+INFO:root:Setting STATE to value (False,)
+INFO:icicle.scpi_instrument:Setting "STAT 0 0"
+INFO:icicle.scpi_instrument:Write returned: 9
+INFO:icicle.scpi_instrument:Querying "STAT? 0"
+INFO:icicle.scpi_instrument:Query returned: 1
+INFO:icicle.scpi_instrument:Read-back of "STAT 0 0" returned: True
+INFO:root:Ramp up: Turning pelt2 off
+INFO:root:Setting STATE to value (False,)
+INFO:icicle.scpi_instrument:Setting "STAT 1 0"
+INFO:icicle.scpi_instrument:Write returned: 9
+INFO:icicle.scpi_instrument:Querying "STAT? 1"
+INFO:icicle.scpi_instrument:Query returned: 1
+INFO:icicle.scpi_instrument:Read-back of "STAT 1 0" returned: True
+INFO:root:Ramp up: Turning pelt3 off
+INFO:root:Setting STATE to value (False,)
+INFO:icicle.scpi_instrument:Setting "STAT 2 0"
+WARNING:icicle.instrument:Failure... unknown exception...
+INFO:root:Ramp up: Failed to turn pelt3 off, retrying
+INFO:root:Setting STATE to value (False,)
+INFO:icicle.scpi_instrument:Setting "STAT 2 0"
+WARNING:icicle.instrument:Failure... unknown exception...
+Traceback (most recent call last):
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 311, in ramp_up
+    with pelt3: pelt3.state = False
+  File "/home/opmd/Module_QC/icicle/icicle/pidcontroller.py", line 146, in state
+    self._instrument.set_channel("STATE", self.channel, value)
+  File "/home/opmd/Module_QC/icicle/icicle/pidcontroller.py", line 244, in set_channel
+    return self.set(f"{setting}", channel - 1, *value, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/scpi_instrument.py", line 161, in set
+    rval = helper.send(self._instrument, command)
+  File "/home/opmd/Module_QC/icicle/icicle/utils/setting_processors.py", line 38, in _send
+    return instrument.write(command)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 196, in write
+    count = self.write_raw(message.encode(enco))
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 156, in write_raw
+    return self.visalib.write(self.session, message)[0]
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/highlevel.py", line 544, in write
+    written, status_code = self.sessions[session].write(data)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/tcpip.py", line 1247, in write
+    size = self.interface.send(block)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 586, in <module>
+    main()
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 442, in main
+    main_with_instruments(ntcs, lvs, peltiers, hvs, humi, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, lid, temp_85)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 498, in main_with_instruments
+    interlock_condition, cause = ramp_up(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, temps, chiller, pelt1, pelt2, pelt3, pelt4, base, HEADER, write_api, lid, temp_85, mini_ramp_up, max_temp)
+  File "/home/opmd/Module_QC/tcswinterlock/tcswinterlock.py", line 316, in ramp_up
+    with pelt3: pelt3.state = False
+  File "/home/opmd/Module_QC/icicle/icicle/pidcontroller.py", line 146, in state
+    self._instrument.set_channel("STATE", self.channel, value)
+  File "/home/opmd/Module_QC/icicle/icicle/pidcontroller.py", line 244, in set_channel
+    return self.set(f"{setting}", channel - 1, *value, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 257, in wrapper
+    rval = function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/instrument.py", line 321, in wrapper
+    return function(self, *args, **kwargs)
+  File "/home/opmd/Module_QC/icicle/icicle/scpi_instrument.py", line 161, in set
+    rval = helper.send(self._instrument, command)
+  File "/home/opmd/Module_QC/icicle/icicle/utils/setting_processors.py", line 38, in _send
+    return instrument.write(command)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 196, in write
+    count = self.write_raw(message.encode(enco))
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa/resources/messagebased.py", line 156, in write_raw
+    return self.visalib.write(self.session, message)[0]
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/highlevel.py", line 544, in write
+    written, status_code = self.sessions[session].write(data)
+  File "/home/opmd/Module_QC/py3_venv/lib64/python3.9/site-packages/pyvisa_py/tcpip.py", line 1247, in write
+    size = self.interface.send(block)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+tcpdump:
+11:58:14.055366 IP localhost.46484 > localhost.19898: Flags [.], ack 4, win 512, options [nop,nop,TS val 799835124 ecr 799835124], length 0
+11:58:14.055684 IP localhost.46484 > localhost.19898: Flags [F.], seq 18, ack 4, win 512, options [nop,nop,TS val 799835124 ecr 799835124], length 0
+11:58:14.056444 IP localhost.19898 > localhost.46484: Flags [F.], seq 4, ack 19, win 512, options [nop,nop,TS val 799835125 ecr 799835124], length 0
+11:58:14.056455 IP localhost.46484 > localhost.19898: Flags [.], ack 5, win 512, options [nop,nop,TS val 799835125 ecr 799835125], length 0
+11:58:24.065421 IP localhost.43524 > localhost.19898: Flags [S], seq 69490279, win 65495, options [mss 65495,sackOK,TS val 799845134 ecr 0,nop,wscale 7], length 0
+11:58:24.065430 IP localhost.19898 > localhost.43524: Flags [S.], seq 2024418717, ack 69490280, win 65483, options [mss 65495,sackOK,TS val 799845134 ecr 799845134,nop,wscale 7], length 0
+11:58:24.065438 IP localhost.43524 > localhost.19898: Flags [.], ack 1, win 512, options [nop,nop,TS val 799845134 ecr 799845134], length 0
+11:58:24.115833 IP localhost.43524 > localhost.19898: Flags [P.], seq 1:10, ack 1, win 512, options [nop,nop,TS val 799845184 ecr 799845134], length 9
+11:58:24.115849 IP localhost.19898 > localhost.43524: Flags [.], ack 10, win 512, options [nop,nop,TS val 799845184 ecr 799845184], length 0
+11:58:24.216361 IP localhost.43524 > localhost.19898: Flags [P.], seq 10:18, ack 1, win 512, options [nop,nop,TS val 799845285 ecr 799845184], length 8
+11:58:24.216373 IP localhost.19898 > localhost.43524: Flags [.], ack 18, win 512, options [nop,nop,TS val 799845285 ecr 799845285], length 0
+11:58:25.014818 IP localhost.19898 > localhost.43524: Flags [P.], seq 1:4, ack 18, win 512, options [nop,nop,TS val 799846083 ecr 799845285], length 3
+11:58:25.014828 IP localhost.43524 > localhost.19898: Flags [.], ack 4, win 512, options [nop,nop,TS val 799846083 ecr 799846083], length 0
+11:58:25.015101 IP localhost.43524 > localhost.19898: Flags [F.], seq 18, ack 4, win 512, options [nop,nop,TS val 799846084 ecr 799846083], length 0
+11:58:25.015951 IP localhost.19898 > localhost.43524: Flags [F.], seq 4, ack 19, win 512, options [nop,nop,TS val 799846085 ecr 799846084], length 0
+11:58:25.015976 IP localhost.43524 > localhost.19898: Flags [.], ack 5, win 512, options [nop,nop,TS val 799846085 ecr 799846085], length 0
+11:58:35.025472 IP localhost.58186 > localhost.19898: Flags [S], seq 3572517714, win 65495, options [mss 65495,sackOK,TS val 799856094 ecr 0,nop,wscale 7], length 0
+11:58:35.025481 IP localhost.19898 > localhost.58186: Flags [R.], seq 0, ack 3572517715, win 0, length 0
+11:58:45.090425 IP localhost.58530 > localhost.19898: Flags [S], seq 2140462680, win 65495, options [mss 65495,sackOK,TS val 799866159 ecr 0,nop,wscale 7], length 0
+11:58:45.090438 IP localhost.19898 > localhost.58530: Flags [R.], seq 0, ack 2140462681, win 0, length 0
+
+
+
+
