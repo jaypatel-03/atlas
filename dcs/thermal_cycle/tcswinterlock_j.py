@@ -26,7 +26,7 @@ processes = []
 instruments = {}
 please_kill = False
 
-MODULES = [0]
+MODULES = [1,2,3]
 SHORT_DELAY = 0.1
 LONG_DELAY = 0.3 + SHORT_DELAY
 
@@ -92,27 +92,27 @@ def log_information(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, tem
     outstring.append(outstring_time)
     
     # Read monitoring values into file or something
-    #print('NTC ', ntcs[1].value)
-    outstring.append(ntcs[1].value)
+    #print('NTC ', np.mean([ntcs[i].value for i in MODULES))
+    outstring.append(np.mean([ntcs[i].value for i in MODULES]))
     print('HUMI ', humidity := humi.value)
     outstring.append(humidity)
-    #print('TEMP', chuck_temp[1].value)
-    outstring.append(chuck_temp[1].value)
+    print('TEMP', np.mean([chuck_temp[i].value for i in MODULES]))
+    outstring.append(np.mean([chuck_temp[i].value for i in MODULES]))
     
     dewpoint = calc_dewpoint(humidity, temp_85)
     #print('DEWPOINT ', )
     outstring.append(dewpoint)
 
-    #print('LV setpoint', lvs[1].voltage, lvs[1].current)
-    #print('LV actual', lvs[1].measure_voltage.value, lvs[1].measure_current.value)
-    outstring.append(lvs[1].measure_voltage.value)
-    outstring.append(lvs[1].measure_current.value)
+    #print('LV setpoint', np.mean([lvs[i].voltage for i in MODULES), np.mean([lvs[i].current for i in MODULES)))
+    #print('LV actual', np.mean([lvs[i].measure_voltage.value for i in MODULES), np.mean([lvs[i].measure_current.value for i in MODULES))
+    outstring.append(np.mean([lvs[i].measure_voltage.value for i in MODULES]))
+    outstring.append(np.mean([lvs[i].measure_current.value for i in MODULES]))
     #print('LV Status', lvs[1].status)
 
-    #print('PELT setpoint', pelt_psu[1].voltage, pelt_psu[1].current)
+    #print('PELT setpoint', np.mean([pelt_psu[i].voltage for i in MODULES), np.mean([pelt_psu[i].current for i in MODULES) )
     #print('PELT actual', pelt_psu[1].measure_voltage.value, pelt_psu[1].measure_current.value)
-    outstring.append(pelt_psu[1].measure_voltage.value)
-    outstring.append(pelt_psu[1].measure_current.value)
+    outstring.append(np.mean([pelt_psu[i].measure_voltage.value for i in MODULES]))
+    outstring.append(np.mean([pelt_psu[i].measure_current.value for i in MODULES]))
     #outstring.append(0.0) # ONLY WHILE THE REST IS COMMENTED OUT
     #print('PELT Status', pelt_psu[1].status)
 
@@ -138,7 +138,7 @@ def log_information(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, tem
         "fields": {k: v for k, v in zip(HEADER[1:], outstring[1:])},
         "time": outstring[0]
     }
-    write_to_db(write_api, dictionary) #JAY
+    write_to_db(write_api, dictionary)
 
     # Check interlock conditions
     cause = ''
