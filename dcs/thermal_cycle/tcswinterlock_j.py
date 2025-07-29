@@ -24,6 +24,8 @@ instruments = {}
 please_kill = False
 
 MODULES = [0,1]
+SHORT_DELAY = 0.1
+LONG_DELAY = 0.3 + SMALL_DELAY
 
 BASE_COMMAND_XTERM = ['xterm',
             '-T', 'Module QC tools',
@@ -38,46 +40,51 @@ BASE_COMMAND_XTERM = ['xterm',
 
 ENDPOINT = 'http://pplxatlasitk01.nat.physics.ox.ac.uk:8086'
 
-def pelts_read(pelt) -> list:
+def pelts_read(pelts) -> list:
     peltier_on = []
-    for i in range(len(pelt)):
-        time.sleep(1)
+    for i, pelt in enumerate(pelts):
+        time.sleep(LONG_DELAY)
         logging.info(f"Reading state of pelt{i}")
-        try:
-            with pelt[i]: peltier_on.append(pelt[i].state)
-        except ConnectionError as e:
-                logging.info(f"{e} - FAILED: failed to query pelt{i}, trying to reinitialise")
-                p = PIDController(resource = "TCPIP::localhost::19898::SOCKET")
-                time.sleep(2)
-                pelt[i] = p.channel("TemperatureChannel", i+1)
-                time.sleep(2)
-                with pelt[i]: peltier_on.append(pelt[i].state)
+        with pelt: peltier_on.append(pelt.state)
     return peltier_on
 
-def pelts_on_off(pelt : list, peltier_on : list, switch : bool):
+def pelts_on_off(pelts : list, peltier_on : list, switch : bool):
     """ Turns the peltiers in the pelt list on or off, according to the value of switch.
     Args:
         - pelt: list of peltier objects
         - peltier_on: output from pelts_read function with current state
         - switch: True for turning on, False for turning off 
     """
-    peltier_on = [not switch for _ in pelt] if peltier_on is None else peltier_on # if no current states supplied, assume all need to be switched
+    peltier_on = [not switch for _ in pelts] if peltier_on is None else peltier_on # if no current states supplied, assume all need to be switched
     logging.info(f"Turning peltiers to {switch}")
-    for i in range(len(pelt)):
+    time.sleep(LONG_DELAY)
+    for i, pelt in enumerate(pelts):
         if peltier_on[i] is not switch:
-            time.sleep(1)
-            logging.info(f"Turning pelt{i} to {switch}")
-            try:
-                with pelt[i]: pelt[i].state = switch
-            except ConnectionError as e:
-                logging.info(f"{e} - FAILED: failed to turn pelt{i} to {switch}, trying to reinitialise")
-                p = PIDController(resource = "TCPIP::localhost::19898::SOCKET")
-                time.sleep(2)
-                pelt[i] = p.channel("TemperatureChannel", i+1)
-                time.sleep(2)
-                with pelt[i]: pelt[i].state = switch
+            logging.debug(f"Turning pelt{i} to {switch}")    
+            with pelt: pelt.state = not switch
+            time.sleep(SHORT_DELAY)
+            
+def calc_dewpoint(humidity : float, temp_85 : float):
+    """Calculates dewpoint from humidity and temperature of the peltier back.
+    
+    Args:
+        humidity: relative humidity in %
+        temp_85: temperature of the peltier back in C
+    """
+    if type(humidity) is not float: # if the object has been passed, read the value
+        humidity = humidity.value if hasattr(humidity, 'value') else float(humidity)
+    if type(temp_85) is not float: # if the object has been passed, read the value
+        temp_85 = temp_85.value if hasattr(temp_85, 'value') else float(temp_85)
+        
+    if humidity <= 0.00001:
+        return -100.0
+    try:
+        return 243.04 * (math.log(humidity / 100) + 17.625 * temp_85 / (243.04 + temp_85)) / (17.625 - math.log(humidity / 100) - 17.625 * temp_85 / (243.04 + temp_85))
+    except Exception as e:
+        print(f'Exception: {e} with humi: {humidity} temp: {temp_85}')
+        return -100.0
 
-def log_information(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up):
+def log_information(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up):
     outstring=[]
     outstring_time=datetime.datetime.utcfromtimestamp(time.time())
     outstring.append(outstring_time)
@@ -89,15 +96,9 @@ def log_information(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, tem
     outstring.append(humidity)
     print('TEMP', chuck_temp[1].value)
     outstring.append(chuck_temp[1].value)
-    if humidity <= 0.00001:
-        dewpoint = -100.0
-    else:
-        try:
-            dewpoint = 243.04*(math.log(humidity/100)+17.625*temp_85.value/(243.04+temp_85.value))/(17.625-math.log(humidity/100)-17.625*temp_85.value/(243.04+temp_85.value))
-        except Exception as e:
-            print(f'Exception: {e} with humi: {humidity} temp: {temp_85.value}')
-            dewpoint = -100
-    print('DEWPOINT ', dewpoint)
+    
+    dewpoint = calc_dewpoint(humidity, temp_85)
+    print('DEWPOINT ', )
     outstring.append(dewpoint)
 
     print('LV setpoint', lvs[1].voltage, lvs[1].current)
@@ -106,12 +107,12 @@ def log_information(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, tem
     outstring.append(lvs[1].measure_current.value)
     print('LV Status', lvs[1].status)
 
-    #print('PELT setpoint', peltiers[1].voltage, peltiers[1].current)
-    #print('PELT actual', peltiers[1].measure_voltage.value, peltiers[1].measure_current.value)
-    #outstring.append(peltiers[1].measure_voltage.value)
-    #outstring.append(peltiers[1].measure_current.value)
+    #print('PELT setpoint', pelt_psu[1].voltage, pelt_psu[1].current)
+    #print('PELT actual', pelt_psu[1].measure_voltage.value, pelt_psu[1].measure_current.value)
+    #outstring.append(pelt_psu[1].measure_voltage.value)
+    #outstring.append(pelt_psu[1].measure_current.value)
     outstring.append(0.0) # ONLY WHILE THE REST IS COMMENTED OUT
-    #print('PELT Status', peltiers[1].status)
+    #print('PELT Status', pelt_psu[1].status)
 
     print('HV setpoint', hvs[0].voltage, hvs[0].current)
     print('HV State', hvs[0].state)
@@ -175,19 +176,11 @@ def save_ramp_down(ramp_down_data, humi, temp, hv, temp_85):
     ramp_down_data.append(instruments['ntcs'][1].value)
     ramp_down_data.append(humi.value)
     ramp_down_data.append(instruments['chuck_temp'][1].value)
-    if humi.value <= 0.00001:
-        dewpoint = -100
-    else:
-        try:
-            dewpoint = 243.04*(math.log(humi.value/100)+17.625*temp_85.value/(243.04+temp_85.value))/(17.625-math.log(humi.value/100)-17.625*temp_85.value/(243.04+temp_85.value))
-        except Exception as e:
-            print(f'Exception: {e} with humi: {humi.value}')
-            dewpoint = -100
-    ramp_down_data.append(dewpoint)
+    ramp_down_data.append(calc_dewpoint(humi.value, temp_85.value))
     ramp_down_data.append(instruments['lvs'][1].measure_voltage.value)
     ramp_down_data.append(instruments['lvs'][1].measure_current.value)
-    ramp_down_data.append(instruments['peltiers'][1].measure_voltage.value)
-    ramp_down_data.append(instruments['peltiers'][1].measure_current.value)
+    ramp_down_data.append(instruments['pelt_psu'][1].measure_voltage.value)
+    ramp_down_data.append(instruments['pelt_psu'][1].measure_current.value)
     ramp_down_data.append(hv.voltage)
     ramp_down_data.append(hv.current)
     ramp_down_data.append('\n')
@@ -200,7 +193,7 @@ def safe_shutdown(cause, humi, temp, pelt, base):
         if hv.state and hv.voltage > 0.001:
             hv.sweep(0, step_size=-5, execute_each_step = lambda: save_ramp_down(ramp_down_data, humi, temp, hv))      # Sweep to zero at rate 10V/s 
         hv.state = False
-    for pelt in instruments['peltiers']:
+    for pelt in instruments['pelt_psu']:
         pelt.current = 0
         pelt.state = False
     print('... this takes a while')
@@ -229,28 +222,19 @@ def signal_handler(sig, frame):
     else:
         please_kill = True
 
-def ramp_up(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, chuck_temp : list, chiller, pelt : list, base, HEADER, write_api, lid, temp_85, mini_ramp_up, max_temp):
+def ramp_up(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, temp, chuck_temp : list, chiller, pelt : list, base, HEADER, write_api, lid, temp_85, mini_ramp_up, max_temp):
     logging.info('INSIDE RAMP UP')
     peltier_on = pelts_read(pelt)
-
-    #time.sleep(5)    
     cause = ''
-
     pelts_on_off(pelt, peltier_on, False)
-    
-    
     while temp < max_temp: #Go up
                 with base: base.temperature = temp + 10
-                # for i in range(len(pelt)):
-                #     with pelt[i]: pelt[i].temperature = temp
-                
                 pelt_temperature_now = np.mean([chuck_temp[i].value for i in MODULES])
                 
                 while pelt_temperature_now < temp - 0.1:
                     print('Reaching desired temperature', temp)            
                     with base: print(base.temperature)
-                    #with pelt2: print(pelt2.temperature)
-                    temp, interlock_condition, mini_ramp_up, cause = log_information(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up)
+                    temp, interlock_condition, mini_ramp_up, cause = log_information(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up)
                     time.sleep(5)
                     pelt_temperature_now = np.mean([chuck_temp[i].value for i in MODULES])
 
@@ -261,12 +245,12 @@ def ramp_up(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, chuck
                     break
     return interlock_condition, cause
 
-def ramp_down(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, chuck_temp : list, chiller, pelt : list, base, HEADER, write_api, lid, temp_85, mini_ramp_up, min_temp):
+def ramp_down(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, temp, chuck_temp : list, chiller, pelt : list, base, HEADER, write_api, lid, temp_85, mini_ramp_up, min_temp):
     print('INSIDE RAMP DOWN')
     peltier_on = pelts_read(pelt)
  
     cause = ''
-    print("TRYING TO RAMP DOWN, TURN PELTIERS ON")
+    print("TRYING TO RAMP DOWN, TURN pelt_psu ON")
     pelts_on_off(pelt, peltier_on, True)
 
     while temp > min_temp: #Go down
@@ -281,22 +265,17 @@ def ramp_down(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, chu
                     with base: print(base.temperature)
                     for i in range(len(pelt)):
                         with pelt[i]: print(pelt[i].temperature)
-                    '''    
-                    with pelt[2]: print(pelt[2].temperature)
-                    with pelt[3]: print(pelt[3].temperature)
-                    with pelt[4]: print(pelt[4].temperature)
-                    '''
                     print(f"Current chuck temp: {np.mean([chuck_temp[i].value for i in MODULES])}")
-                    temp, interlock_condition, mini_ramp_up, cause = log_information(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up)
+                    temp, interlock_condition, mini_ramp_up, cause = log_information(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up)
                     if mini_ramp_up:
                         print('INSIDE MINI RAMP UP TEMP', temp)
-                        interlock_condition, cause = ramp_up(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp - 5, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up, temp) #Last temp is the new target temperature (increased by 5 through the mini ramp up condition and set to level in the temp - 5)
+                        interlock_condition, cause = ramp_up(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, temp - 5, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up, temp) #Last temp is the new target temperature (increased by 5 through the mini ramp up condition and set to level in the temp - 5)
                         mini_ramp_up = False
                         peltier_on = pelts_read(pelt)
 
                         pelts_on_off(pelt, peltier_on, True)
 
-                    time.sleep(5)
+                    time.sleep(LONG_DELAY)
                     pelt_temperature_now = np.mean([chuck_temp[i].value for i in MODULES])
 
                     if interlock_condition:
@@ -310,7 +289,6 @@ def main():
     signal.signal(signal.SIGINT, signal_handler)
     
     # interlock variables
-    p = PIDController(resource = "TCPIP::localhost::19898::SOCKET")
     interlock = ITkDCSInterlock(resource='TCPIP::localhost::9898::SOCKET')
     ntcs = [interlock.channel("MeasureChannel", channel, measure_type='NTC:TEMP') for channel in (1, 2, 3, 4)]
     chuck_temp = [interlock.channel("MeasureChannel", channel, measure_type='PT100:TEMP') for channel in (1, 2, 3, 4)] #Temperature of the module chuck
@@ -320,7 +298,7 @@ def main():
     lv_psu = HMP4040(resource='ASRL/dev/ttyHMP4040a::INSTR')
     lvs = [lv_psu.channel("PowerChannel", channel) for channel in (1, 2, 3, 4)]
     peltier_psu = HMP4040(resource='ASRL/dev/ttyHMP4040b::INSTR')
-    peltiers = [peltier_psu.channel("PowerChannel", channel) for channel in (1, 2, 3, 4)]
+    pelt_psu = [peltier_psu.channel("PowerChannel", channel) for channel in (1, 2, 3, 4)]
     hv_psu = Keithley2410(resource='ASRL/dev/ttyUSB0::INSTR')
     #hv_psu = Keithley2410(resource='ASRL/dev/ttyHMP4040b::INSTR') #PLACEHOLDER FOR WHEN THE HV ISN'T ATTACHED, REMOVE!!!!
     hvs = [hv_psu.channel("PowerChannel", 1)]
@@ -329,25 +307,31 @@ def main():
     chiller = h.channel("TemperatureChannel", 1)
 
     pelt = []
-
+    port0 = 19895
     for i in MODULES:
-        pelt.append(p.channel("TemperatureChannel", i+1))
+        # These config files should only contain 1 channel each.
+        tricicle = open_tricicle(f"../configs/pidcontroller_j{i}.toml", port=port0+i) 
+        time.sleep(5)
+        processes.append(tricicle)
+        p = PIDController(resource = f"TCPIP::localhost::{port0+i}::SOCKET")
+        pelt.append(p.channel("TemperatureChannel", 1)) # must assign channel 1 (maybe?)
+        
 
-    for ch in [*ntcs, *lvs, *peltiers, *hvs, humi, *chuck_temp]:
+    for ch in [*ntcs, *lvs, *pelt_psu, *hvs, humi, *chuck_temp]:
         ch.__enter__()
     try:
-        main_with_instruments(ntcs, lvs, peltiers, hvs, humi, chuck_temp, chiller, pelt, base, lid, temp_85)
+        main_with_instruments(ntcs, lvs, pelt_psu, hvs, humi, chuck_temp, chiller, pelt, base, lid, temp_85)
     finally:
         instruments = {}
-        for ch in [*ntcs, *lvs, *peltiers, *hvs, humi, *chuck_temp]:
+        for ch in [*ntcs, *lvs, *pelt_psu, *hvs, humi, *chuck_temp]:
             ch.__exit__(None, None, None)
 
 
-def main_with_instruments(ntcs, lvs, peltiers, hvs, humi, chuck_temp, chiller, pelt, base, lid, temp_85):
+def main_with_instruments(ntcs, lvs, pelt_psu, hvs, humi, chuck_temp, chiller, pelt, base, lid, temp_85):
 
     instruments['ntcs'] = ntcs
     instruments['lvs'] = lvs
-    instruments['peltiers'] = peltiers
+    instruments['pelt_psu'] = pelt_psu
     instruments['hvs'] = hvs
     instruments['chuck_temp'] = chuck_temp
     instruments['chiller'] = chiller
@@ -358,8 +342,6 @@ def main_with_instruments(ntcs, lvs, peltiers, hvs, humi, chuck_temp, chiller, p
         print('[ERROR]: Cannot connect to database. Refusing to run.')
         sys.exit(1)
     '''
-    tricicle = open_tricicle("../configs/pidcontroller.toml")
-    processes.append(tricicle)
     
     qc_tool = open_module_qc_tools()
     processes.append(qc_tool)
@@ -391,16 +373,15 @@ def main_with_instruments(ntcs, lvs, peltiers, hvs, humi, chuck_temp, chiller, p
         with base: base.state = True
         while not please_kill and cycles<max_cycles:
             temp = 20            
-            interlock_condition, cause = ramp_down(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up, min_temp)
+            interlock_condition, cause = ramp_down(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up, min_temp)
             temp = min_temp            
-            interlock_condition, cause = ramp_up(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up, max_temp)
+            interlock_condition, cause = ramp_up(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up, max_temp)
             temp = max_temp            
-            interlock_condition, cause = ramp_down(fl, interlock_condition, ntcs, lvs, peltiers, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up, 20)
+            interlock_condition, cause = ramp_down(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, temp, chuck_temp, chiller, pelt, base, HEADER, write_api, lid, temp_85, mini_ramp_up, 20)
             cycles += 1
             if interlock_condition:
                 break
         peltier_on = pelts_read(pelt)
-        time.sleep(2)
         logging.info("Initial turning peltiers off \n ****** \n ")
         pelts_on_off(pelt, peltier_on, False)
       
@@ -423,9 +404,9 @@ def show_warning(cause):
     msg.exec_()
     #app.exec_()
 
-def open_tricicle(config_file):
+def open_tricicle(config_file, port = 19898):
     print(shutil.which("pidcontroller-ui"))
-    return subprocess.Popen([shutil.which("pidcontroller-ui"), "-c", config_file, "-a"], stdin=None, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    return subprocess.Popen([shutil.which("pidcontroller-ui"), "-c", config_file, "-a", '-p', str(port)], stdin=None, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
 def kill_process(popen):
     popen.kill()
