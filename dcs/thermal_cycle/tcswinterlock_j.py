@@ -73,6 +73,20 @@ def pelts_on_off(pelts : list, switch : bool):
         time.sleep(SHORT_DELAY)   
         logging.debug(f"Pelt {i} : {s}")
 
+def pelts_set_temp(pelts : list, temp : float):
+    """ Sets the temperature of the peltiers in the pelt list to temp.
+    Args:
+        - pelt: list of peltier objects
+        - temp: temperature to set the peltiers to in °C
+    """
+    for i, pelt in enumerate(pelts):
+        time.sleep(LONG_DELAY)
+        with pelt: pelt.temperature = temp
+        time.sleep(LONG_DELAY)
+        with pelt: t = pelt.temperature
+        time.sleep(LONG_DELAY)   
+        logging.debug(f"Pelt {i} : {t}")    
+
 def avg(instr : list) -> float:
     """Calculates the average of a list of instrument readings.
     If the instrument has a value attribute, it will read the value from each channel.
@@ -296,11 +310,8 @@ def ramp_down(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, temp, chu
                 with base: base.temperature = temp + 5
                 time.sleep(LONG_DELAY)
                 
-                for i, pelt in enumerate(pelts):
-                    logging.info(f"Ramp down: Setting pelt{i} temperature to {temp}")
-                    with pelt: pelt.temperature = temp
-                    time.sleep(SHORT_DELAY)
-                    
+                logging.info(f"Ramp down: Setting pelts to {temp} C")
+                pelts_set_temp(pelts, temp)
                 pelt_temperature_now = avg(chuck_temp)
                 
                 while pelt_temperature_now > temp + 0.1:
