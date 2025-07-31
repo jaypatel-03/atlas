@@ -18,7 +18,14 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 import logging
 import argparse
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("tcswinterlock")
+
+global MODULES
+global DB_TOKEN
+global N_CYCLES
+global MAX_TEMP
+global MIN_TEMP
+global PELTIER_CONFIGS
 
 ### TO BE MODIFIED BY USER ###
 # Set the logging level to DEBUG for detailed output, or INFO for less verbose output
@@ -345,6 +352,7 @@ def ramp_down(fl, interlock_condition, ntcs, lvs, pelt_psu, hvs, humi, temp, chu
 def main():
     
     kwargs = parse_args()
+    print(kwargs)
 
     
     signal.signal(signal.SIGINT, signal_handler)
@@ -480,6 +488,14 @@ def main_with_instruments(ntcs, lvs, pelt_psu, hvs, humi, chuck_temp, chiller, p
             for _ in range(5):
                 log_information(fl, ntcs, lvs, pelt_psu, hvs, humi, chuck_temp, HEADER, write_api, temp_85)
             kill_processes()
+        else:
+            logging.critical('No interlock condition met, shutting down safely...')
+            with base: base.state = True
+            time.sleep(5)
+            with base: base.temperature = 20
+            time.sleep(5)
+            pelts_on_off(pelts, False)
+            sys.exit(0)
 
 def connect_pelts(port0=19896):
     """Connects to the Peltier controllers and returns a list of Peltier objects. 
@@ -528,8 +544,10 @@ def poll_process(popen):
 def get_process_output(popen):
     return popen.communicate()[0]
 
+'''
 def open_module_qc_tools(tool=sys.argv[1]):
     return subprocess.Popen([*BASE_COMMAND_XTERM, shutil.which(tool), *sys.argv[2:]], stdin=None, stdout=None, stderr=None)
+'''
     
 def connect_db(url,
                token=DB_TOKEN,
@@ -561,14 +579,14 @@ def write_to_db(write_api, dictionary):
 
 
 
-def parse_args():
+def parse_args(argv=None):
     parser = argparse.ArgumentParser(description="Thermal cycle control script")
     parser.add_argument('--n_cycles', type=int, default=N_CYCLES, help='Number of thermal cycles')
     parser.add_argument('--min_temp', type=float, default=MIN_TEMP, help='Minimum temperature (°C)')
     parser.add_argument('--max_temp', type=float, default=MAX_TEMP, help='Maximum temperature (°C)')
     parser.add_argument('--modules', type=int, nargs='+', default=MODULES, help='List of module numbers to use')
-    return parser.parse_args()
+    args = vars(parser.parse_args(argv))
+    return args
 
 if __name__ == '__main__':
-    
     main()
